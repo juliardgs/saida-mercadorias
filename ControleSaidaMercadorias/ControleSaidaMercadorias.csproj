@@ -54,11 +54,17 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Views\MenuFuncionarios.cs">
+    <Compile Include="Views\TelaFuncionarios.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Views\MenuFuncionarios.Designer.cs">
-      <DependentUpon>MenuFuncionarios.cs</DependentUpon>
+    <Compile Include="Views\TelaFuncionarios.Designer.cs">
+      <DependentUpon>TelaFuncionarios.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\TelaProdutos.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\TelaProdutos.Designer.cs">
+      <DependentUpon>TelaProdutos.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
@@ -72,8 +78,11 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="Views\MenuFuncionarios.resx">
-      <DependentUpon>MenuFuncionarios.cs</DependentUpon>
+    <EmbeddedResource Include="Views\TelaFuncionarios.resx">
+      <DependentUpon>TelaFuncionarios.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\TelaProdutos.resx">
+      <DependentUpon>TelaProdutos.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

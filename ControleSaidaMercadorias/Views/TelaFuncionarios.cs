@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace ControleSaidaMercadorias.Views
 {
-    public partial class MenuFuncionarios : UserControl
+    public partial class TelaFuncionarios : UserControl
     {
-        public MenuFuncionarios()
+        public TelaFuncionarios()
         {
             InitializeComponent();
         }
@@ -22,6 +22,11 @@ namespace ControleSaidaMercadorias.Views
             //checar se as informações são válidas
             //chamar o método que cadastra
             MessageBox.Show("Funcionário cadastrado com sucesso!", "Cadastro Funcionário");
+        }
+
+        private void listagemTab_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

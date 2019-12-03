@@ -19,10 +19,21 @@ namespace ControleSaidaMercadorias
 
         private void funcionariosBtn_Click(object sender, EventArgs e)
         {
-            telaFuncionarios.Visible = true;
+            menuFuncionarios.Visible = true;
         }
 
         private void telaFuncionarios_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void produtosBtn_Click(object sender, EventArgs e)
+        {
+            telaProdutos.Visible = true;
+            telaFuncionarios.Visible = false;
+        }
+
+        private void menuFuncionarios_Load(object sender, EventArgs e)
         {
 
         }

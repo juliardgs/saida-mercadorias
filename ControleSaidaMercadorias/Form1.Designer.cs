@@ -34,7 +34,8 @@
             this.produtosBtn = new System.Windows.Forms.Button();
             this.funcionariosBtn = new System.Windows.Forms.Button();
             this.painelPrincipal = new System.Windows.Forms.Panel();
-            this.telaFuncionarios = new ControleSaidaMercadorias.Views.MenuFuncionarios();
+            this.menuFuncionarios = new ControleSaidaMercadorias.Views.TelaFuncionarios();
+            this.telaProdutos = new ControleSaidaMercadorias.Views.TelaProdutos();
             this.menu.SuspendLayout();
             this.painelPrincipal.SuspendLayout();
             this.SuspendLayout();
@@ -81,6 +82,7 @@
             this.produtosBtn.TabIndex = 1;
             this.produtosBtn.Text = "Produtos";
             this.produtosBtn.UseVisualStyleBackColor = true;
+            this.produtosBtn.Click += new System.EventHandler(this.produtosBtn_Click);
             // 
             // funcionariosBtn
             // 
@@ -95,22 +97,32 @@
             // 
             // painelPrincipal
             // 
-            this.painelPrincipal.Controls.Add(this.telaFuncionarios);
+            this.painelPrincipal.Controls.Add(this.telaProdutos);
+            this.painelPrincipal.Controls.Add(this.menuFuncionarios);
             this.painelPrincipal.Dock = System.Windows.Forms.DockStyle.Fill;
             this.painelPrincipal.Location = new System.Drawing.Point(187, 0);
             this.painelPrincipal.Name = "painelPrincipal";
             this.painelPrincipal.Size = new System.Drawing.Size(844, 484);
             this.painelPrincipal.TabIndex = 1;
             // 
-            // telaFuncionarios
+            // menuFuncionarios
             // 
-            this.telaFuncionarios.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.telaFuncionarios.Location = new System.Drawing.Point(0, 0);
-            this.telaFuncionarios.Name = "telaFuncionarios";
-            this.telaFuncionarios.Size = new System.Drawing.Size(844, 484);
-            this.telaFuncionarios.TabIndex = 0;
-            this.telaFuncionarios.Visible = false;
-            this.telaFuncionarios.Load += new System.EventHandler(this.telaFuncionarios_Load);
+            this.menuFuncionarios.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.menuFuncionarios.Location = new System.Drawing.Point(0, 0);
+            this.menuFuncionarios.Name = "menuFuncionarios";
+            this.menuFuncionarios.Size = new System.Drawing.Size(844, 484);
+            this.menuFuncionarios.TabIndex = 0;
+            this.menuFuncionarios.Visible = false;
+            this.menuFuncionarios.Load += new System.EventHandler(this.menuFuncionarios_Load);
+            // 
+            // telaProdutos
+            // 
+            this.telaProdutos.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.telaProdutos.Location = new System.Drawing.Point(0, 0);
+            this.telaProdutos.Name = "telaProdutos";
+            this.telaProdutos.Size = new System.Drawing.Size(844, 484);
+            this.telaProdutos.TabIndex = 1;
+            this.telaProdutos.Visible = false;
             // 
             // Form1
             // 
@@ -135,7 +147,9 @@
         private System.Windows.Forms.Button produtosBtn;
         private System.Windows.Forms.Button funcionariosBtn;
         private System.Windows.Forms.Panel painelPrincipal;
-        private Views.MenuFuncionarios telaFuncionarios;
+        private Views.TelaFuncionarios telaFuncionarios;
+        private Views.TelaFuncionarios menuFuncionarios;
+        private Views.TelaProdutos telaProdutos;
     }
 }
 
