@@ -16,5 +16,15 @@ namespace ControleSaidaMercadorias
         {
             InitializeComponent();
         }
+
+        private void funcionariosBtn_Click(object sender, EventArgs e)
+        {
+            telaFuncionarios.Visible = true;
+        }
+
+        private void telaFuncionarios_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
