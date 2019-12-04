@@ -30,7 +30,7 @@ namespace ControleSaidaMercadorias
         private void produtosBtn_Click(object sender, EventArgs e)
         {
             telaProdutos.Visible = true;
-            telaFuncionarios.Visible = false;
+            menuFuncionarios.Visible = false;
         }
 
         private void menuFuncionarios_Load(object sender, EventArgs e)

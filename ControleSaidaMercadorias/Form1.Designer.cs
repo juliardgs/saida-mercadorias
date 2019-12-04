@@ -34,8 +34,8 @@
             this.produtosBtn = new System.Windows.Forms.Button();
             this.funcionariosBtn = new System.Windows.Forms.Button();
             this.painelPrincipal = new System.Windows.Forms.Panel();
-            this.menuFuncionarios = new ControleSaidaMercadorias.Views.TelaFuncionarios();
             this.telaProdutos = new ControleSaidaMercadorias.Views.TelaProdutos();
+            this.menuFuncionarios = new ControleSaidaMercadorias.Views.TelaFuncionarios();
             this.menu.SuspendLayout();
             this.painelPrincipal.SuspendLayout();
             this.SuspendLayout();
@@ -50,7 +50,7 @@
             this.menu.Dock = System.Windows.Forms.DockStyle.Left;
             this.menu.Location = new System.Drawing.Point(0, 0);
             this.menu.Name = "menu";
-            this.menu.Size = new System.Drawing.Size(187, 484);
+            this.menu.Size = new System.Drawing.Size(187, 505);
             this.menu.TabIndex = 0;
             // 
             // relatoriosBtn
@@ -102,37 +102,37 @@
             this.painelPrincipal.Dock = System.Windows.Forms.DockStyle.Fill;
             this.painelPrincipal.Location = new System.Drawing.Point(187, 0);
             this.painelPrincipal.Name = "painelPrincipal";
-            this.painelPrincipal.Size = new System.Drawing.Size(844, 484);
+            this.painelPrincipal.Size = new System.Drawing.Size(844, 505);
             this.painelPrincipal.TabIndex = 1;
-            // 
-            // menuFuncionarios
-            // 
-            this.menuFuncionarios.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.menuFuncionarios.Location = new System.Drawing.Point(0, 0);
-            this.menuFuncionarios.Name = "menuFuncionarios";
-            this.menuFuncionarios.Size = new System.Drawing.Size(844, 484);
-            this.menuFuncionarios.TabIndex = 0;
-            this.menuFuncionarios.Visible = false;
-            this.menuFuncionarios.Load += new System.EventHandler(this.menuFuncionarios_Load);
             // 
             // telaProdutos
             // 
             this.telaProdutos.Dock = System.Windows.Forms.DockStyle.Fill;
             this.telaProdutos.Location = new System.Drawing.Point(0, 0);
             this.telaProdutos.Name = "telaProdutos";
-            this.telaProdutos.Size = new System.Drawing.Size(844, 484);
+            this.telaProdutos.Size = new System.Drawing.Size(844, 505);
             this.telaProdutos.TabIndex = 1;
             this.telaProdutos.Visible = false;
+            // 
+            // menuFuncionarios
+            // 
+            this.menuFuncionarios.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.menuFuncionarios.Location = new System.Drawing.Point(0, 0);
+            this.menuFuncionarios.Name = "menuFuncionarios";
+            this.menuFuncionarios.Size = new System.Drawing.Size(844, 505);
+            this.menuFuncionarios.TabIndex = 0;
+            this.menuFuncionarios.Visible = false;
+            this.menuFuncionarios.Load += new System.EventHandler(this.menuFuncionarios_Load);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1031, 484);
+            this.ClientSize = new System.Drawing.Size(1031, 505);
             this.Controls.Add(this.painelPrincipal);
             this.Controls.Add(this.menu);
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "Controle de Saída de Mercadorias";
             this.menu.ResumeLayout(false);
             this.painelPrincipal.ResumeLayout(false);
             this.ResumeLayout(false);
