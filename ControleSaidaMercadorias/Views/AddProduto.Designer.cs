@@ -29,14 +29,16 @@
         private void InitializeComponent()
         {
             this.buscarProdPanel = new System.Windows.Forms.Panel();
-            this.buscarLbl = new System.Windows.Forms.Label();
-            this.buscarProdutoTxt = new System.Windows.Forms.TextBox();
             this.buscarProdutoBtn = new System.Windows.Forms.Button();
+            this.buscarProdutoTxt = new System.Windows.Forms.TextBox();
+            this.buscarLbl = new System.Windows.Forms.Label();
             this.dgvPanel = new System.Windows.Forms.Panel();
             this.buscaProdutoDgv = new System.Windows.Forms.DataGridView();
             this.limparPanel = new System.Windows.Forms.Panel();
-            this.limparBtn = new System.Windows.Forms.Button();
             this.addProdutoBtn = new System.Windows.Forms.Button();
+            this.limparBtn = new System.Windows.Forms.Button();
+            this.qtdeLbl = new System.Windows.Forms.Label();
+            this.qtdeTxt = new System.Windows.Forms.TextBox();
             this.buscarProdPanel.SuspendLayout();
             this.dgvPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.buscaProdutoDgv)).BeginInit();
@@ -54,23 +56,6 @@
             this.buscarProdPanel.Size = new System.Drawing.Size(504, 69);
             this.buscarProdPanel.TabIndex = 0;
             // 
-            // buscarLbl
-            // 
-            this.buscarLbl.AutoSize = true;
-            this.buscarLbl.Location = new System.Drawing.Point(12, 19);
-            this.buscarLbl.Name = "buscarLbl";
-            this.buscarLbl.Size = new System.Drawing.Size(90, 13);
-            this.buscarLbl.TabIndex = 0;
-            this.buscarLbl.Text = "Buscar por nome:";
-            // 
-            // buscarProdutoTxt
-            // 
-            this.buscarProdutoTxt.Location = new System.Drawing.Point(108, 16);
-            this.buscarProdutoTxt.MaxLength = 100;
-            this.buscarProdutoTxt.Name = "buscarProdutoTxt";
-            this.buscarProdutoTxt.Size = new System.Drawing.Size(291, 20);
-            this.buscarProdutoTxt.TabIndex = 1;
-            // 
             // buscarProdutoBtn
             // 
             this.buscarProdutoBtn.Location = new System.Drawing.Point(408, 14);
@@ -80,6 +65,23 @@
             this.buscarProdutoBtn.Text = "BUSCAR";
             this.buscarProdutoBtn.UseVisualStyleBackColor = true;
             this.buscarProdutoBtn.Click += new System.EventHandler(this.buscarProdutoBtn_Click);
+            // 
+            // buscarProdutoTxt
+            // 
+            this.buscarProdutoTxt.Location = new System.Drawing.Point(108, 16);
+            this.buscarProdutoTxt.MaxLength = 100;
+            this.buscarProdutoTxt.Name = "buscarProdutoTxt";
+            this.buscarProdutoTxt.Size = new System.Drawing.Size(291, 20);
+            this.buscarProdutoTxt.TabIndex = 1;
+            // 
+            // buscarLbl
+            // 
+            this.buscarLbl.AutoSize = true;
+            this.buscarLbl.Location = new System.Drawing.Point(12, 19);
+            this.buscarLbl.Name = "buscarLbl";
+            this.buscarLbl.Size = new System.Drawing.Size(90, 13);
+            this.buscarLbl.TabIndex = 0;
+            this.buscarLbl.Text = "Buscar por nome:";
             // 
             // dgvPanel
             // 
@@ -97,6 +99,7 @@
             this.buscaProdutoDgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.buscaProdutoDgv.Dock = System.Windows.Forms.DockStyle.Fill;
             this.buscaProdutoDgv.Location = new System.Drawing.Point(0, 0);
+            this.buscaProdutoDgv.MultiSelect = false;
             this.buscaProdutoDgv.Name = "buscaProdutoDgv";
             this.buscaProdutoDgv.ReadOnly = true;
             this.buscaProdutoDgv.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
@@ -106,6 +109,8 @@
             // 
             // limparPanel
             // 
+            this.limparPanel.Controls.Add(this.qtdeTxt);
+            this.limparPanel.Controls.Add(this.qtdeLbl);
             this.limparPanel.Controls.Add(this.addProdutoBtn);
             this.limparPanel.Controls.Add(this.limparBtn);
             this.limparPanel.Dock = System.Windows.Forms.DockStyle.Top;
@@ -113,6 +118,16 @@
             this.limparPanel.Name = "limparPanel";
             this.limparPanel.Size = new System.Drawing.Size(504, 60);
             this.limparPanel.TabIndex = 2;
+            // 
+            // addProdutoBtn
+            // 
+            this.addProdutoBtn.Location = new System.Drawing.Point(408, 16);
+            this.addProdutoBtn.Name = "addProdutoBtn";
+            this.addProdutoBtn.Size = new System.Drawing.Size(75, 23);
+            this.addProdutoBtn.TabIndex = 1;
+            this.addProdutoBtn.Text = "ADICIONAR";
+            this.addProdutoBtn.UseVisualStyleBackColor = true;
+            this.addProdutoBtn.Click += new System.EventHandler(this.addProdutoBtn_Click);
             // 
             // limparBtn
             // 
@@ -122,23 +137,31 @@
             this.limparBtn.TabIndex = 0;
             this.limparBtn.Text = "LIMPAR";
             this.limparBtn.UseVisualStyleBackColor = true;
+            this.limparBtn.Click += new System.EventHandler(this.limparBtn_Click);
             // 
-            // addProdutoBtn
+            // qtdeLbl
             // 
-            this.addProdutoBtn.Enabled = false;
-            this.addProdutoBtn.Location = new System.Drawing.Point(408, 16);
-            this.addProdutoBtn.Name = "addProdutoBtn";
-            this.addProdutoBtn.Size = new System.Drawing.Size(75, 23);
-            this.addProdutoBtn.TabIndex = 1;
-            this.addProdutoBtn.Text = "ADICIONAR";
-            this.addProdutoBtn.UseVisualStyleBackColor = true;
-            this.addProdutoBtn.Click += new System.EventHandler(this.addProdutoBtn_Click);
+            this.qtdeLbl.AutoSize = true;
+            this.qtdeLbl.Location = new System.Drawing.Point(12, 21);
+            this.qtdeLbl.Name = "qtdeLbl";
+            this.qtdeLbl.Size = new System.Drawing.Size(65, 13);
+            this.qtdeLbl.TabIndex = 2;
+            this.qtdeLbl.Text = "Quantidade:";
+            // 
+            // qtdeTxt
+            // 
+            this.qtdeTxt.Location = new System.Drawing.Point(83, 18);
+            this.qtdeTxt.MaxLength = 3;
+            this.qtdeTxt.Name = "qtdeTxt";
+            this.qtdeTxt.Size = new System.Drawing.Size(29, 20);
+            this.qtdeTxt.TabIndex = 3;
+            this.qtdeTxt.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.qtdeTxt_KeyPress);
             // 
             // AddProduto
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(504, 450);
+            this.ClientSize = new System.Drawing.Size(504, 348);
             this.Controls.Add(this.limparPanel);
             this.Controls.Add(this.dgvPanel);
             this.Controls.Add(this.buscarProdPanel);
@@ -149,6 +172,7 @@
             this.dgvPanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.buscaProdutoDgv)).EndInit();
             this.limparPanel.ResumeLayout(false);
+            this.limparPanel.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -164,5 +188,7 @@
         private System.Windows.Forms.Panel limparPanel;
         private System.Windows.Forms.Button limparBtn;
         private System.Windows.Forms.Button addProdutoBtn;
+        private System.Windows.Forms.TextBox qtdeTxt;
+        private System.Windows.Forms.Label qtdeLbl;
     }
 }

@@ -41,31 +41,7 @@ namespace ControleSaidaMercadorias.DAL
             connection.Close();
         }
 
-        void IncluirProdutoComposto(Produto produto)
-        {
-            connection.Open();
-
-            var command = connection.CreateCommand();
-            command.CommandText = "insert into produto (nome, precoCusto, precoVenda) output INSERTED.ID values (@nome, @precoCusto, @precoVenda)";
-            command.Parameters.AddWithValue("@nome", produto.Nome);
-            command.Parameters.AddWithValue("@precoCusto", produto.PrecoCusto);
-            command.Parameters.AddWithValue("@precoVenda", produto.PrecoVenda);
-            command.ExecuteNonQuery();
-            int idProdComposto = (int)command.ExecuteScalar(); //pega o id do produto composto que foi inserido
-
-            command.CommandText = "insert into produto_tem_produtos (idProdutoSimples, idProdutoComposto, quantidade) values (@idProdutoSimples, @idProdutoComposto, @quantidade)"; //verificar o nome das colunas
-
-            foreach (Produto item in produto.ItemProduto)
-            {
-                command.Parameters.AddWithValue("@idProdutoSimples", item.Id);
-                command.Parameters.AddWithValue("@idProdutoComposto", idProdComposto);
-                command.ExecuteNonQuery();
-            }
-    
-            connection.Close();
-        }
-
-        public void AlterarProduto(Produto produto)
+        public void AlterarProduto(Produto produto, bool composto = false)
         {
             connection.Open();
             var command = connection.CreateCommand();
@@ -84,8 +60,9 @@ namespace ControleSaidaMercadorias.DAL
         {
             connection.Open();
             var command = connection.CreateCommand();
-            command.CommandText = "select id as ID, nome as 'NOME', precoCusto as 'PREÇO DE CUSTO'," +
-                "precoVenda as 'PREÇO DE VENDA', quantidade as 'ESTOQUE' from produto where lower(nome) like @nome";
+            command.CommandText = "select id as ID, nome as 'NOME', precoCusto as 'PREÇO DE CUSTO'," + //query só retorna produtos simples
+                "precoVenda as 'PREÇO DE VENDA', quantidade as 'ESTOQUE' from produto left join produto_tem_produtos " +
+                "on produto.id = produto_tem_produtos.idComposto where lower(nome) like @nome and produto_tem_produtos.idComposto is null";
             command.Parameters.AddWithValue("@nome", "%" + nome.ToLower() + "%");
 
             using (SqlDataReader reader = command.ExecuteReader())
@@ -96,5 +73,7 @@ namespace ControleSaidaMercadorias.DAL
                 return dt;
             }
         }
+
+
     }
 }

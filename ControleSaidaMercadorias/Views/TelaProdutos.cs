@@ -16,6 +16,7 @@ namespace ControleSaidaMercadorias.Views
     public partial class TelaProdutos : UserControl
     {
         private ProdutoDAL dal = new ProdutoDAL();
+        private Produto produtoSelecionado;
         public TelaProdutos()
         {
             InitializeComponent();
@@ -29,33 +30,11 @@ namespace ControleSaidaMercadorias.Views
             nomeProdSimplesTxt.Focus();
         }
 
-        private void cadastroProdSimplesPanel_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void panel1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            //verifica se há algum item na listview
-            //verifica se os campos nome e preco de venda estão nulos
-            //grava no banco
-            //limpa os campos, foco no textbox de nome
-        }
 
         private void buscarProdutosBtn_Click(object sender, EventArgs e)
         {
             //verifica campos
             //busca no banco e retorna no data grid view
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
         }
 
         private void precoCustoProdSimplesTxt_KeyPress(object sender, KeyPressEventArgs e)
@@ -150,6 +129,77 @@ namespace ControleSaidaMercadorias.Views
         {
             AddProduto addProduto = new AddProduto(this);
             addProduto.Show();
+        }
+
+        private void cadastroProdCompostoBtn_Click(object sender, EventArgs e)
+        {
+            if(listaProdSimplesDgv.Rows.Count == 0
+                || nomeProdCompostoTxt.Text == string.Empty
+                || precoVendaProdCompostoTxt.Text == string.Empty)
+            {
+                MessageBox.Show("É necessario preencher todos os campos com valores válidos.", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+
+            else
+            {
+                List<Produto> itens = new List<Produto>();
+                foreach (DataGridViewRow linha in listaProdSimplesDgv.Rows)
+                {
+                    Produto itemProduto = new Produto()
+                    {
+                        Id = Convert.ToInt32(linha.Cells[0].Value),
+                        Quantidade = Convert.ToInt32(linha.Cells[2].Value)
+                    };
+                    itens.Add(itemProduto);
+                    
+                }
+                dal.IncluirProduto(new Produto()
+                {
+                    Nome = nomeProdCompostoTxt.Text,
+                    PrecoCusto = Convert.ToDouble(precoCustoProdCompostoTxt.Text, CultureInfo.InvariantCulture),
+                    PrecoVenda = Convert.ToDouble(precoVendaProdCompostoTxt.Text),
+                    ItemProduto = itens
+                });
+            }
+        }
+
+        private void listaProdSimplesDgv_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            //colocar verificação aqui
+            excluirProdSimplesBtn.Enabled = true;
+            produtoSelecionado = new Produto()
+            {
+                PrecoCusto = Convert.ToDouble(listaProdSimplesDgv.Rows[e.RowIndex].Cells[4].Value, CultureInfo.InvariantCulture),
+            };
+        }
+
+        private void listaProdSimplesDgv_RowsAdded(object sender, DataGridViewRowsAddedEventArgs e)
+        {
+            CalcularPrecoCusto();
+        }
+
+        private void excluirProdSimplesBtn_Click(object sender, EventArgs e)
+        {
+            if(listaProdSimplesDgv.RowCount > 0)
+            {
+                listaProdSimplesDgv.Rows.RemoveAt(listaProdSimplesDgv.CurrentRow.Index);
+                CalcularPrecoCusto();
+            }
+            else
+            {
+                excluirProdSimplesBtn.Enabled = false;
+            }
+            
+        }
+
+        private void CalcularPrecoCusto()
+        {
+            double precoCusto = 0;
+            foreach (DataGridViewRow linha in listaProdSimplesDgv.Rows)
+            {
+                precoCusto += Convert.ToDouble(linha.Cells[3].Value);
+            }
+            precoCustoProdCompostoTxt.Text = precoCusto.ToString();
         }
     }
 }
