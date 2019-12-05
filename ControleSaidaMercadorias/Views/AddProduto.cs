@@ -44,8 +44,7 @@ namespace ControleSaidaMercadorias.Views
 
         private void buscarProdutoBtn_Click(object sender, EventArgs e)
         {
-            DataTable dados = dal.BuscarProduto(buscarProdutoTxt.Text);
-            buscaProdutoDgv.DataSource = dados;
+            buscaProdutoDgv.DataSource = dal.BuscarProduto(buscarProdutoTxt.Text)[0];
         }
 
         private void buscaProdutoDgv_CellClick(object sender, DataGridViewCellEventArgs e)

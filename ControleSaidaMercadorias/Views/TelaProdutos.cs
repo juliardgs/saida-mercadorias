@@ -33,7 +33,15 @@ namespace ControleSaidaMercadorias.Views
 
         private void buscarProdutosBtn_Click(object sender, EventArgs e)
         {
-            //verifica campos
+            if(buscarProdCompostoTxt.Text == string.Empty)
+            {
+                MessageBox.Show("É necessario preencher todos os campos com valores válidos.", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+            else
+            {
+                buscaProdSimplesDgv.DataSource = dal.BuscarProduto(buscarProdCompostoTxt.Text)[0];
+                buscaProdCompostoDgv.DataSource = dal.BuscarProduto(buscarProdCompostoTxt.Text)[1];
+            }
             //busca no banco e retorna no data grid view
         }
 

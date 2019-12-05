@@ -28,7 +28,7 @@ namespace ControleSaidaMercadorias.DAL
             if (produto.ItemProduto != null) //se não for nulo é produto composto
             {
                 int idProdComposto = (int)command.ExecuteScalar(); //pega o id do produto composto que foi inserido
-                command.CommandText = "insert into produto_tem_produtos (idProdutoSimples, idProdutoComposto, quantidade) values (@idProdutoSimples, @idProdutoComposto, @quantidade)"; //verificar o nome das colunas
+                command.CommandText = "insert into produto_tem_produtos (idProdutoSimples, idProdutoComposto, quantidade) values (@idProdutoSimples, @idProdutoComposto, @quantidade)";
 
                 foreach (Produto item in produto.ItemProduto)
                 {
@@ -56,22 +56,38 @@ namespace ControleSaidaMercadorias.DAL
             connection.Close();
         }
 
-        public DataTable BuscarProduto(string nome, bool composto = false)
+        public List<DataTable> BuscarProduto(string nome, bool composto = false)
         {
             connection.Open();
             var command = connection.CreateCommand();
+            var command2 = connection.CreateCommand();
             command.CommandText = "select id as ID, nome as 'NOME', precoCusto as 'PREÇO DE CUSTO'," + //query só retorna produtos simples
                 "precoVenda as 'PREÇO DE VENDA', quantidade as 'ESTOQUE' from produto left join produto_tem_produtos " +
                 "on produto.id = produto_tem_produtos.idComposto where lower(nome) like @nome and produto_tem_produtos.idComposto is null";
             command.Parameters.AddWithValue("@nome", "%" + nome.ToLower() + "%");
 
-            using (SqlDataReader reader = command.ExecuteReader())
+            command2.CommandText = "select id as ID, nome as 'NOME', precoCusto as 'PREÇO DE CUSTO'," + //query só retorna produtos compostos
+                "precoVenda as 'PREÇO DE VENDA' from produto inner join produto_tem_produtos " +
+                "on produto.id = produto_tem_produtos.idComposto where lower(nome) like @nome";
+            command2.Parameters.AddWithValue("@nome", "%" + nome.ToLower() + "%");
+
+            /*using (SqlDataReader reader = command.ExecuteReader())
             {
                 DataTable dt = new DataTable();
                 dt.Load(reader);
                 connection.Close();
                 return dt;
-            }
+            }*/
+            SqlDataReader reader = command.ExecuteReader();
+            DataTable dt = new DataTable();
+            dt.Load(reader);
+            reader = command2.ExecuteReader();
+            DataTable dt2 = new DataTable();
+            dt2.Load(reader);
+            List<DataTable> listaDt = new List<DataTable>();
+            listaDt.Add(dt);
+            listaDt.Add(dt2);
+            return listaDt;
         }
 
 

@@ -60,7 +60,7 @@
             this.excluirProdutoBtn = new System.Windows.Forms.Button();
             this.alterarProdBtn = new System.Windows.Forms.Button();
             this.listagemProdutosPanel = new System.Windows.Forms.Panel();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.buscaProdCompostoDgv = new System.Windows.Forms.DataGridView();
             this.prodCompostoLblPanel = new System.Windows.Forms.Panel();
             this.prodCompostoLbl = new System.Windows.Forms.Label();
             this.buscaProdSimplesDgv = new System.Windows.Forms.DataGridView();
@@ -94,7 +94,7 @@
             this.listarProdCompostoTab.SuspendLayout();
             this.altExcProdPanel.SuspendLayout();
             this.listagemProdutosPanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.buscaProdCompostoDgv)).BeginInit();
             this.prodCompostoLblPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.buscaProdSimplesDgv)).BeginInit();
             this.prodSimplesLblPanel.SuspendLayout();
@@ -402,27 +402,29 @@
             // 
             // excluirProdutoBtn
             // 
+            this.excluirProdutoBtn.Dock = System.Windows.Forms.DockStyle.Right;
             this.excluirProdutoBtn.Enabled = false;
-            this.excluirProdutoBtn.Location = new System.Drawing.Point(734, 6);
+            this.excluirProdutoBtn.Location = new System.Drawing.Point(685, 0);
             this.excluirProdutoBtn.Name = "excluirProdutoBtn";
-            this.excluirProdutoBtn.Size = new System.Drawing.Size(75, 23);
+            this.excluirProdutoBtn.Size = new System.Drawing.Size(75, 37);
             this.excluirProdutoBtn.TabIndex = 1;
             this.excluirProdutoBtn.Text = "EXCLUIR";
             this.excluirProdutoBtn.UseVisualStyleBackColor = true;
             // 
             // alterarProdBtn
             // 
+            this.alterarProdBtn.Dock = System.Windows.Forms.DockStyle.Right;
             this.alterarProdBtn.Enabled = false;
-            this.alterarProdBtn.Location = new System.Drawing.Point(653, 6);
+            this.alterarProdBtn.Location = new System.Drawing.Point(760, 0);
             this.alterarProdBtn.Name = "alterarProdBtn";
-            this.alterarProdBtn.Size = new System.Drawing.Size(75, 23);
+            this.alterarProdBtn.Size = new System.Drawing.Size(75, 37);
             this.alterarProdBtn.TabIndex = 0;
             this.alterarProdBtn.Text = "ALTERAR";
             this.alterarProdBtn.UseVisualStyleBackColor = true;
             // 
             // listagemProdutosPanel
             // 
-            this.listagemProdutosPanel.Controls.Add(this.dataGridView1);
+            this.listagemProdutosPanel.Controls.Add(this.buscaProdCompostoDgv);
             this.listagemProdutosPanel.Controls.Add(this.prodCompostoLblPanel);
             this.listagemProdutosPanel.Controls.Add(this.buscaProdSimplesDgv);
             this.listagemProdutosPanel.Controls.Add(this.prodSimplesLblPanel);
@@ -432,17 +434,17 @@
             this.listagemProdutosPanel.Size = new System.Drawing.Size(835, 348);
             this.listagemProdutosPanel.TabIndex = 2;
             // 
-            // dataGridView1
+            // buscaProdCompostoDgv
             // 
-            this.dataGridView1.AllowUserToAddRows = false;
-            this.dataGridView1.AllowUserToDeleteRows = false;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridView1.Location = new System.Drawing.Point(0, 202);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.ReadOnly = true;
-            this.dataGridView1.Size = new System.Drawing.Size(835, 146);
-            this.dataGridView1.TabIndex = 4;
+            this.buscaProdCompostoDgv.AllowUserToAddRows = false;
+            this.buscaProdCompostoDgv.AllowUserToDeleteRows = false;
+            this.buscaProdCompostoDgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.buscaProdCompostoDgv.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.buscaProdCompostoDgv.Location = new System.Drawing.Point(0, 202);
+            this.buscaProdCompostoDgv.Name = "buscaProdCompostoDgv";
+            this.buscaProdCompostoDgv.ReadOnly = true;
+            this.buscaProdCompostoDgv.Size = new System.Drawing.Size(835, 146);
+            this.buscaProdCompostoDgv.TabIndex = 4;
             // 
             // prodCompostoLblPanel
             // 
@@ -562,6 +564,7 @@
             // buscarProdCompostoTxt
             // 
             this.buscarProdCompostoTxt.Location = new System.Drawing.Point(110, 21);
+            this.buscarProdCompostoTxt.MaxLength = 100;
             this.buscarProdCompostoTxt.Name = "buscarProdCompostoTxt";
             this.buscarProdCompostoTxt.Size = new System.Drawing.Size(699, 20);
             this.buscarProdCompostoTxt.TabIndex = 1;
@@ -666,7 +669,7 @@
             this.listarProdCompostoTab.ResumeLayout(false);
             this.altExcProdPanel.ResumeLayout(false);
             this.listagemProdutosPanel.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.buscaProdCompostoDgv)).EndInit();
             this.prodCompostoLblPanel.ResumeLayout(false);
             this.prodCompostoLblPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.buscaProdSimplesDgv)).EndInit();
@@ -719,7 +722,7 @@
         private System.Windows.Forms.Panel altExcProdPanel;
         private System.Windows.Forms.Button alterarProdBtn;
         private System.Windows.Forms.Panel listagemProdutosPanel;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView buscaProdCompostoDgv;
         private System.Windows.Forms.Panel prodCompostoLblPanel;
         private System.Windows.Forms.Label prodCompostoLbl;
         private System.Windows.Forms.DataGridView buscaProdSimplesDgv;
