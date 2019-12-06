@@ -38,7 +38,7 @@
             this.nomeTxt = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.listaProdSimplesPanel = new System.Windows.Forms.Panel();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.listaProdSimplesDgv = new System.Windows.Forms.DataGridView();
             this.id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nome = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.qtde = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -53,7 +53,7 @@
             this.salvarBtn = new System.Windows.Forms.Button();
             this.infoProdPanel.SuspendLayout();
             this.listaProdSimplesPanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.listaProdSimplesDgv)).BeginInit();
             this.addExcBtnPanel.SuspendLayout();
             this.salvarBtnPanel.SuspendLayout();
             this.SuspendLayout();
@@ -147,7 +147,7 @@
             // 
             // listaProdSimplesPanel
             // 
-            this.listaProdSimplesPanel.Controls.Add(this.dataGridView1);
+            this.listaProdSimplesPanel.Controls.Add(this.listaProdSimplesDgv);
             this.listaProdSimplesPanel.Dock = System.Windows.Forms.DockStyle.Top;
             this.listaProdSimplesPanel.Location = new System.Drawing.Point(0, 112);
             this.listaProdSimplesPanel.Name = "listaProdSimplesPanel";
@@ -155,25 +155,25 @@
             this.listaProdSimplesPanel.TabIndex = 1;
             this.listaProdSimplesPanel.Visible = false;
             // 
-            // dataGridView1
+            // listaProdSimplesDgv
             // 
-            this.dataGridView1.AllowUserToAddRows = false;
-            this.dataGridView1.AllowUserToDeleteRows = false;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.listaProdSimplesDgv.AllowUserToAddRows = false;
+            this.listaProdSimplesDgv.AllowUserToDeleteRows = false;
+            this.listaProdSimplesDgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.listaProdSimplesDgv.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.id,
             this.nome,
             this.qtde,
             this.precoCusto,
             this.precoVenda});
-            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridView1.Location = new System.Drawing.Point(0, 0);
-            this.dataGridView1.MultiSelect = false;
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.ReadOnly = true;
-            this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(526, 179);
-            this.dataGridView1.TabIndex = 0;
+            this.listaProdSimplesDgv.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.listaProdSimplesDgv.Location = new System.Drawing.Point(0, 0);
+            this.listaProdSimplesDgv.MultiSelect = false;
+            this.listaProdSimplesDgv.Name = "listaProdSimplesDgv";
+            this.listaProdSimplesDgv.ReadOnly = true;
+            this.listaProdSimplesDgv.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.listaProdSimplesDgv.Size = new System.Drawing.Size(526, 179);
+            this.listaProdSimplesDgv.TabIndex = 0;
             // 
             // id
             // 
@@ -293,7 +293,7 @@
             this.infoProdPanel.ResumeLayout(false);
             this.infoProdPanel.PerformLayout();
             this.listaProdSimplesPanel.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.listaProdSimplesDgv)).EndInit();
             this.addExcBtnPanel.ResumeLayout(false);
             this.addExcBtnPanel.PerformLayout();
             this.salvarBtnPanel.ResumeLayout(false);
@@ -315,7 +315,7 @@
         private System.Windows.Forms.TextBox precoVendaTxt;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox precoCustoTxt;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView listaProdSimplesDgv;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button addProdSimplesBtn;
         private System.Windows.Forms.TextBox qtdeProdSimplesTxt;

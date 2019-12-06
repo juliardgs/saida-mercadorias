@@ -29,12 +29,20 @@ namespace ControleSaidaMercadorias.Views
             {
                 listaProdSimplesPanel.Visible = false;
                 addExcBtnPanel.Visible = false;
+                qtdeEstoqueTxt.Text = prod.Quantidade.ToString();
+            }
+            else
+            {
+                qtdeEstoqueLbl.Visible = false;
+                qtdeEstoqueTxt.Visible = false;
+                precoCustoTxt.Enabled = false;
+                listaProdSimplesDgv.DataSource = dal.
             }
 
             nomeTxt.Text = prod.Nome;
             precoCustoTxt.Text = prod.PrecoCusto.ToString();
             precoVendaTxt.Text = prod.PrecoVenda.ToString();
-            qtdeEstoqueTxt.Text = prod.Quantidade.ToString();
+            
 
         }
 
@@ -121,12 +129,16 @@ namespace ControleSaidaMercadorias.Views
                     });
                     MessageBox.Show("Produto Simples alterado com sucesso!", "Alterar Produto Simples", MessageBoxButtons.OK);
                     
-                    if((telaProdutos.buscarProdCompostoTxt.Text).Trim() != string.Empty)
+                    if(telaProdutos.buscarProdCompostoTxt.Text.Trim() != string.Empty)
                     {
-                        telaProdutos.buscarProdutosBtn_Click(new object(), new EventArgs());
+                        telaProdutos.buscarProdutosBtn_Click(new object(), new EventArgs()); // ou SubGraphButton_Click.PerformClick()
                     }
                     this.Close();
                 }
+            }
+            else
+            {   
+
             }
         }
     }

@@ -53,6 +53,19 @@ namespace ControleSaidaMercadorias.DAL
             command.Parameters.AddWithValue("@id", produto.Id);
 
             command.ExecuteNonQuery();
+
+            if (composto)
+            {
+                command.CommandText = "update produto_tem_produtos set idSimples = @idSimples, quantidade = @quantidade where idComposto = @idComposto";
+                foreach(Produto item in produto.ItemProduto)
+                {
+                    command.Parameters.AddWithValue("@idSimples", item.Id);
+                    command.Parameters.AddWithValue("@idComposto", produto.Id);
+                    command.Parameters.AddWithValue("@quantidade", item.Quantidade);
+                    command.ExecuteNonQuery();
+                }
+            }
+
             connection.Close();
         }
 
@@ -82,6 +95,22 @@ namespace ControleSaidaMercadorias.DAL
             listaDt.Add(dt2);
             connection.Close();
             return listaDt;
+        }
+
+        public DataTable ListarItensProdComposto(int idComposto)
+        {
+            //pensar melhor
+            connection.Open();
+            var command = connection.CreateCommand();
+            command.CommandText = "select produto.id as ID, produto.nome as NOME, produto_tem_produtos.quantidade as QUANTIDADE, " +
+                "produto.precoCusto * produto_tem_produtos.quantidade as PREÇO DE CUSTO," +
+                "produto.precoVenda * produto_tem_produtos.quantidade as PREÇO DE VENDA from produtos join " +
+                "produto_tem_produtos on produto.id = produto_tem_produtos.idComposto where idComposto = @idComposto";
+            command.Parameters.AddWithValue("@id", idComposto);
+            SqlDataReader reader = command.ExecuteReader();
+            DataTable dt = new DataTable();
+            dt.Load(reader);
+            return dt;
         }
     }
 }
