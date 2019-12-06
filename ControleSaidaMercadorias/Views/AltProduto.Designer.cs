@@ -29,33 +29,33 @@
         private void InitializeComponent()
         {
             this.infoProdPanel = new System.Windows.Forms.Panel();
-            this.listaProdSimplesPanel = new System.Windows.Forms.Panel();
-            this.addExcBtnPanel = new System.Windows.Forms.Panel();
-            this.salvarBtnPanel = new System.Windows.Forms.Panel();
-            this.label1 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.qtdeEstoqueLbl = new System.Windows.Forms.Label();
-            this.qtdeEstoqueTxt = new System.Windows.Forms.TextBox();
-            this.precoCustoLbl = new System.Windows.Forms.Label();
-            this.precoCustoTxt = new System.Windows.Forms.TextBox();
             this.precoVendaTxt = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.qtdeProdSimplesTxt = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.addProdSimplesBtn = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.precoCustoTxt = new System.Windows.Forms.TextBox();
+            this.precoCustoLbl = new System.Windows.Forms.Label();
+            this.qtdeEstoqueTxt = new System.Windows.Forms.TextBox();
+            this.qtdeEstoqueLbl = new System.Windows.Forms.Label();
+            this.nomeTxt = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.listaProdSimplesPanel = new System.Windows.Forms.Panel();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nome = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.qtde = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.precoCusto = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.precoVenda = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.addExcBtnPanel = new System.Windows.Forms.Panel();
+            this.button1 = new System.Windows.Forms.Button();
+            this.addProdSimplesBtn = new System.Windows.Forms.Button();
+            this.qtdeProdSimplesTxt = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.salvarBtnPanel = new System.Windows.Forms.Panel();
             this.salvarBtn = new System.Windows.Forms.Button();
             this.infoProdPanel.SuspendLayout();
             this.listaProdSimplesPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.addExcBtnPanel.SuspendLayout();
             this.salvarBtnPanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // infoProdPanel
@@ -66,98 +66,13 @@
             this.infoProdPanel.Controls.Add(this.precoCustoLbl);
             this.infoProdPanel.Controls.Add(this.qtdeEstoqueTxt);
             this.infoProdPanel.Controls.Add(this.qtdeEstoqueLbl);
-            this.infoProdPanel.Controls.Add(this.textBox1);
+            this.infoProdPanel.Controls.Add(this.nomeTxt);
             this.infoProdPanel.Controls.Add(this.label1);
             this.infoProdPanel.Dock = System.Windows.Forms.DockStyle.Top;
             this.infoProdPanel.Location = new System.Drawing.Point(0, 0);
             this.infoProdPanel.Name = "infoProdPanel";
             this.infoProdPanel.Size = new System.Drawing.Size(526, 112);
             this.infoProdPanel.TabIndex = 0;
-            // 
-            // listaProdSimplesPanel
-            // 
-            this.listaProdSimplesPanel.Controls.Add(this.dataGridView1);
-            this.listaProdSimplesPanel.Dock = System.Windows.Forms.DockStyle.Top;
-            this.listaProdSimplesPanel.Location = new System.Drawing.Point(0, 112);
-            this.listaProdSimplesPanel.Name = "listaProdSimplesPanel";
-            this.listaProdSimplesPanel.Size = new System.Drawing.Size(526, 179);
-            this.listaProdSimplesPanel.TabIndex = 1;
-            this.listaProdSimplesPanel.Visible = false;
-            // 
-            // addExcBtnPanel
-            // 
-            this.addExcBtnPanel.Controls.Add(this.button1);
-            this.addExcBtnPanel.Controls.Add(this.addProdSimplesBtn);
-            this.addExcBtnPanel.Controls.Add(this.qtdeProdSimplesTxt);
-            this.addExcBtnPanel.Controls.Add(this.label3);
-            this.addExcBtnPanel.Dock = System.Windows.Forms.DockStyle.Top;
-            this.addExcBtnPanel.Location = new System.Drawing.Point(0, 291);
-            this.addExcBtnPanel.Name = "addExcBtnPanel";
-            this.addExcBtnPanel.Size = new System.Drawing.Size(526, 41);
-            this.addExcBtnPanel.TabIndex = 2;
-            this.addExcBtnPanel.Visible = false;
-            // 
-            // salvarBtnPanel
-            // 
-            this.salvarBtnPanel.Controls.Add(this.salvarBtn);
-            this.salvarBtnPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.salvarBtnPanel.Location = new System.Drawing.Point(0, 334);
-            this.salvarBtnPanel.Name = "salvarBtnPanel";
-            this.salvarBtnPanel.Size = new System.Drawing.Size(526, 53);
-            this.salvarBtnPanel.TabIndex = 3;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 18);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(38, 13);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Nome:";
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(56, 15);
-            this.textBox1.MaxLength = 100;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(440, 20);
-            this.textBox1.TabIndex = 1;
-            // 
-            // qtdeEstoqueLbl
-            // 
-            this.qtdeEstoqueLbl.AutoSize = true;
-            this.qtdeEstoqueLbl.Location = new System.Drawing.Point(386, 55);
-            this.qtdeEstoqueLbl.Name = "qtdeEstoqueLbl";
-            this.qtdeEstoqueLbl.Size = new System.Drawing.Size(65, 13);
-            this.qtdeEstoqueLbl.TabIndex = 2;
-            this.qtdeEstoqueLbl.Text = "Quantidade:";
-            // 
-            // qtdeEstoqueTxt
-            // 
-            this.qtdeEstoqueTxt.Location = new System.Drawing.Point(457, 52);
-            this.qtdeEstoqueTxt.MaxLength = 4;
-            this.qtdeEstoqueTxt.Name = "qtdeEstoqueTxt";
-            this.qtdeEstoqueTxt.Size = new System.Drawing.Size(37, 20);
-            this.qtdeEstoqueTxt.TabIndex = 3;
-            this.qtdeEstoqueTxt.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.qtdeEstoqueTxt_KeyPress);
-            // 
-            // precoCustoLbl
-            // 
-            this.precoCustoLbl.AutoSize = true;
-            this.precoCustoLbl.Location = new System.Drawing.Point(12, 55);
-            this.precoCustoLbl.Name = "precoCustoLbl";
-            this.precoCustoLbl.Size = new System.Drawing.Size(83, 13);
-            this.precoCustoLbl.TabIndex = 4;
-            this.precoCustoLbl.Text = "Preço de Custo:";
-            // 
-            // precoCustoTxt
-            // 
-            this.precoCustoTxt.Location = new System.Drawing.Point(101, 52);
-            this.precoCustoTxt.MaxLength = 7;
-            this.precoCustoTxt.Name = "precoCustoTxt";
-            this.precoCustoTxt.Size = new System.Drawing.Size(65, 20);
-            this.precoCustoTxt.TabIndex = 5;
-            this.precoCustoTxt.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.precoCustoTxt_KeyPress);
             // 
             // precoVendaTxt
             // 
@@ -177,46 +92,68 @@
             this.label2.TabIndex = 6;
             this.label2.Text = "Preço de Venda:";
             // 
-            // qtdeProdSimplesTxt
+            // precoCustoTxt
             // 
-            this.qtdeProdSimplesTxt.Location = new System.Drawing.Point(83, 10);
-            this.qtdeProdSimplesTxt.MaxLength = 4;
-            this.qtdeProdSimplesTxt.Name = "qtdeProdSimplesTxt";
-            this.qtdeProdSimplesTxt.Size = new System.Drawing.Size(37, 20);
-            this.qtdeProdSimplesTxt.TabIndex = 5;
-            this.qtdeProdSimplesTxt.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.qtdeProdSimplesTxt_KeyPress);
+            this.precoCustoTxt.Location = new System.Drawing.Point(101, 52);
+            this.precoCustoTxt.MaxLength = 7;
+            this.precoCustoTxt.Name = "precoCustoTxt";
+            this.precoCustoTxt.Size = new System.Drawing.Size(65, 20);
+            this.precoCustoTxt.TabIndex = 5;
+            this.precoCustoTxt.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.precoCustoTxt_KeyPress);
             // 
-            // label3
+            // precoCustoLbl
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(12, 13);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(65, 13);
-            this.label3.TabIndex = 4;
-            this.label3.Text = "Quantidade:";
+            this.precoCustoLbl.AutoSize = true;
+            this.precoCustoLbl.Location = new System.Drawing.Point(12, 55);
+            this.precoCustoLbl.Name = "precoCustoLbl";
+            this.precoCustoLbl.Size = new System.Drawing.Size(83, 13);
+            this.precoCustoLbl.TabIndex = 4;
+            this.precoCustoLbl.Text = "Preço de Custo:";
             // 
-            // addProdSimplesBtn
+            // qtdeEstoqueTxt
             // 
-            this.addProdSimplesBtn.Dock = System.Windows.Forms.DockStyle.Right;
-            this.addProdSimplesBtn.Enabled = false;
-            this.addProdSimplesBtn.Location = new System.Drawing.Point(421, 0);
-            this.addProdSimplesBtn.Name = "addProdSimplesBtn";
-            this.addProdSimplesBtn.Size = new System.Drawing.Size(105, 41);
-            this.addProdSimplesBtn.TabIndex = 6;
-            this.addProdSimplesBtn.Text = "ADICIONAR ITEM";
-            this.addProdSimplesBtn.UseVisualStyleBackColor = true;
-            this.addProdSimplesBtn.Click += new System.EventHandler(this.addProdSimplesBtn_Click);
+            this.qtdeEstoqueTxt.Location = new System.Drawing.Point(457, 52);
+            this.qtdeEstoqueTxt.MaxLength = 4;
+            this.qtdeEstoqueTxt.Name = "qtdeEstoqueTxt";
+            this.qtdeEstoqueTxt.Size = new System.Drawing.Size(37, 20);
+            this.qtdeEstoqueTxt.TabIndex = 3;
+            this.qtdeEstoqueTxt.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.qtdeEstoqueTxt_KeyPress);
             // 
-            // button1
+            // qtdeEstoqueLbl
             // 
-            this.button1.Dock = System.Windows.Forms.DockStyle.Right;
-            this.button1.Enabled = false;
-            this.button1.Location = new System.Drawing.Point(321, 0);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(100, 41);
-            this.button1.TabIndex = 7;
-            this.button1.Text = "EXCLUIR ITEM";
-            this.button1.UseVisualStyleBackColor = true;
+            this.qtdeEstoqueLbl.AutoSize = true;
+            this.qtdeEstoqueLbl.Location = new System.Drawing.Point(386, 55);
+            this.qtdeEstoqueLbl.Name = "qtdeEstoqueLbl";
+            this.qtdeEstoqueLbl.Size = new System.Drawing.Size(65, 13);
+            this.qtdeEstoqueLbl.TabIndex = 2;
+            this.qtdeEstoqueLbl.Text = "Quantidade:";
+            // 
+            // nomeTxt
+            // 
+            this.nomeTxt.Location = new System.Drawing.Point(56, 15);
+            this.nomeTxt.MaxLength = 100;
+            this.nomeTxt.Name = "nomeTxt";
+            this.nomeTxt.Size = new System.Drawing.Size(440, 20);
+            this.nomeTxt.TabIndex = 1;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(12, 18);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(38, 13);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Nome:";
+            // 
+            // listaProdSimplesPanel
+            // 
+            this.listaProdSimplesPanel.Controls.Add(this.dataGridView1);
+            this.listaProdSimplesPanel.Dock = System.Windows.Forms.DockStyle.Top;
+            this.listaProdSimplesPanel.Location = new System.Drawing.Point(0, 112);
+            this.listaProdSimplesPanel.Name = "listaProdSimplesPanel";
+            this.listaProdSimplesPanel.Size = new System.Drawing.Size(526, 179);
+            this.listaProdSimplesPanel.TabIndex = 1;
+            this.listaProdSimplesPanel.Visible = false;
             // 
             // dataGridView1
             // 
@@ -268,6 +205,69 @@
             this.precoVenda.Name = "precoVenda";
             this.precoVenda.ReadOnly = true;
             // 
+            // addExcBtnPanel
+            // 
+            this.addExcBtnPanel.Controls.Add(this.button1);
+            this.addExcBtnPanel.Controls.Add(this.addProdSimplesBtn);
+            this.addExcBtnPanel.Controls.Add(this.qtdeProdSimplesTxt);
+            this.addExcBtnPanel.Controls.Add(this.label3);
+            this.addExcBtnPanel.Dock = System.Windows.Forms.DockStyle.Top;
+            this.addExcBtnPanel.Location = new System.Drawing.Point(0, 291);
+            this.addExcBtnPanel.Name = "addExcBtnPanel";
+            this.addExcBtnPanel.Size = new System.Drawing.Size(526, 41);
+            this.addExcBtnPanel.TabIndex = 2;
+            this.addExcBtnPanel.Visible = false;
+            // 
+            // button1
+            // 
+            this.button1.Dock = System.Windows.Forms.DockStyle.Right;
+            this.button1.Enabled = false;
+            this.button1.Location = new System.Drawing.Point(321, 0);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(100, 41);
+            this.button1.TabIndex = 7;
+            this.button1.Text = "EXCLUIR ITEM";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
+            // addProdSimplesBtn
+            // 
+            this.addProdSimplesBtn.Dock = System.Windows.Forms.DockStyle.Right;
+            this.addProdSimplesBtn.Enabled = false;
+            this.addProdSimplesBtn.Location = new System.Drawing.Point(421, 0);
+            this.addProdSimplesBtn.Name = "addProdSimplesBtn";
+            this.addProdSimplesBtn.Size = new System.Drawing.Size(105, 41);
+            this.addProdSimplesBtn.TabIndex = 6;
+            this.addProdSimplesBtn.Text = "ADICIONAR ITEM";
+            this.addProdSimplesBtn.UseVisualStyleBackColor = true;
+            this.addProdSimplesBtn.Click += new System.EventHandler(this.addProdSimplesBtn_Click);
+            // 
+            // qtdeProdSimplesTxt
+            // 
+            this.qtdeProdSimplesTxt.Location = new System.Drawing.Point(83, 10);
+            this.qtdeProdSimplesTxt.MaxLength = 4;
+            this.qtdeProdSimplesTxt.Name = "qtdeProdSimplesTxt";
+            this.qtdeProdSimplesTxt.Size = new System.Drawing.Size(37, 20);
+            this.qtdeProdSimplesTxt.TabIndex = 5;
+            this.qtdeProdSimplesTxt.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.qtdeProdSimplesTxt_KeyPress);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(12, 13);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(65, 13);
+            this.label3.TabIndex = 4;
+            this.label3.Text = "Quantidade:";
+            // 
+            // salvarBtnPanel
+            // 
+            this.salvarBtnPanel.Controls.Add(this.salvarBtn);
+            this.salvarBtnPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.salvarBtnPanel.Location = new System.Drawing.Point(0, 334);
+            this.salvarBtnPanel.Name = "salvarBtnPanel";
+            this.salvarBtnPanel.Size = new System.Drawing.Size(526, 53);
+            this.salvarBtnPanel.TabIndex = 3;
+            // 
             // salvarBtn
             // 
             this.salvarBtn.Dock = System.Windows.Forms.DockStyle.Right;
@@ -277,6 +277,7 @@
             this.salvarBtn.TabIndex = 0;
             this.salvarBtn.Text = "SALVAR";
             this.salvarBtn.UseVisualStyleBackColor = true;
+            this.salvarBtn.Click += new System.EventHandler(this.salvarBtn_Click);
             // 
             // AltProduto
             // 
@@ -292,10 +293,10 @@
             this.infoProdPanel.ResumeLayout(false);
             this.infoProdPanel.PerformLayout();
             this.listaProdSimplesPanel.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.addExcBtnPanel.ResumeLayout(false);
             this.addExcBtnPanel.PerformLayout();
             this.salvarBtnPanel.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -306,7 +307,7 @@
         private System.Windows.Forms.Label precoCustoLbl;
         private System.Windows.Forms.TextBox qtdeEstoqueTxt;
         private System.Windows.Forms.Label qtdeEstoqueLbl;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox nomeTxt;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Panel listaProdSimplesPanel;
         private System.Windows.Forms.Panel addExcBtnPanel;

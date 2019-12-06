@@ -32,7 +32,7 @@ namespace ControleSaidaMercadorias.Views
         }
 
 
-        private void buscarProdutosBtn_Click(object sender, EventArgs e)
+        public void buscarProdutosBtn_Click(object sender, EventArgs e)
         {
             if(buscarProdCompostoTxt.Text == string.Empty)
             {
@@ -185,7 +185,7 @@ namespace ControleSaidaMercadorias.Views
             else
             {
                 excluirProdSimplesBtn.Enabled = true;
-                produtoSelecionado = new Produto() //colocar outras propriedades aqui
+                produtoSelecionado = new Produto() 
                 {
                     PrecoCusto = Convert.ToDouble(listaProdSimplesDgv.Rows[e.RowIndex].Cells[4].Value, CultureInfo.InvariantCulture),
                 };
@@ -230,6 +230,12 @@ namespace ControleSaidaMercadorias.Views
         {
             if (e.RowIndex < 0 || e.ColumnIndex < 0) //se clicar no cabeçalho 
                 return;
+
+            if(buscaProdCompostoDgv.SelectedRows.Count > 0)
+            {
+                buscaProdCompostoDgv.ClearSelection();
+            }
+
             if (buscaProdSimplesDgv.CurrentRow.Index < 0)
             {
                 excluirProdutoBtn.Enabled = false;
@@ -239,6 +245,15 @@ namespace ControleSaidaMercadorias.Views
             {
                 excluirProdutoBtn.Enabled = true;
                 alterarProdBtn.Enabled = true;
+
+                produtoSelecionado = new Produto()
+                {
+                    Id = Convert.ToInt32(buscaProdSimplesDgv.Rows[e.RowIndex].Cells[0].Value),
+                    Nome = buscaProdSimplesDgv.Rows[e.RowIndex].Cells[1].Value.ToString(),
+                    Quantidade = Convert.ToInt32(buscaProdSimplesDgv.Rows[e.RowIndex].Cells[4].Value),
+                    PrecoCusto = Convert.ToDouble(buscaProdSimplesDgv.Rows[e.RowIndex].Cells[2].Value),
+                    PrecoVenda = Convert.ToDouble(buscaProdSimplesDgv.Rows[e.RowIndex].Cells[3].Value)
+                };
             }
 
 
@@ -266,6 +281,37 @@ namespace ControleSaidaMercadorias.Views
             else if (!char.IsNumber(e.KeyChar) && !(e.KeyChar == (char)Keys.Back))
             {
                 e.Handled = true;
+            }
+        }
+
+        private void buscaProdCompostoDgv_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex < 0 || e.ColumnIndex < 0) //se clicar no cabeçalho 
+                return;
+
+            if (buscaProdSimplesDgv.SelectedRows.Count > 0)
+            {
+                buscaProdSimplesDgv.ClearSelection();
+            }
+
+            if (buscaProdCompostoDgv.CurrentRow.Index < 0)
+            {
+                excluirProdutoBtn.Enabled = false;
+                alterarProdBtn.Enabled = false;
+            }
+            else
+            {
+                excluirProdutoBtn.Enabled = true;
+                alterarProdBtn.Enabled = true;
+
+                produtoSelecionado = new Produto()
+                {
+                    Id = Convert.ToInt32(buscaProdCompostoDgv.Rows[e.RowIndex].Cells[0].Value),
+                    Nome = buscaProdCompostoDgv.Rows[e.RowIndex].Cells[1].Value.ToString(),
+                    PrecoCusto = Convert.ToDouble(buscaProdCompostoDgv.Rows[e.RowIndex].Cells[2].Value),
+                    PrecoVenda = Convert.ToDouble(buscaProdCompostoDgv.Rows[e.RowIndex].Cells[3].Value),
+                    ItemProduto = new List<Produto>() //depois ver o q vou passar aqui
+                };
             }
         }
     }

@@ -516,6 +516,7 @@
             this.buscaProdCompostoDgv.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.buscaProdCompostoDgv.Size = new System.Drawing.Size(835, 146);
             this.buscaProdCompostoDgv.TabIndex = 4;
+            this.buscaProdCompostoDgv.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.buscaProdCompostoDgv_CellClick);
             // 
             // prodCompostoLblPanel
             // 
@@ -670,8 +671,6 @@
         private System.Windows.Forms.Button excluirProdSimplesBtn;
         private System.Windows.Forms.Button adicionarProdSimplesBtn;
         private System.Windows.Forms.Panel buscarProdutosPanel;
-        private System.Windows.Forms.Button buscarProdutosBtn;
-        private System.Windows.Forms.TextBox buscarProdCompostoTxt;
         private System.Windows.Forms.Label buscarProdCompostoLbl;
         private System.Windows.Forms.Panel altExcProdPanel;
         private System.Windows.Forms.Button alterarProdBtn;
@@ -694,5 +693,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn qtde;
         private System.Windows.Forms.DataGridViewTextBoxColumn precoCusto;
         private System.Windows.Forms.DataGridViewTextBoxColumn precoVenda;
+        public System.Windows.Forms.Button buscarProdutosBtn;
+        public System.Windows.Forms.TextBox buscarProdCompostoTxt;
     }
 }

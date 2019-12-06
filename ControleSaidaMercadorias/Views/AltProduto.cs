@@ -1,4 +1,5 @@
-﻿using ControleSaidaMercadorias.Models;
+﻿using ControleSaidaMercadorias.DAL;
+using ControleSaidaMercadorias.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,9 +14,28 @@ namespace ControleSaidaMercadorias.Views
 {
     public partial class AltProduto : Form
     {
-        public AltProduto(TelaProdutos telaProdutos, Produto produto)
+        private TelaProdutos telaProdutos;
+        private Produto produto;
+        private ProdutoDAL dal;
+
+        public AltProduto(TelaProdutos telaProd, Produto prod)
         {
             InitializeComponent();
+            telaProdutos = telaProd;
+            produto = prod;
+
+            
+            if(prod.ItemProduto == null)
+            {
+                listaProdSimplesPanel.Visible = false;
+                addExcBtnPanel.Visible = false;
+            }
+
+            nomeTxt.Text = prod.Nome;
+            precoCustoTxt.Text = prod.PrecoCusto.ToString();
+            precoVendaTxt.Text = prod.PrecoVenda.ToString();
+            qtdeEstoqueTxt.Text = prod.Quantidade.ToString();
+
         }
 
         private void precoCustoTxt_KeyPress(object sender, KeyPressEventArgs e)
@@ -76,6 +96,38 @@ namespace ControleSaidaMercadorias.Views
         {
             AddProduto addProduto = new AddProduto(this);
             addProduto.Show();
+        }
+
+        private void salvarBtn_Click(object sender, EventArgs e)
+        {
+            if(produto.ItemProduto == null)
+            {
+                if(nomeTxt.Text == string.Empty
+                    || precoCustoTxt.Text == string.Empty
+                    || precoVendaTxt.Text == string.Empty
+                    || qtdeEstoqueTxt.Text == string.Empty)
+                {
+                    MessageBox.Show("É necessario preencher todos os campos com valores válidos.", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                }
+                else
+                {
+                    dal.AlterarProduto(new Produto()
+                    {
+                        Id = produto.Id,
+                        Nome = nomeTxt.Text,
+                        Quantidade = Convert.ToInt32(qtdeEstoqueTxt.Text),
+                        PrecoCusto = Convert.ToDouble(precoCustoTxt.Text),
+                        PrecoVenda = Convert.ToDouble(precoVendaTxt.Text)
+                    });
+                    MessageBox.Show("Produto Simples alterado com sucesso!", "Alterar Produto Simples", MessageBoxButtons.OK);
+                    
+                    if((telaProdutos.buscarProdCompostoTxt.Text).Trim() != string.Empty)
+                    {
+                        telaProdutos.buscarProdutosBtn_Click(new object(), new EventArgs());
+                    }
+                    this.Close();
+                }
+            }
         }
     }
 }
