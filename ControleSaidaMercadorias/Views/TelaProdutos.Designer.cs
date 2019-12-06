@@ -44,7 +44,15 @@
             this.botoesProdCompostoPanel = new System.Windows.Forms.Panel();
             this.cadastroProdCompostoBtn = new System.Windows.Forms.Button();
             this.listaProdSimplesPanel = new System.Windows.Forms.Panel();
+            this.listaProdSimplesDgv = new System.Windows.Forms.DataGridView();
+            this.id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nome = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.qtde = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.precoCusto = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.precoVenda = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.addExcProdSimplesPanel = new System.Windows.Forms.Panel();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.infoLbl = new System.Windows.Forms.Label();
             this.addExcBtnPanel = new System.Windows.Forms.Panel();
             this.excluirProdSimplesBtn = new System.Windows.Forms.Button();
             this.adicionarProdSimplesBtn = new System.Windows.Forms.Button();
@@ -67,28 +75,18 @@
             this.prodSimplesLblPanel = new System.Windows.Forms.Panel();
             this.prodSimplesLbl = new System.Windows.Forms.Label();
             this.buscarProdutosPanel = new System.Windows.Forms.Panel();
-            this.todosRb = new System.Windows.Forms.RadioButton();
-            this.prodCompostoRb = new System.Windows.Forms.RadioButton();
-            this.prodSimplesRb = new System.Windows.Forms.RadioButton();
-            this.tipoBuscaLbl = new System.Windows.Forms.Label();
             this.buscarProdutosBtn = new System.Windows.Forms.Button();
             this.buscarProdCompostoTxt = new System.Windows.Forms.TextBox();
             this.buscarProdCompostoLbl = new System.Windows.Forms.Label();
-            this.listaProdSimplesDgv = new System.Windows.Forms.DataGridView();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.infoLbl = new System.Windows.Forms.Label();
-            this.id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.nome = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.qtde = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.precoCusto = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.precoVenda = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.produtosTab.SuspendLayout();
             this.cadastroProdSimplesTab.SuspendLayout();
             this.cadastroProdSimplesPanel.SuspendLayout();
             this.cadastroProdCompostoTab.SuspendLayout();
             this.botoesProdCompostoPanel.SuspendLayout();
             this.listaProdSimplesPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.listaProdSimplesDgv)).BeginInit();
             this.addExcProdSimplesPanel.SuspendLayout();
+            this.panel2.SuspendLayout();
             this.addExcBtnPanel.SuspendLayout();
             this.panel1.SuspendLayout();
             this.listarProdCompostoTab.SuspendLayout();
@@ -99,8 +97,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.buscaProdSimplesDgv)).BeginInit();
             this.prodSimplesLblPanel.SuspendLayout();
             this.buscarProdutosPanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.listaProdSimplesDgv)).BeginInit();
-            this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // produtosTab
@@ -267,6 +263,58 @@
             this.listaProdSimplesPanel.Size = new System.Drawing.Size(835, 217);
             this.listaProdSimplesPanel.TabIndex = 7;
             // 
+            // listaProdSimplesDgv
+            // 
+            this.listaProdSimplesDgv.AllowUserToAddRows = false;
+            this.listaProdSimplesDgv.AllowUserToDeleteRows = false;
+            this.listaProdSimplesDgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.listaProdSimplesDgv.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.id,
+            this.nome,
+            this.qtde,
+            this.precoCusto,
+            this.precoVenda});
+            this.listaProdSimplesDgv.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.listaProdSimplesDgv.Location = new System.Drawing.Point(0, 41);
+            this.listaProdSimplesDgv.MultiSelect = false;
+            this.listaProdSimplesDgv.Name = "listaProdSimplesDgv";
+            this.listaProdSimplesDgv.ReadOnly = true;
+            this.listaProdSimplesDgv.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.listaProdSimplesDgv.Size = new System.Drawing.Size(835, 176);
+            this.listaProdSimplesDgv.TabIndex = 2;
+            this.listaProdSimplesDgv.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.listaProdSimplesDgv_CellClick);
+            this.listaProdSimplesDgv.RowsAdded += new System.Windows.Forms.DataGridViewRowsAddedEventHandler(this.listaProdSimplesDgv_RowsAdded);
+            // 
+            // id
+            // 
+            this.id.HeaderText = "ID";
+            this.id.Name = "id";
+            this.id.ReadOnly = true;
+            // 
+            // nome
+            // 
+            this.nome.HeaderText = "NOME";
+            this.nome.Name = "nome";
+            this.nome.ReadOnly = true;
+            // 
+            // qtde
+            // 
+            this.qtde.HeaderText = "QUANTIDADE";
+            this.qtde.Name = "qtde";
+            this.qtde.ReadOnly = true;
+            // 
+            // precoCusto
+            // 
+            this.precoCusto.HeaderText = "PREÇO DE CUSTO";
+            this.precoCusto.Name = "precoCusto";
+            this.precoCusto.ReadOnly = true;
+            // 
+            // precoVenda
+            // 
+            this.precoVenda.HeaderText = "PREÇO DE VENDA";
+            this.precoVenda.Name = "precoVenda";
+            this.precoVenda.ReadOnly = true;
+            // 
             // addExcProdSimplesPanel
             // 
             this.addExcProdSimplesPanel.Controls.Add(this.panel2);
@@ -276,6 +324,24 @@
             this.addExcProdSimplesPanel.Name = "addExcProdSimplesPanel";
             this.addExcProdSimplesPanel.Size = new System.Drawing.Size(835, 41);
             this.addExcProdSimplesPanel.TabIndex = 1;
+            // 
+            // panel2
+            // 
+            this.panel2.Controls.Add(this.infoLbl);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panel2.Location = new System.Drawing.Point(0, 0);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(436, 41);
+            this.panel2.TabIndex = 1;
+            // 
+            // infoLbl
+            // 
+            this.infoLbl.AutoSize = true;
+            this.infoLbl.Location = new System.Drawing.Point(3, 14);
+            this.infoLbl.Name = "infoLbl";
+            this.infoLbl.Size = new System.Drawing.Size(309, 13);
+            this.infoLbl.TabIndex = 0;
+            this.infoLbl.Text = "Lista de produtos simples que compõem este produto composto:";
             // 
             // addExcBtnPanel
             // 
@@ -350,6 +416,7 @@
             this.precoCustoProdCompostoTxt.Name = "precoCustoProdCompostoTxt";
             this.precoCustoProdCompostoTxt.Size = new System.Drawing.Size(133, 20);
             this.precoCustoProdCompostoTxt.TabIndex = 3;
+            this.precoCustoProdCompostoTxt.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.precoCustoProdCompostoTxt_KeyPress);
             // 
             // precoCustoProdCompostoLbl
             // 
@@ -395,9 +462,9 @@
             this.altExcProdPanel.Controls.Add(this.excluirProdutoBtn);
             this.altExcProdPanel.Controls.Add(this.alterarProdBtn);
             this.altExcProdPanel.Dock = System.Windows.Forms.DockStyle.Top;
-            this.altExcProdPanel.Location = new System.Drawing.Point(3, 443);
+            this.altExcProdPanel.Location = new System.Drawing.Point(3, 412);
             this.altExcProdPanel.Name = "altExcProdPanel";
-            this.altExcProdPanel.Size = new System.Drawing.Size(835, 37);
+            this.altExcProdPanel.Size = new System.Drawing.Size(835, 40);
             this.altExcProdPanel.TabIndex = 3;
             // 
             // excluirProdutoBtn
@@ -406,10 +473,11 @@
             this.excluirProdutoBtn.Enabled = false;
             this.excluirProdutoBtn.Location = new System.Drawing.Point(685, 0);
             this.excluirProdutoBtn.Name = "excluirProdutoBtn";
-            this.excluirProdutoBtn.Size = new System.Drawing.Size(75, 37);
+            this.excluirProdutoBtn.Size = new System.Drawing.Size(75, 40);
             this.excluirProdutoBtn.TabIndex = 1;
             this.excluirProdutoBtn.Text = "EXCLUIR";
             this.excluirProdutoBtn.UseVisualStyleBackColor = true;
+            this.excluirProdutoBtn.Click += new System.EventHandler(this.excluirProdutoBtn_Click);
             // 
             // alterarProdBtn
             // 
@@ -417,10 +485,11 @@
             this.alterarProdBtn.Enabled = false;
             this.alterarProdBtn.Location = new System.Drawing.Point(760, 0);
             this.alterarProdBtn.Name = "alterarProdBtn";
-            this.alterarProdBtn.Size = new System.Drawing.Size(75, 37);
+            this.alterarProdBtn.Size = new System.Drawing.Size(75, 40);
             this.alterarProdBtn.TabIndex = 0;
             this.alterarProdBtn.Text = "ALTERAR";
             this.alterarProdBtn.UseVisualStyleBackColor = true;
+            this.alterarProdBtn.Click += new System.EventHandler(this.alterarProdBtn_Click);
             // 
             // listagemProdutosPanel
             // 
@@ -429,7 +498,7 @@
             this.listagemProdutosPanel.Controls.Add(this.buscaProdSimplesDgv);
             this.listagemProdutosPanel.Controls.Add(this.prodSimplesLblPanel);
             this.listagemProdutosPanel.Dock = System.Windows.Forms.DockStyle.Top;
-            this.listagemProdutosPanel.Location = new System.Drawing.Point(3, 95);
+            this.listagemProdutosPanel.Location = new System.Drawing.Point(3, 64);
             this.listagemProdutosPanel.Name = "listagemProdutosPanel";
             this.listagemProdutosPanel.Size = new System.Drawing.Size(835, 348);
             this.listagemProdutosPanel.TabIndex = 2;
@@ -441,8 +510,10 @@
             this.buscaProdCompostoDgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.buscaProdCompostoDgv.Dock = System.Windows.Forms.DockStyle.Fill;
             this.buscaProdCompostoDgv.Location = new System.Drawing.Point(0, 202);
+            this.buscaProdCompostoDgv.MultiSelect = false;
             this.buscaProdCompostoDgv.Name = "buscaProdCompostoDgv";
             this.buscaProdCompostoDgv.ReadOnly = true;
+            this.buscaProdCompostoDgv.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.buscaProdCompostoDgv.Size = new System.Drawing.Size(835, 146);
             this.buscaProdCompostoDgv.TabIndex = 4;
             // 
@@ -471,10 +542,13 @@
             this.buscaProdSimplesDgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.buscaProdSimplesDgv.Dock = System.Windows.Forms.DockStyle.Top;
             this.buscaProdSimplesDgv.Location = new System.Drawing.Point(0, 26);
+            this.buscaProdSimplesDgv.MultiSelect = false;
             this.buscaProdSimplesDgv.Name = "buscaProdSimplesDgv";
             this.buscaProdSimplesDgv.ReadOnly = true;
+            this.buscaProdSimplesDgv.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.buscaProdSimplesDgv.Size = new System.Drawing.Size(835, 150);
             this.buscaProdSimplesDgv.TabIndex = 2;
+            this.buscaProdSimplesDgv.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.buscaProdSimplesDgv_CellClick);
             // 
             // prodSimplesLblPanel
             // 
@@ -496,64 +570,18 @@
             // 
             // buscarProdutosPanel
             // 
-            this.buscarProdutosPanel.Controls.Add(this.todosRb);
-            this.buscarProdutosPanel.Controls.Add(this.prodCompostoRb);
-            this.buscarProdutosPanel.Controls.Add(this.prodSimplesRb);
-            this.buscarProdutosPanel.Controls.Add(this.tipoBuscaLbl);
             this.buscarProdutosPanel.Controls.Add(this.buscarProdutosBtn);
             this.buscarProdutosPanel.Controls.Add(this.buscarProdCompostoTxt);
             this.buscarProdutosPanel.Controls.Add(this.buscarProdCompostoLbl);
             this.buscarProdutosPanel.Dock = System.Windows.Forms.DockStyle.Top;
             this.buscarProdutosPanel.Location = new System.Drawing.Point(3, 3);
             this.buscarProdutosPanel.Name = "buscarProdutosPanel";
-            this.buscarProdutosPanel.Size = new System.Drawing.Size(835, 92);
+            this.buscarProdutosPanel.Size = new System.Drawing.Size(835, 61);
             this.buscarProdutosPanel.TabIndex = 1;
-            // 
-            // todosRb
-            // 
-            this.todosRb.AutoSize = true;
-            this.todosRb.Location = new System.Drawing.Point(276, 56);
-            this.todosRb.Name = "todosRb";
-            this.todosRb.Size = new System.Drawing.Size(55, 17);
-            this.todosRb.TabIndex = 6;
-            this.todosRb.TabStop = true;
-            this.todosRb.Text = "Todos";
-            this.todosRb.UseVisualStyleBackColor = true;
-            // 
-            // prodCompostoRb
-            // 
-            this.prodCompostoRb.AutoSize = true;
-            this.prodCompostoRb.Location = new System.Drawing.Point(158, 56);
-            this.prodCompostoRb.Name = "prodCompostoRb";
-            this.prodCompostoRb.Size = new System.Drawing.Size(112, 17);
-            this.prodCompostoRb.TabIndex = 5;
-            this.prodCompostoRb.TabStop = true;
-            this.prodCompostoRb.Text = "Produto Composto";
-            this.prodCompostoRb.UseVisualStyleBackColor = true;
-            // 
-            // prodSimplesRb
-            // 
-            this.prodSimplesRb.AutoSize = true;
-            this.prodSimplesRb.Location = new System.Drawing.Point(51, 56);
-            this.prodSimplesRb.Name = "prodSimplesRb";
-            this.prodSimplesRb.Size = new System.Drawing.Size(101, 17);
-            this.prodSimplesRb.TabIndex = 4;
-            this.prodSimplesRb.TabStop = true;
-            this.prodSimplesRb.Text = "Produto Simples";
-            this.prodSimplesRb.UseVisualStyleBackColor = true;
-            // 
-            // tipoBuscaLbl
-            // 
-            this.tipoBuscaLbl.AutoSize = true;
-            this.tipoBuscaLbl.Location = new System.Drawing.Point(14, 58);
-            this.tipoBuscaLbl.Name = "tipoBuscaLbl";
-            this.tipoBuscaLbl.Size = new System.Drawing.Size(31, 13);
-            this.tipoBuscaLbl.TabIndex = 3;
-            this.tipoBuscaLbl.Text = "Tipo:";
             // 
             // buscarProdutosBtn
             // 
-            this.buscarProdutosBtn.Location = new System.Drawing.Point(716, 53);
+            this.buscarProdutosBtn.Location = new System.Drawing.Point(720, 19);
             this.buscarProdutosBtn.Name = "buscarProdutosBtn";
             this.buscarProdutosBtn.Size = new System.Drawing.Size(93, 23);
             this.buscarProdutosBtn.TabIndex = 2;
@@ -566,7 +594,7 @@
             this.buscarProdCompostoTxt.Location = new System.Drawing.Point(110, 21);
             this.buscarProdCompostoTxt.MaxLength = 100;
             this.buscarProdCompostoTxt.Name = "buscarProdCompostoTxt";
-            this.buscarProdCompostoTxt.Size = new System.Drawing.Size(699, 20);
+            this.buscarProdCompostoTxt.Size = new System.Drawing.Size(588, 20);
             this.buscarProdCompostoTxt.TabIndex = 1;
             // 
             // buscarProdCompostoLbl
@@ -577,76 +605,6 @@
             this.buscarProdCompostoLbl.Size = new System.Drawing.Size(90, 13);
             this.buscarProdCompostoLbl.TabIndex = 0;
             this.buscarProdCompostoLbl.Text = "Buscar por nome:";
-            // 
-            // listaProdSimplesDgv
-            // 
-            this.listaProdSimplesDgv.AllowUserToAddRows = false;
-            this.listaProdSimplesDgv.AllowUserToDeleteRows = false;
-            this.listaProdSimplesDgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.listaProdSimplesDgv.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.id,
-            this.nome,
-            this.qtde,
-            this.precoCusto,
-            this.precoVenda});
-            this.listaProdSimplesDgv.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.listaProdSimplesDgv.Location = new System.Drawing.Point(0, 41);
-            this.listaProdSimplesDgv.MultiSelect = false;
-            this.listaProdSimplesDgv.Name = "listaProdSimplesDgv";
-            this.listaProdSimplesDgv.ReadOnly = true;
-            this.listaProdSimplesDgv.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.listaProdSimplesDgv.Size = new System.Drawing.Size(835, 176);
-            this.listaProdSimplesDgv.TabIndex = 2;
-            this.listaProdSimplesDgv.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.listaProdSimplesDgv_CellClick);
-            this.listaProdSimplesDgv.RowsAdded += new System.Windows.Forms.DataGridViewRowsAddedEventHandler(this.listaProdSimplesDgv_RowsAdded);
-            // 
-            // panel2
-            // 
-            this.panel2.Controls.Add(this.infoLbl);
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel2.Location = new System.Drawing.Point(0, 0);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(436, 41);
-            this.panel2.TabIndex = 1;
-            // 
-            // infoLbl
-            // 
-            this.infoLbl.AutoSize = true;
-            this.infoLbl.Location = new System.Drawing.Point(3, 14);
-            this.infoLbl.Name = "infoLbl";
-            this.infoLbl.Size = new System.Drawing.Size(309, 13);
-            this.infoLbl.TabIndex = 0;
-            this.infoLbl.Text = "Lista de produtos simples que compõem este produto composto:";
-            // 
-            // id
-            // 
-            this.id.HeaderText = "ID";
-            this.id.Name = "id";
-            this.id.ReadOnly = true;
-            // 
-            // nome
-            // 
-            this.nome.HeaderText = "NOME";
-            this.nome.Name = "nome";
-            this.nome.ReadOnly = true;
-            // 
-            // qtde
-            // 
-            this.qtde.HeaderText = "QUANTIDADE";
-            this.qtde.Name = "qtde";
-            this.qtde.ReadOnly = true;
-            // 
-            // precoCusto
-            // 
-            this.precoCusto.HeaderText = "PREÇO DE CUSTO";
-            this.precoCusto.Name = "precoCusto";
-            this.precoCusto.ReadOnly = true;
-            // 
-            // precoVenda
-            // 
-            this.precoVenda.HeaderText = "PREÇO DE VENDA";
-            this.precoVenda.Name = "precoVenda";
-            this.precoVenda.ReadOnly = true;
             // 
             // TelaProdutos
             // 
@@ -662,7 +620,10 @@
             this.cadastroProdCompostoTab.ResumeLayout(false);
             this.botoesProdCompostoPanel.ResumeLayout(false);
             this.listaProdSimplesPanel.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.listaProdSimplesDgv)).EndInit();
             this.addExcProdSimplesPanel.ResumeLayout(false);
+            this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
             this.addExcBtnPanel.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
@@ -677,9 +638,6 @@
             this.prodSimplesLblPanel.PerformLayout();
             this.buscarProdutosPanel.ResumeLayout(false);
             this.buscarProdutosPanel.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.listaProdSimplesDgv)).EndInit();
-            this.panel2.ResumeLayout(false);
-            this.panel2.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -712,10 +670,6 @@
         private System.Windows.Forms.Button excluirProdSimplesBtn;
         private System.Windows.Forms.Button adicionarProdSimplesBtn;
         private System.Windows.Forms.Panel buscarProdutosPanel;
-        private System.Windows.Forms.RadioButton todosRb;
-        private System.Windows.Forms.RadioButton prodCompostoRb;
-        private System.Windows.Forms.RadioButton prodSimplesRb;
-        private System.Windows.Forms.Label tipoBuscaLbl;
         private System.Windows.Forms.Button buscarProdutosBtn;
         private System.Windows.Forms.TextBox buscarProdCompostoTxt;
         private System.Windows.Forms.Label buscarProdCompostoLbl;

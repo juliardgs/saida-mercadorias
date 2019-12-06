@@ -27,6 +27,7 @@ namespace ControleSaidaMercadorias.Views
             nomeProdSimplesTxt.Text = "";
             precoVendaProdSimplesTxt.Text = "";
             precoCustoProdSimplesTxt.Text = "";
+            qtdeProdSimplesTxt.Text = "";
             nomeProdSimplesTxt.Focus();
         }
 
@@ -97,8 +98,8 @@ namespace ControleSaidaMercadorias.Views
             {
                 dal.IncluirProduto(new Produto() {
                     Nome = nomeProdSimplesTxt.Text,
-                    PrecoCusto = Convert.ToDouble(precoCustoProdSimplesTxt.Text, CultureInfo.InvariantCulture),
-                    PrecoVenda = Convert.ToDouble(precoVendaProdSimplesTxt.Text, CultureInfo.InvariantCulture),
+                    PrecoCusto = Convert.ToDouble(precoCustoProdSimplesTxt.Text),
+                    PrecoVenda = Convert.ToDouble(precoVendaProdSimplesTxt.Text),
                     Quantidade = Convert.ToInt32(qtdeProdSimplesTxt.Text),
                 });
                 MessageBox.Show("Produto Simples cadastrado com sucesso!", "Cadastro Produto Simples");
@@ -168,17 +169,27 @@ namespace ControleSaidaMercadorias.Views
                     PrecoVenda = Convert.ToDouble(precoVendaProdCompostoTxt.Text),
                     ItemProduto = itens
                 });
+                MessageBox.Show("Produto Composto cadastrado com sucesso!", "Cadastro Produto Composto");
+
             }
         }
 
         private void listaProdSimplesDgv_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            //colocar verificação aqui
-            excluirProdSimplesBtn.Enabled = true;
-            produtoSelecionado = new Produto()
+            if (e.RowIndex < 0 || e.ColumnIndex < 0) //se clicar no cabeçalho 
+                return;
+            if(listaProdSimplesDgv.CurrentRow.Index < 0)
             {
-                PrecoCusto = Convert.ToDouble(listaProdSimplesDgv.Rows[e.RowIndex].Cells[4].Value, CultureInfo.InvariantCulture),
-            };
+                excluirProdSimplesBtn.Enabled = false;
+            }
+            else
+            {
+                excluirProdSimplesBtn.Enabled = true;
+                produtoSelecionado = new Produto() //colocar outras propriedades aqui
+                {
+                    PrecoCusto = Convert.ToDouble(listaProdSimplesDgv.Rows[e.RowIndex].Cells[4].Value, CultureInfo.InvariantCulture),
+                };
+            }
         }
 
         private void listaProdSimplesDgv_RowsAdded(object sender, DataGridViewRowsAddedEventArgs e)
@@ -208,6 +219,54 @@ namespace ControleSaidaMercadorias.Views
                 precoCusto += Convert.ToDouble(linha.Cells[3].Value);
             }
             precoCustoProdCompostoTxt.Text = precoCusto.ToString();
+        }
+
+        private void excluirProdutoBtn_Click(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void buscaProdSimplesDgv_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex < 0 || e.ColumnIndex < 0) //se clicar no cabeçalho 
+                return;
+            if (buscaProdSimplesDgv.CurrentRow.Index < 0)
+            {
+                excluirProdutoBtn.Enabled = false;
+                alterarProdBtn.Enabled = false;
+            }
+            else
+            {
+                excluirProdutoBtn.Enabled = true;
+                alterarProdBtn.Enabled = true;
+            }
+
+
+        }
+
+        private void alterarProdBtn_Click(object sender, EventArgs e)
+        {
+            AltProduto altProduto = new AltProduto(this, produtoSelecionado);
+            altProduto.Show();
+        }
+
+        private void precoCustoProdCompostoTxt_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == '.' || e.KeyChar == ',')
+            {
+                e.KeyChar = ',';
+
+                if (precoCustoProdCompostoTxt.Text.Contains(","))
+                {
+                    e.Handled = true;
+                }
+            }
+
+            //aceita apenas números, tecla backspace
+            else if (!char.IsNumber(e.KeyChar) && !(e.KeyChar == (char)Keys.Back))
+            {
+                e.Handled = true;
+            }
         }
     }
 }

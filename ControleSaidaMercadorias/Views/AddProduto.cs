@@ -18,11 +18,18 @@ namespace ControleSaidaMercadorias.Views
         private ProdutoDAL dal = new ProdutoDAL();
         Produto prodSelecionado;
         TelaProdutos telaProdutos;
+        AltProduto altProduto;
 
         public AddProduto(TelaProdutos telaProd)
         {
             InitializeComponent();
             telaProdutos = telaProd;
+        }
+
+        public AddProduto(AltProduto altProd)
+        {
+            InitializeComponent();
+            altProduto = altProd;
         }
 
         private void addProdutoBtn_Click(object sender, EventArgs e)
@@ -35,8 +42,7 @@ namespace ControleSaidaMercadorias.Views
             else
             {
                 int qtde = Convert.ToInt32(qtdeTxt.Text);
-                //telaProdutos.listaProdSimplesDgv.Rows.Add(prodSelecionado.Id, prodSelecionado.Nome, qtdeTxt.Text, prodSelecionado.PrecoCusto, prodSelecionado.PrecoVenda);
-                telaProdutos.listaProdSimplesDgv.Rows.Add(1, "Produto 1", qtde, (qtde * 2.3), (qtde * 5.7));
+                telaProdutos.listaProdSimplesDgv.Rows.Add(prodSelecionado.Id, prodSelecionado.Nome, qtdeTxt.Text, (prodSelecionado.PrecoCusto * qtde), (prodSelecionado.PrecoVenda * qtde));
                 this.Close();
             }
             
@@ -49,17 +55,24 @@ namespace ControleSaidaMercadorias.Views
 
         private void buscaProdutoDgv_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            //colocar verificação
-            //addProdutoBtn.Enabled = true;
-            prodSelecionado = new Produto()
+            if (e.RowIndex < 0 || e.ColumnIndex < 0) //se clicar no cabeçalho 
+                return;
+
+            if (buscaProdutoDgv.CurrentRow.Index < 0)
             {
-                Id = Convert.ToInt32(buscaProdutoDgv.Rows[e.RowIndex].Cells[0].Value),
-                Nome = buscaProdutoDgv.Rows[e.RowIndex].Cells[1].Value.ToString(),
-                Quantidade = Convert.ToInt32(qtdeTxt.Text),
-                PrecoCusto = Convert.ToDouble(buscaProdutoDgv.Rows[e.RowIndex].Cells[2].Value, CultureInfo.InvariantCulture), //hmmmmmmmmmm
-                PrecoVenda = Convert.ToDouble(buscaProdutoDgv.Rows[e.RowIndex].Cells[3].Value, CultureInfo.InvariantCulture),
-            };
-                
+                addProdutoBtn.Enabled = false;
+            }
+            else
+            {
+                addProdutoBtn.Enabled = true;
+                prodSelecionado = new Produto()
+                {
+                    Id = Convert.ToInt32(buscaProdutoDgv.Rows[e.RowIndex].Cells[0].Value),
+                    Nome = buscaProdutoDgv.Rows[e.RowIndex].Cells[1].Value.ToString(),
+                    PrecoCusto = Convert.ToDouble(buscaProdutoDgv.Rows[e.RowIndex].Cells[2].Value, CultureInfo.InvariantCulture),
+                    PrecoVenda = Convert.ToDouble(buscaProdutoDgv.Rows[e.RowIndex].Cells[3].Value, CultureInfo.InvariantCulture),
+                };
+            }
         }
 
         private void qtdeTxt_KeyPress(object sender, KeyPressEventArgs e)

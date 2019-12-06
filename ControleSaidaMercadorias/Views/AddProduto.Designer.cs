@@ -35,10 +35,10 @@
             this.dgvPanel = new System.Windows.Forms.Panel();
             this.buscaProdutoDgv = new System.Windows.Forms.DataGridView();
             this.limparPanel = new System.Windows.Forms.Panel();
+            this.qtdeTxt = new System.Windows.Forms.TextBox();
+            this.qtdeLbl = new System.Windows.Forms.Label();
             this.addProdutoBtn = new System.Windows.Forms.Button();
             this.limparBtn = new System.Windows.Forms.Button();
-            this.qtdeLbl = new System.Windows.Forms.Label();
-            this.qtdeTxt = new System.Windows.Forms.TextBox();
             this.buscarProdPanel.SuspendLayout();
             this.dgvPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.buscaProdutoDgv)).BeginInit();
@@ -119,8 +119,27 @@
             this.limparPanel.Size = new System.Drawing.Size(504, 60);
             this.limparPanel.TabIndex = 2;
             // 
+            // qtdeTxt
+            // 
+            this.qtdeTxt.Location = new System.Drawing.Point(83, 18);
+            this.qtdeTxt.MaxLength = 3;
+            this.qtdeTxt.Name = "qtdeTxt";
+            this.qtdeTxt.Size = new System.Drawing.Size(29, 20);
+            this.qtdeTxt.TabIndex = 3;
+            this.qtdeTxt.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.qtdeTxt_KeyPress);
+            // 
+            // qtdeLbl
+            // 
+            this.qtdeLbl.AutoSize = true;
+            this.qtdeLbl.Location = new System.Drawing.Point(12, 21);
+            this.qtdeLbl.Name = "qtdeLbl";
+            this.qtdeLbl.Size = new System.Drawing.Size(65, 13);
+            this.qtdeLbl.TabIndex = 2;
+            this.qtdeLbl.Text = "Quantidade:";
+            // 
             // addProdutoBtn
             // 
+            this.addProdutoBtn.Enabled = false;
             this.addProdutoBtn.Location = new System.Drawing.Point(408, 16);
             this.addProdutoBtn.Name = "addProdutoBtn";
             this.addProdutoBtn.Size = new System.Drawing.Size(75, 23);
@@ -138,24 +157,6 @@
             this.limparBtn.Text = "LIMPAR";
             this.limparBtn.UseVisualStyleBackColor = true;
             this.limparBtn.Click += new System.EventHandler(this.limparBtn_Click);
-            // 
-            // qtdeLbl
-            // 
-            this.qtdeLbl.AutoSize = true;
-            this.qtdeLbl.Location = new System.Drawing.Point(12, 21);
-            this.qtdeLbl.Name = "qtdeLbl";
-            this.qtdeLbl.Size = new System.Drawing.Size(65, 13);
-            this.qtdeLbl.TabIndex = 2;
-            this.qtdeLbl.Text = "Quantidade:";
-            // 
-            // qtdeTxt
-            // 
-            this.qtdeTxt.Location = new System.Drawing.Point(83, 18);
-            this.qtdeTxt.MaxLength = 3;
-            this.qtdeTxt.Name = "qtdeTxt";
-            this.qtdeTxt.Size = new System.Drawing.Size(29, 20);
-            this.qtdeTxt.TabIndex = 3;
-            this.qtdeTxt.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.qtdeTxt_KeyPress);
             // 
             // AddProduto
             // 

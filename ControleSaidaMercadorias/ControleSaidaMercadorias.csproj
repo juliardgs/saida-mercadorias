@@ -66,6 +66,12 @@
     <Compile Include="Views\AddProduto.Designer.cs">
       <DependentUpon>AddProduto.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\AltProduto.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\AltProduto.Designer.cs">
+      <DependentUpon>AltProduto.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\TelaFuncionarios.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -92,6 +98,9 @@
     </Compile>
     <EmbeddedResource Include="Views\AddProduto.resx">
       <DependentUpon>AddProduto.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\AltProduto.resx">
+      <DependentUpon>AltProduto.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\TelaFuncionarios.resx">
       <DependentUpon>TelaFuncionarios.cs</DependentUpon>

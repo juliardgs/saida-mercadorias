@@ -28,13 +28,13 @@ namespace ControleSaidaMercadorias.DAL
             if (produto.ItemProduto != null) //se não for nulo é produto composto
             {
                 int idProdComposto = (int)command.ExecuteScalar(); //pega o id do produto composto que foi inserido
-                command.CommandText = "insert into produto_tem_produtos (idProdutoSimples, idProdutoComposto, quantidade) values (@idProdutoSimples, @idProdutoComposto, @quantidade)";
+                command.CommandText = "insert into produto_tem_produtos (idSimples, idComposto, quantidade) values (@idSimples, @idComposto, @quantidadePS)";
 
                 foreach (Produto item in produto.ItemProduto)
                 {
-                    command.Parameters.AddWithValue("@idProdutoSimples", item.Id);
-                    command.Parameters.AddWithValue("@idProdutoComposto", idProdComposto);
-                    command.Parameters.AddWithValue("@quantidade", item.Quantidade);
+                    command.Parameters.AddWithValue("@idSimples", item.Id);
+                    command.Parameters.AddWithValue("@idComposto", idProdComposto);
+                    command.Parameters.AddWithValue("@quantidadePS", item.Quantidade);
                     command.ExecuteNonQuery();
                 }
             }
@@ -62,7 +62,7 @@ namespace ControleSaidaMercadorias.DAL
             var command = connection.CreateCommand();
             var command2 = connection.CreateCommand();
             command.CommandText = "select id as ID, nome as 'NOME', precoCusto as 'PREÇO DE CUSTO'," + //query só retorna produtos simples
-                "precoVenda as 'PREÇO DE VENDA', quantidade as 'ESTOQUE' from produto left join produto_tem_produtos " +
+                "precoVenda as 'PREÇO DE VENDA', produto.quantidade as 'ESTOQUE' from produto left join produto_tem_produtos " +
                 "on produto.id = produto_tem_produtos.idComposto where lower(nome) like @nome and produto_tem_produtos.idComposto is null";
             command.Parameters.AddWithValue("@nome", "%" + nome.ToLower() + "%");
 
@@ -71,13 +71,6 @@ namespace ControleSaidaMercadorias.DAL
                 "on produto.id = produto_tem_produtos.idComposto where lower(nome) like @nome";
             command2.Parameters.AddWithValue("@nome", "%" + nome.ToLower() + "%");
 
-            /*using (SqlDataReader reader = command.ExecuteReader())
-            {
-                DataTable dt = new DataTable();
-                dt.Load(reader);
-                connection.Close();
-                return dt;
-            }*/
             SqlDataReader reader = command.ExecuteReader();
             DataTable dt = new DataTable();
             dt.Load(reader);
@@ -87,9 +80,8 @@ namespace ControleSaidaMercadorias.DAL
             List<DataTable> listaDt = new List<DataTable>();
             listaDt.Add(dt);
             listaDt.Add(dt2);
+            connection.Close();
             return listaDt;
         }
-
-
     }
 }
