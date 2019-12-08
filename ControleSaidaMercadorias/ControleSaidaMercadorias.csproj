@@ -84,6 +84,12 @@
     <Compile Include="Views\TelaProdutos.Designer.cs">
       <DependentUpon>TelaProdutos.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\TelaRequisicoes.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\TelaRequisicoes.Designer.cs">
+      <DependentUpon>TelaRequisicoes.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
@@ -107,6 +113,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Views\TelaProdutos.resx">
       <DependentUpon>TelaProdutos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\TelaRequisicoes.resx">
+      <DependentUpon>TelaRequisicoes.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
