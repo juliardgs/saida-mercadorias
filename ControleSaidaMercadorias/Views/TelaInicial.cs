@@ -16,5 +16,30 @@ namespace ControleSaidaMercadorias.Views
         {
             InitializeComponent();
         }
+
+        private void funcionariosBtn_Click(object sender, EventArgs e)
+        {
+            EsconderTelas();
+            telaFuncionarios1.Show();
+        }
+
+        private void EsconderTelas()
+        {
+            telaFuncionarios1.Hide();
+            telaProdutos1.Hide();
+            telaRequisicoes1.Hide();
+        }
+
+        private void produtosBtn_Click(object sender, EventArgs e)
+        {
+            EsconderTelas();
+            telaProdutos1.Show();
+        }
+
+        private void requisicoesBtn_Click(object sender, EventArgs e)
+        {
+            EsconderTelas();
+            telaRequisicoes1.Show();
+        }
     }
 }

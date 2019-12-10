@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Configuration;
 using System.Data.SqlClient;
+using System.Windows.Forms;
 
 namespace ControleSaidaMercadorias.Services
 {
@@ -20,7 +21,15 @@ namespace ControleSaidaMercadorias.Services
             {
                 if(instance == null)
                 {
-                    instance = new SqlConnection(ConfigurationManager.ConnectionStrings["TESTE_DB"].ConnectionString);
+                    try
+                    {
+                        instance = new SqlConnection(ConfigurationManager.ConnectionStrings["TESTE_DB"].ConnectionString);
+
+                    }
+                    catch
+                    {
+                        
+                    }
                 }
                 return instance;
             }

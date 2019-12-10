@@ -183,6 +183,7 @@
             this.funReqCb.Name = "funReqCb";
             this.funReqCb.Size = new System.Drawing.Size(618, 21);
             this.funReqCb.TabIndex = 1;
+            this.funReqCb.Enter += new System.EventHandler(this.funReqCb_Enter);
             // 
             // dataLbl
             // 
@@ -210,7 +211,6 @@
             this.Controls.Add(this.requisicoesTab);
             this.Name = "TelaRequisicoes";
             this.Size = new System.Drawing.Size(849, 512);
-            this.Load += new System.EventHandler(this.TelaRequisicoes_Load);
             this.requisicoesTab.ResumeLayout(false);
             this.cadastroReqTab.ResumeLayout(false);
             this.salvarBtnPanel.ResumeLayout(false);

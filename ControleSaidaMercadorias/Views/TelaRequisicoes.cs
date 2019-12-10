@@ -19,7 +19,7 @@ namespace ControleSaidaMercadorias.Views
             InitializeComponent();
         }
 
-        private void TelaRequisicoes_Load(object sender, EventArgs e)
+        private void funReqCb_Enter(object sender, EventArgs e)
         {
             funReqCb.DataSource = dal.CarregarFuncionarios();
             funReqCb.DisplayMember = "ID_NOME";
