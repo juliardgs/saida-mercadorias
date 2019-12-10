@@ -222,7 +222,13 @@ namespace ControleSaidaMercadorias.Views
 
         private void excluirProdutoBtn_Click(object sender, EventArgs e)
         {
-            
+            dal.RemoverProduto(produtoSelecionado.Id, produtoSelecionado.ItemProduto == null ? false : true);
+            if(buscarProdCompostoTxt.Text != string.Empty)
+            {
+                buscarProdutosBtn.PerformClick();
+            }
+            MessageBox.Show("Produto excluído com sucesso!", "Excluir Produto");
+
         }
 
         private void buscaProdSimplesDgv_CellClick(object sender, DataGridViewCellEventArgs e)

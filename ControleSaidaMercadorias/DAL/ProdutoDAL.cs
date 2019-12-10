@@ -127,5 +127,22 @@ namespace ControleSaidaMercadorias.DAL
             connection.Close();
             return dt;
         }
+
+        public void RemoverProduto(int idProduto, bool composto = false)
+        {
+            //checar se já tem alguma requisição com o produto
+            connection.Open();
+            var command = connection.CreateCommand();
+            if (composto)
+            {
+                command.CommandText = "delete from produto_tem_produtos where idComposto = @idProduto";
+                command.Parameters.AddWithValue("@idProduto", idProduto);
+                command.ExecuteNonQuery();
+            }
+            command.CommandText = "delete from produto where id = @idProduto2";
+            command.Parameters.AddWithValue("@idProduto2", idProduto);
+            command.ExecuteNonQuery();
+            connection.Close();
+        }
     }
 }
