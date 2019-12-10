@@ -19,6 +19,10 @@ namespace ControleSaidaMercadorias.Views
         private ProdutoDAL dal = new ProdutoDAL();
         private List<Produto> itens;
 
+        public AltProduto()
+        {
+            InitializeComponent();
+        }
         public AltProduto(TelaProdutos telaProd, Produto prod)
         {
             InitializeComponent();

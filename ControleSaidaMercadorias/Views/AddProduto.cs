@@ -20,6 +20,11 @@ namespace ControleSaidaMercadorias.Views
         TelaProdutos telaProdutos;
         AltProduto altProduto;
 
+        public AddProduto()
+        {
+            InitializeComponent();
+        }
+
         public AddProduto(TelaProdutos telaProd)
         {
             InitializeComponent();

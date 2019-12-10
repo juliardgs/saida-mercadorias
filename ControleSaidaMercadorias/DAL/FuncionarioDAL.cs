@@ -29,7 +29,7 @@ namespace ControleSaidaMercadorias.DAL
         {
             connection.Open();
             var command = connection.CreateCommand();
-            command.CommandText = "select id + ' ' + nome as ID_NOME, id from funcionario;";
+            command.CommandText = "select cast(id as varchar) + ' ' + nome as ID_NOME, id from funcionario;";
             SqlDataReader reader = command.ExecuteReader();
             DataTable dt = new DataTable();
             dt.Load(reader);
