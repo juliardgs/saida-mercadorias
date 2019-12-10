@@ -164,7 +164,7 @@ namespace ControleSaidaMercadorias.Views
                 dal.IncluirProduto(new Produto()
                 {
                     Nome = nomeProdCompostoTxt.Text,
-                    PrecoCusto = Convert.ToDouble(precoCustoProdCompostoTxt.Text, CultureInfo.InvariantCulture),
+                    PrecoCusto = Convert.ToDouble(precoCustoProdCompostoTxt.Text),
                     PrecoVenda = Convert.ToDouble(precoVendaProdCompostoTxt.Text),
                     ItemProduto = itens
                 });
@@ -186,7 +186,7 @@ namespace ControleSaidaMercadorias.Views
                 excluirProdSimplesBtn.Enabled = true;
                 produtoSelecionado = new Produto() 
                 {
-                    PrecoCusto = Convert.ToDouble(listaProdSimplesDgv.Rows[e.RowIndex].Cells[4].Value, CultureInfo.InvariantCulture),
+                    PrecoCusto = Convert.ToDouble(listaProdSimplesDgv.Rows[e.RowIndex].Cells[4].Value),
                 };
             }
         }

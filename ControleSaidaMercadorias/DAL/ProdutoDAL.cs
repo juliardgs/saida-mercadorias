@@ -23,18 +23,20 @@ namespace ControleSaidaMercadorias.DAL
             command.Parameters.AddWithValue("@quantidade", produto.Quantidade);
             command.Parameters.AddWithValue("@precoCusto", produto.PrecoCusto);
             command.Parameters.AddWithValue("@precoVenda", produto.PrecoVenda);
-            command.ExecuteNonQuery();
-
+            int idProdComposto = (int)command.ExecuteScalar(); //executa o insert e pega o id do produto composto que foi inserido
+            
             if (produto.ItemProduto != null) //se não for nulo é produto composto
             {
-                int idProdComposto = (int)command.ExecuteScalar(); //pega o id do produto composto que foi inserido
                 command.CommandText = "insert into produto_tem_produtos (idSimples, idComposto, quantidade) values (@idSimples, @idComposto, @quantidadePS)";
+                command.Parameters.Add("@idSimples", SqlDbType.Int);
+                command.Parameters.Add("@idComposto", SqlDbType.Int);
+                command.Parameters.Add("@quantidadePS", SqlDbType.Int);
 
                 foreach (Produto item in produto.ItemProduto)
                 {
-                    command.Parameters.AddWithValue("@idSimples", item.Id);
-                    command.Parameters.AddWithValue("@idComposto", idProdComposto);
-                    command.Parameters.AddWithValue("@quantidadePS", item.Quantidade);
+                    command.Parameters["@idSimples"].Value = item.Id;
+                    command.Parameters["@idComposto"].Value = idProdComposto;
+                    command.Parameters["@quantidadePS"].Value =  item.Quantidade;
                     command.ExecuteNonQuery();
                 }
             }
@@ -57,7 +59,7 @@ namespace ControleSaidaMercadorias.DAL
             if (composto)
             {
                 /*
-                 * primeiro faz uma exclusão lógica
+                 * primeiro faz apaga
                  * depois faz uma inclusão das coisas novas
                  */
 
@@ -65,14 +67,18 @@ namespace ControleSaidaMercadorias.DAL
                 command.Parameters.AddWithValue("@idComposto", produto.Id);
                 command.ExecuteNonQuery();
 
+                command.CommandText = "insert into produto_tem_produtos (idSimples, idComposto2, quantidade) values (@idSimples, @idComposto, @quantidadePS)";
 
-                command.CommandText = "insert into produto_tem_produtos (idSimples, idComposto, quantidade) values (@idSimples2, @idComposto2, @quantidadePS)";
+                command.Parameters.Add("@idSimples", SqlDbType.Int);
+                command.Parameters.Add("@idComposto2", SqlDbType.Int);
+                command.Parameters.Add("@quantidadePS", SqlDbType.Int);
+
 
                 foreach (Produto item in produto.ItemProduto)
                 {
-                    command.Parameters.AddWithValue("@idSimples2", item.Id);
-                    command.Parameters.AddWithValue("@idComposto2", produto.Id);
-                    command.Parameters.AddWithValue("@quantidadePS", item.Quantidade);
+                    command.Parameters["@idSimples"].Value = item.Id;
+                    command.Parameters["@idComposto2"].Value = produto.Id;
+                    command.Parameters["@quantidadePS"].Value = item.Quantidade;
                     command.ExecuteNonQuery();
                 }
             }
@@ -90,7 +96,7 @@ namespace ControleSaidaMercadorias.DAL
                 "on produto.id = produto_tem_produtos.idComposto where lower(nome) like @nome and produto_tem_produtos.idComposto is null";
             command.Parameters.AddWithValue("@nome", "%" + nome.ToLower() + "%");
 
-            command2.CommandText = "select id as ID, nome as 'NOME', precoCusto as 'PREÇO DE CUSTO'," + //query só retorna produtos compostos
+            command2.CommandText = "select distinct id as ID, nome as 'NOME', precoCusto as 'PREÇO DE CUSTO'," + //query só retorna produtos compostos
                 "precoVenda as 'PREÇO DE VENDA' from produto inner join produto_tem_produtos " +
                 "on produto.id = produto_tem_produtos.idComposto where lower(nome) like @nome";
             command2.Parameters.AddWithValue("@nome", "%" + nome.ToLower() + "%");
@@ -110,15 +116,10 @@ namespace ControleSaidaMercadorias.DAL
 
         public DataTable ListarItensProdComposto(int idComposto)
         {
-            //melhorar consulta
             connection.Open();
             var command = connection.CreateCommand();
-            command.CommandText = "select produto_tem_produtos.idSimples as ID, " +
-                "(select produto.nome from produto join produto_tem_produtos on produto.id = produto_tem_produtos.idSimples where idComposto = @idComposto) as NOME, " +
-                "produto_tem_produtos.quantidade as QUANTIDADE," +
-                "(select produto.precoCusto * produto_tem_produtos.quantidade from produto join produto_tem_produtos on produto.id = produto_tem_produtos.idSimples where idComposto = @idComposto) as 'PREÇO DE CUSTO', " +
-                "(select produto.precoVenda * produto_tem_produtos.quantidade from produto join produto_tem_produtos on produto.id = produto_tem_produtos.idSimples where idComposto = @idComposto) as 'PREÇO DE VENDA' " +
-                "from produto join produto_tem_produtos on produto.id = produto_tem_produtos.idComposto where idComposto = @idComposto; ";
+            command.CommandText = "select produto_tem_produtos.idSimples, produto.nome, produto_tem_produtos.quantidade, produto.precoCusto," +
+                " produto.precoVenda from produto join produto_tem_produtos on produto.id = produto_tem_produtos.idSimples where idComposto = @idComposto";
             command.Parameters.AddWithValue("@idComposto", idComposto);
             SqlDataReader reader = command.ExecuteReader();
             DataTable dt = new DataTable();
