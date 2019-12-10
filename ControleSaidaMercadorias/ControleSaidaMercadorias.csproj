@@ -93,10 +93,6 @@
     <Compile Include="Views\TelaFuncionarios.Designer.cs">
       <DependentUpon>TelaFuncionarios.cs</DependentUpon>
     </Compile>
-    <Compile Include="Views\TelaInicial.cs" />
-    <Compile Include="Views\TelaInicial.Designer.cs">
-      <DependentUpon>TelaInicial.cs</DependentUpon>
-    </Compile>
     <Compile Include="Views\TelaProdutos.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -129,9 +125,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Views\TelaFuncionarios.resx">
       <DependentUpon>TelaFuncionarios.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Views\TelaInicial.resx">
-      <DependentUpon>TelaInicial.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\TelaProdutos.resx">
       <DependentUpon>TelaProdutos.cs</DependentUpon>
