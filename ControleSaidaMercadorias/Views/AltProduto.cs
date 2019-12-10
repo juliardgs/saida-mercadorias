@@ -16,7 +16,8 @@ namespace ControleSaidaMercadorias.Views
     {
         private TelaProdutos telaProdutos;
         private Produto produto;
-        private ProdutoDAL dal;
+        private ProdutoDAL dal = new ProdutoDAL();
+        private List<Produto> itens;
 
         public AltProduto(TelaProdutos telaProd, Produto prod)
         {
@@ -36,7 +37,9 @@ namespace ControleSaidaMercadorias.Views
                 qtdeEstoqueLbl.Visible = false;
                 qtdeEstoqueTxt.Visible = false;
                 precoCustoTxt.Enabled = false;
-                listaProdSimplesDgv.DataSource = dal.
+                listaProdSimplesPanel.Visible = true;
+                addExcBtnPanel.Visible = true;
+                listaProdSimplesDgv.DataSource = dal.ListarItensProdComposto(prod.Id);
             }
 
             nomeTxt.Text = prod.Nome;
@@ -108,16 +111,16 @@ namespace ControleSaidaMercadorias.Views
 
         private void salvarBtn_Click(object sender, EventArgs e)
         {
-            if(produto.ItemProduto == null)
-            {
-                if(nomeTxt.Text == string.Empty
+            if (nomeTxt.Text == string.Empty
                     || precoCustoTxt.Text == string.Empty
                     || precoVendaTxt.Text == string.Empty
-                    || qtdeEstoqueTxt.Text == string.Empty)
-                {
-                    MessageBox.Show("É necessario preencher todos os campos com valores válidos.", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                }
-                else
+                    || (qtdeEstoqueTxt.Text == string.Empty && qtdeEstoqueTxt.Visible == true))
+            {
+                MessageBox.Show("É necessario preencher todos os campos com valores válidos.", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+            else
+            {
+                if(produto.ItemProduto == null)
                 {
                     dal.AlterarProduto(new Produto()
                     {
@@ -128,18 +131,64 @@ namespace ControleSaidaMercadorias.Views
                         PrecoVenda = Convert.ToDouble(precoVendaTxt.Text)
                     });
                     MessageBox.Show("Produto Simples alterado com sucesso!", "Alterar Produto Simples", MessageBoxButtons.OK);
-                    
-                    if(telaProdutos.buscarProdCompostoTxt.Text.Trim() != string.Empty)
-                    {
-                        telaProdutos.buscarProdutosBtn_Click(new object(), new EventArgs()); // ou SubGraphButton_Click.PerformClick()
-                    }
-                    this.Close();
                 }
-            }
-            else
-            {   
+                else
+                {
+                    if (listaProdSimplesDgv.Rows.Count > 0)
+                    {
+                        itens = new List<Produto>();
+                        foreach (DataGridViewRow linha in listaProdSimplesDgv.Rows)
+                        {
+                            Produto itemProduto = new Produto()
+                            {
+                                Id = Convert.ToInt32(linha.Cells[0].Value),
+                                Quantidade = Convert.ToInt32(linha.Cells[2].Value)
+                            };
+                            itens.Add(itemProduto);
+                        }
 
+                        dal.AlterarProduto(new Produto()
+                        {
+                            Id = produto.Id,
+                            Nome = nomeTxt.Text,
+                            ItemProduto = itens,
+                            PrecoCusto = Convert.ToDouble(precoCustoTxt.Text),
+                            PrecoVenda = Convert.ToDouble(precoVendaTxt.Text)
+                        }, true);
+                        MessageBox.Show("Produto Composto alterado com sucesso!", "Alterar Produto Composto", MessageBoxButtons.OK);
+                    }
+                }
+                if (telaProdutos.buscarProdCompostoTxt.Text.Trim() != string.Empty)
+                {
+                    telaProdutos.buscarProdutosBtn_Click(new object(), new EventArgs());
+                }
+                this.Close();
             }
+        }
+
+        private void listaProdSimplesDgv_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            excProdSimplesBtn.Enabled = true;
+        }
+
+        private void CalcularPrecoCusto()
+        {
+            double precoCusto = 0;
+            foreach (DataGridViewRow linha in listaProdSimplesDgv.Rows)
+            {
+                precoCusto += Convert.ToDouble(linha.Cells[3].Value);
+            }
+            precoCustoTxt.Text = precoCusto.ToString();
+        }
+
+        private void listaProdSimplesDgv_RowsAdded(object sender, DataGridViewRowsAddedEventArgs e)
+        {
+            CalcularPrecoCusto();
+        }
+
+        private void listaProdSimplesDgv_RowsRemoved(object sender, DataGridViewRowsRemovedEventArgs e)
+        {
+            CalcularPrecoCusto();
         }
     }
 }

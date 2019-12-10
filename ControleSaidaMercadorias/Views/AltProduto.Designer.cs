@@ -39,16 +39,9 @@
             this.label1 = new System.Windows.Forms.Label();
             this.listaProdSimplesPanel = new System.Windows.Forms.Panel();
             this.listaProdSimplesDgv = new System.Windows.Forms.DataGridView();
-            this.id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.nome = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.qtde = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.precoCusto = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.precoVenda = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.addExcBtnPanel = new System.Windows.Forms.Panel();
-            this.button1 = new System.Windows.Forms.Button();
+            this.excProdSimplesBtn = new System.Windows.Forms.Button();
             this.addProdSimplesBtn = new System.Windows.Forms.Button();
-            this.qtdeProdSimplesTxt = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
             this.salvarBtnPanel = new System.Windows.Forms.Panel();
             this.salvarBtn = new System.Windows.Forms.Button();
             this.infoProdPanel.SuspendLayout();
@@ -160,12 +153,6 @@
             this.listaProdSimplesDgv.AllowUserToAddRows = false;
             this.listaProdSimplesDgv.AllowUserToDeleteRows = false;
             this.listaProdSimplesDgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.listaProdSimplesDgv.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.id,
-            this.nome,
-            this.qtde,
-            this.precoCusto,
-            this.precoVenda});
             this.listaProdSimplesDgv.Dock = System.Windows.Forms.DockStyle.Fill;
             this.listaProdSimplesDgv.Location = new System.Drawing.Point(0, 0);
             this.listaProdSimplesDgv.MultiSelect = false;
@@ -174,43 +161,14 @@
             this.listaProdSimplesDgv.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.listaProdSimplesDgv.Size = new System.Drawing.Size(526, 179);
             this.listaProdSimplesDgv.TabIndex = 0;
-            // 
-            // id
-            // 
-            this.id.HeaderText = "ID";
-            this.id.Name = "id";
-            this.id.ReadOnly = true;
-            // 
-            // nome
-            // 
-            this.nome.HeaderText = "NOME";
-            this.nome.Name = "nome";
-            this.nome.ReadOnly = true;
-            // 
-            // qtde
-            // 
-            this.qtde.HeaderText = "QUANTIDADE";
-            this.qtde.Name = "qtde";
-            this.qtde.ReadOnly = true;
-            // 
-            // precoCusto
-            // 
-            this.precoCusto.HeaderText = "PREÇO DE CUSTO";
-            this.precoCusto.Name = "precoCusto";
-            this.precoCusto.ReadOnly = true;
-            // 
-            // precoVenda
-            // 
-            this.precoVenda.HeaderText = "PREÇO DE VENDA";
-            this.precoVenda.Name = "precoVenda";
-            this.precoVenda.ReadOnly = true;
+            this.listaProdSimplesDgv.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.listaProdSimplesDgv_CellClick);
+            this.listaProdSimplesDgv.RowsAdded += new System.Windows.Forms.DataGridViewRowsAddedEventHandler(this.listaProdSimplesDgv_RowsAdded);
+            this.listaProdSimplesDgv.RowsRemoved += new System.Windows.Forms.DataGridViewRowsRemovedEventHandler(this.listaProdSimplesDgv_RowsRemoved);
             // 
             // addExcBtnPanel
             // 
-            this.addExcBtnPanel.Controls.Add(this.button1);
+            this.addExcBtnPanel.Controls.Add(this.excProdSimplesBtn);
             this.addExcBtnPanel.Controls.Add(this.addProdSimplesBtn);
-            this.addExcBtnPanel.Controls.Add(this.qtdeProdSimplesTxt);
-            this.addExcBtnPanel.Controls.Add(this.label3);
             this.addExcBtnPanel.Dock = System.Windows.Forms.DockStyle.Top;
             this.addExcBtnPanel.Location = new System.Drawing.Point(0, 291);
             this.addExcBtnPanel.Name = "addExcBtnPanel";
@@ -218,21 +176,20 @@
             this.addExcBtnPanel.TabIndex = 2;
             this.addExcBtnPanel.Visible = false;
             // 
-            // button1
+            // excProdSimplesBtn
             // 
-            this.button1.Dock = System.Windows.Forms.DockStyle.Right;
-            this.button1.Enabled = false;
-            this.button1.Location = new System.Drawing.Point(321, 0);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(100, 41);
-            this.button1.TabIndex = 7;
-            this.button1.Text = "EXCLUIR ITEM";
-            this.button1.UseVisualStyleBackColor = true;
+            this.excProdSimplesBtn.Dock = System.Windows.Forms.DockStyle.Right;
+            this.excProdSimplesBtn.Enabled = false;
+            this.excProdSimplesBtn.Location = new System.Drawing.Point(321, 0);
+            this.excProdSimplesBtn.Name = "excProdSimplesBtn";
+            this.excProdSimplesBtn.Size = new System.Drawing.Size(100, 41);
+            this.excProdSimplesBtn.TabIndex = 7;
+            this.excProdSimplesBtn.Text = "EXCLUIR ITEM";
+            this.excProdSimplesBtn.UseVisualStyleBackColor = true;
             // 
             // addProdSimplesBtn
             // 
             this.addProdSimplesBtn.Dock = System.Windows.Forms.DockStyle.Right;
-            this.addProdSimplesBtn.Enabled = false;
             this.addProdSimplesBtn.Location = new System.Drawing.Point(421, 0);
             this.addProdSimplesBtn.Name = "addProdSimplesBtn";
             this.addProdSimplesBtn.Size = new System.Drawing.Size(105, 41);
@@ -240,24 +197,6 @@
             this.addProdSimplesBtn.Text = "ADICIONAR ITEM";
             this.addProdSimplesBtn.UseVisualStyleBackColor = true;
             this.addProdSimplesBtn.Click += new System.EventHandler(this.addProdSimplesBtn_Click);
-            // 
-            // qtdeProdSimplesTxt
-            // 
-            this.qtdeProdSimplesTxt.Location = new System.Drawing.Point(83, 10);
-            this.qtdeProdSimplesTxt.MaxLength = 4;
-            this.qtdeProdSimplesTxt.Name = "qtdeProdSimplesTxt";
-            this.qtdeProdSimplesTxt.Size = new System.Drawing.Size(37, 20);
-            this.qtdeProdSimplesTxt.TabIndex = 5;
-            this.qtdeProdSimplesTxt.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.qtdeProdSimplesTxt_KeyPress);
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(12, 13);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(65, 13);
-            this.label3.TabIndex = 4;
-            this.label3.Text = "Quantidade:";
             // 
             // salvarBtnPanel
             // 
@@ -295,7 +234,6 @@
             this.listaProdSimplesPanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.listaProdSimplesDgv)).EndInit();
             this.addExcBtnPanel.ResumeLayout(false);
-            this.addExcBtnPanel.PerformLayout();
             this.salvarBtnPanel.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -315,16 +253,9 @@
         private System.Windows.Forms.TextBox precoVendaTxt;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox precoCustoTxt;
-        private System.Windows.Forms.DataGridView listaProdSimplesDgv;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button excProdSimplesBtn;
         private System.Windows.Forms.Button addProdSimplesBtn;
-        private System.Windows.Forms.TextBox qtdeProdSimplesTxt;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.DataGridViewTextBoxColumn id;
-        private System.Windows.Forms.DataGridViewTextBoxColumn nome;
-        private System.Windows.Forms.DataGridViewTextBoxColumn qtde;
-        private System.Windows.Forms.DataGridViewTextBoxColumn precoCusto;
-        private System.Windows.Forms.DataGridViewTextBoxColumn precoVenda;
         private System.Windows.Forms.Button salvarBtn;
+        public System.Windows.Forms.DataGridView listaProdSimplesDgv;
     }
 }

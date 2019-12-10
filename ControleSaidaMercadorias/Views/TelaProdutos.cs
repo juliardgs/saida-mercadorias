@@ -43,7 +43,6 @@ namespace ControleSaidaMercadorias.Views
                 buscaProdSimplesDgv.DataSource = dal.BuscarProduto(buscarProdCompostoTxt.Text)[0];
                 buscaProdCompostoDgv.DataSource = dal.BuscarProduto(buscarProdCompostoTxt.Text)[1];
             }
-            //busca no banco e retorna no data grid view
         }
 
         private void precoCustoProdSimplesTxt_KeyPress(object sender, KeyPressEventArgs e)

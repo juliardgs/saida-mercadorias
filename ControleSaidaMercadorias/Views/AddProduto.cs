@@ -42,7 +42,18 @@ namespace ControleSaidaMercadorias.Views
             else
             {
                 int qtde = Convert.ToInt32(qtdeTxt.Text);
-                telaProdutos.listaProdSimplesDgv.Rows.Add(prodSelecionado.Id, prodSelecionado.Nome, qtdeTxt.Text, prodSelecionado.PrecoCusto * qtde, prodSelecionado.PrecoVenda * qtde);
+                if(altProduto == null)
+                    telaProdutos.listaProdSimplesDgv.Rows.Add(prodSelecionado.Id, prodSelecionado.Nome, qtdeTxt.Text, prodSelecionado.PrecoCusto * qtde, prodSelecionado.PrecoVenda * qtde);
+                else
+                {
+                    DataRow linha = ((DataTable)altProduto.listaProdSimplesDgv.DataSource).NewRow();
+                    linha[0] = prodSelecionado.Id;
+                    linha[1] = prodSelecionado.Nome;
+                    linha[2] = qtde;
+                    linha[3] = prodSelecionado.PrecoCusto * qtde;
+                    linha[4] = prodSelecionado.PrecoVenda * qtde;
+                    ((DataTable)altProduto.listaProdSimplesDgv.DataSource).Rows.Add(linha);
+                }
                 this.Close();
             }
             
