@@ -19,7 +19,8 @@ namespace ControleSaidaMercadorias
 
         private void funcionariosBtn_Click(object sender, EventArgs e)
         {
-            menuFuncionarios.Visible = true;
+            //menuFuncionarios.Visible = true;
+            menuFuncionarios.Show();
         }
 
         private void telaFuncionarios_Load(object sender, EventArgs e)
@@ -36,6 +37,11 @@ namespace ControleSaidaMercadorias
         private void menuFuncionarios_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void requisicoesBtn_Click(object sender, EventArgs e)
+        {
+            telaRequisicoes1.Visible = true;
         }
     }
 }

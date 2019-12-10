@@ -34,8 +34,7 @@
             this.produtosBtn = new System.Windows.Forms.Button();
             this.funcionariosBtn = new System.Windows.Forms.Button();
             this.painelPrincipal = new System.Windows.Forms.Panel();
-            this.telaProdutos = new ControleSaidaMercadorias.Views.TelaProdutos();
-            this.menuFuncionarios = new ControleSaidaMercadorias.Views.TelaFuncionarios();
+            this.telaRequisicoes1 = new ControleSaidaMercadorias.Views.TelaRequisicoes();
             this.menu.SuspendLayout();
             this.painelPrincipal.SuspendLayout();
             this.SuspendLayout();
@@ -72,6 +71,7 @@
             this.requisicoesBtn.TabIndex = 2;
             this.requisicoesBtn.Text = "Requisições";
             this.requisicoesBtn.UseVisualStyleBackColor = true;
+            this.requisicoesBtn.Click += new System.EventHandler(this.requisicoesBtn_Click);
             // 
             // produtosBtn
             // 
@@ -97,32 +97,21 @@
             // 
             // painelPrincipal
             // 
-            this.painelPrincipal.Controls.Add(this.telaProdutos);
-            this.painelPrincipal.Controls.Add(this.menuFuncionarios);
+            this.painelPrincipal.Controls.Add(this.telaRequisicoes1);
             this.painelPrincipal.Dock = System.Windows.Forms.DockStyle.Fill;
             this.painelPrincipal.Location = new System.Drawing.Point(187, 0);
             this.painelPrincipal.Name = "painelPrincipal";
             this.painelPrincipal.Size = new System.Drawing.Size(844, 505);
             this.painelPrincipal.TabIndex = 1;
             // 
-            // telaProdutos
+            // telaRequisicoes1
             // 
-            this.telaProdutos.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.telaProdutos.Location = new System.Drawing.Point(0, 0);
-            this.telaProdutos.Name = "telaProdutos";
-            this.telaProdutos.Size = new System.Drawing.Size(844, 505);
-            this.telaProdutos.TabIndex = 1;
-            this.telaProdutos.Visible = false;
-            // 
-            // menuFuncionarios
-            // 
-            this.menuFuncionarios.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.menuFuncionarios.Location = new System.Drawing.Point(0, 0);
-            this.menuFuncionarios.Name = "menuFuncionarios";
-            this.menuFuncionarios.Size = new System.Drawing.Size(844, 505);
-            this.menuFuncionarios.TabIndex = 0;
-            this.menuFuncionarios.Visible = false;
-            this.menuFuncionarios.Load += new System.EventHandler(this.menuFuncionarios_Load);
+            this.telaRequisicoes1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.telaRequisicoes1.Location = new System.Drawing.Point(0, 0);
+            this.telaRequisicoes1.Name = "telaRequisicoes1";
+            this.telaRequisicoes1.Size = new System.Drawing.Size(844, 505);
+            this.telaRequisicoes1.TabIndex = 0;
+            this.telaRequisicoes1.Visible = false;
             // 
             // Form1
             // 
@@ -150,6 +139,7 @@
         private Views.TelaFuncionarios telaFuncionarios;
         private Views.TelaFuncionarios menuFuncionarios;
         private Views.TelaProdutos telaProdutos;
+        private Views.TelaRequisicoes telaRequisicoes1;
     }
 }
 

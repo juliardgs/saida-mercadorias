@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,18 @@ namespace ControleSaidaMercadorias.DAL
             connection.Close();
         }
 
+
+        public DataTable CarregarFuncionarios()
+        {
+            connection.Open();
+            var command = connection.CreateCommand();
+            command.CommandText = "select id + ' ' + nome as ID_NOME, id from funcionario;";
+            SqlDataReader reader = command.ExecuteReader();
+            DataTable dt = new DataTable();
+            dt.Load(reader);
+            connection.Close();
+            return dt;
+        }
 
     }
 }
