@@ -18,6 +18,7 @@ namespace ControleSaidaMercadorias.Views
         private ProdutoDAL dal = new ProdutoDAL();
         Produto prodSelecionado;
         TelaProdutos telaProdutos;
+        TelaRequisicoes telaRequisicoes;
         AltProduto altProduto;
 
         public AddProduto()
@@ -35,6 +36,12 @@ namespace ControleSaidaMercadorias.Views
         {
             InitializeComponent();
             altProduto = altProd;
+        }
+
+        public AddProduto(TelaRequisicoes telaReq)
+        {
+            InitializeComponent();
+            telaRequisicoes = telaReq;
         }
 
         private void addProdutoBtn_Click(object sender, EventArgs e)

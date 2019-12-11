@@ -72,6 +72,7 @@
     </Compile>
     <Compile Include="Models\Funcionario.cs" />
     <Compile Include="Models\Produto.cs" />
+    <Compile Include="Models\Requisicao.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\DBConnection.cs" />

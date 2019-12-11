@@ -43,6 +43,8 @@
             this.funReqCb = new System.Windows.Forms.ComboBox();
             this.dataLbl = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.precoCustoTotalLbl = new System.Windows.Forms.Label();
+            this.precoCustoTotalTxt = new System.Windows.Forms.TextBox();
             this.requisicoesTab.SuspendLayout();
             this.cadastroReqTab.SuspendLayout();
             this.salvarBtnPanel.SuspendLayout();
@@ -98,6 +100,8 @@
             // 
             // addExcBtnPanel
             // 
+            this.addExcBtnPanel.Controls.Add(this.precoCustoTotalTxt);
+            this.addExcBtnPanel.Controls.Add(this.precoCustoTotalLbl);
             this.addExcBtnPanel.Controls.Add(this.excItemBtn);
             this.addExcBtnPanel.Controls.Add(this.addItemBtn);
             this.addExcBtnPanel.Dock = System.Windows.Forms.DockStyle.Top;
@@ -125,6 +129,7 @@
             this.addItemBtn.TabIndex = 0;
             this.addItemBtn.Text = "ADICIONAR ITEM";
             this.addItemBtn.UseVisualStyleBackColor = true;
+            this.addItemBtn.Click += new System.EventHandler(this.addItemBtn_Click);
             // 
             // itensReqlPanel
             // 
@@ -144,6 +149,7 @@
             this.itensReqDgv.Location = new System.Drawing.Point(0, 0);
             this.itensReqDgv.Name = "itensReqDgv";
             this.itensReqDgv.ReadOnly = true;
+            this.itensReqDgv.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.itensReqDgv.Size = new System.Drawing.Size(835, 229);
             this.itensReqDgv.TabIndex = 0;
             // 
@@ -204,6 +210,23 @@
             this.tabPage2.Text = "Listar Requisições";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
+            // precoCustoTotalLbl
+            // 
+            this.precoCustoTotalLbl.AutoSize = true;
+            this.precoCustoTotalLbl.Location = new System.Drawing.Point(15, 17);
+            this.precoCustoTotalLbl.Name = "precoCustoTotalLbl";
+            this.precoCustoTotalLbl.Size = new System.Drawing.Size(110, 13);
+            this.precoCustoTotalLbl.TabIndex = 2;
+            this.precoCustoTotalLbl.Text = "Preço Total de Custo:";
+            // 
+            // precoCustoTotalTxt
+            // 
+            this.precoCustoTotalTxt.Enabled = false;
+            this.precoCustoTotalTxt.Location = new System.Drawing.Point(131, 14);
+            this.precoCustoTotalTxt.Name = "precoCustoTotalTxt";
+            this.precoCustoTotalTxt.Size = new System.Drawing.Size(98, 20);
+            this.precoCustoTotalTxt.TabIndex = 3;
+            // 
             // TelaRequisicoes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -215,6 +238,7 @@
             this.cadastroReqTab.ResumeLayout(false);
             this.salvarBtnPanel.ResumeLayout(false);
             this.addExcBtnPanel.ResumeLayout(false);
+            this.addExcBtnPanel.PerformLayout();
             this.itensReqlPanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.itensReqDgv)).EndInit();
             this.infoReqPanel.ResumeLayout(false);
@@ -236,9 +260,11 @@
         private System.Windows.Forms.Button excItemBtn;
         private System.Windows.Forms.Button addItemBtn;
         private System.Windows.Forms.Panel itensReqlPanel;
-        private System.Windows.Forms.DataGridView itensReqDgv;
         private System.Windows.Forms.Panel infoReqPanel;
         private System.Windows.Forms.Panel salvarBtnPanel;
         private System.Windows.Forms.Button salvarReqBtn;
+        private System.Windows.Forms.TextBox precoCustoTotalTxt;
+        private System.Windows.Forms.Label precoCustoTotalLbl;
+        public System.Windows.Forms.DataGridView itensReqDgv;
     }
 }

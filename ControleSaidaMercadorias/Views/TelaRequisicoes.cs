@@ -21,9 +21,17 @@ namespace ControleSaidaMercadorias.Views
 
         private void funReqCb_Enter(object sender, EventArgs e)
         {
-            funReqCb.DataSource = dal.CarregarFuncionarios();
+            //colocar função pra autocompletar
+            var dados = dal.CarregarFuncionarios();
+            funReqCb.DataSource = dados;
             funReqCb.DisplayMember = "ID_NOME";
             funReqCb.ValueMember = "id";
+        }
+
+        private void addItemBtn_Click(object sender, EventArgs e)
+        {
+            AddProduto addProduto = new AddProduto(this);
+            addProduto.Show();
         }
     }
 }
