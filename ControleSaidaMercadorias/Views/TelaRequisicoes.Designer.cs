@@ -33,6 +33,8 @@
             this.salvarBtnPanel = new System.Windows.Forms.Panel();
             this.salvarReqBtn = new System.Windows.Forms.Button();
             this.addExcBtnPanel = new System.Windows.Forms.Panel();
+            this.precoCustoTotalTxt = new System.Windows.Forms.TextBox();
+            this.precoCustoTotalLbl = new System.Windows.Forms.Label();
             this.excItemBtn = new System.Windows.Forms.Button();
             this.addItemBtn = new System.Windows.Forms.Button();
             this.itensReqlPanel = new System.Windows.Forms.Panel();
@@ -43,8 +45,11 @@
             this.funReqCb = new System.Windows.Forms.ComboBox();
             this.dataLbl = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.precoCustoTotalLbl = new System.Windows.Forms.Label();
-            this.precoCustoTotalTxt = new System.Windows.Forms.TextBox();
+            this.id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nome = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.qtde = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.precoCustoUnitario = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.subtotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.requisicoesTab.SuspendLayout();
             this.cadastroReqTab.SuspendLayout();
             this.salvarBtnPanel.SuspendLayout();
@@ -110,6 +115,23 @@
             this.addExcBtnPanel.Size = new System.Drawing.Size(835, 47);
             this.addExcBtnPanel.TabIndex = 6;
             // 
+            // precoCustoTotalTxt
+            // 
+            this.precoCustoTotalTxt.Enabled = false;
+            this.precoCustoTotalTxt.Location = new System.Drawing.Point(131, 14);
+            this.precoCustoTotalTxt.Name = "precoCustoTotalTxt";
+            this.precoCustoTotalTxt.Size = new System.Drawing.Size(98, 20);
+            this.precoCustoTotalTxt.TabIndex = 3;
+            // 
+            // precoCustoTotalLbl
+            // 
+            this.precoCustoTotalLbl.AutoSize = true;
+            this.precoCustoTotalLbl.Location = new System.Drawing.Point(15, 17);
+            this.precoCustoTotalLbl.Name = "precoCustoTotalLbl";
+            this.precoCustoTotalLbl.Size = new System.Drawing.Size(110, 13);
+            this.precoCustoTotalLbl.TabIndex = 2;
+            this.precoCustoTotalLbl.Text = "Preço Total de Custo:";
+            // 
             // excItemBtn
             // 
             this.excItemBtn.Dock = System.Windows.Forms.DockStyle.Right;
@@ -145,8 +167,15 @@
             this.itensReqDgv.AllowUserToAddRows = false;
             this.itensReqDgv.AllowUserToDeleteRows = false;
             this.itensReqDgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.itensReqDgv.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.id,
+            this.nome,
+            this.qtde,
+            this.precoCustoUnitario,
+            this.subtotal});
             this.itensReqDgv.Dock = System.Windows.Forms.DockStyle.Fill;
             this.itensReqDgv.Location = new System.Drawing.Point(0, 0);
+            this.itensReqDgv.MultiSelect = false;
             this.itensReqDgv.Name = "itensReqDgv";
             this.itensReqDgv.ReadOnly = true;
             this.itensReqDgv.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
@@ -210,22 +239,35 @@
             this.tabPage2.Text = "Listar Requisições";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
-            // precoCustoTotalLbl
+            // id
             // 
-            this.precoCustoTotalLbl.AutoSize = true;
-            this.precoCustoTotalLbl.Location = new System.Drawing.Point(15, 17);
-            this.precoCustoTotalLbl.Name = "precoCustoTotalLbl";
-            this.precoCustoTotalLbl.Size = new System.Drawing.Size(110, 13);
-            this.precoCustoTotalLbl.TabIndex = 2;
-            this.precoCustoTotalLbl.Text = "Preço Total de Custo:";
+            this.id.HeaderText = "ID";
+            this.id.Name = "id";
+            this.id.ReadOnly = true;
             // 
-            // precoCustoTotalTxt
+            // nome
             // 
-            this.precoCustoTotalTxt.Enabled = false;
-            this.precoCustoTotalTxt.Location = new System.Drawing.Point(131, 14);
-            this.precoCustoTotalTxt.Name = "precoCustoTotalTxt";
-            this.precoCustoTotalTxt.Size = new System.Drawing.Size(98, 20);
-            this.precoCustoTotalTxt.TabIndex = 3;
+            this.nome.HeaderText = "NOME";
+            this.nome.Name = "nome";
+            this.nome.ReadOnly = true;
+            // 
+            // qtde
+            // 
+            this.qtde.HeaderText = "QUANTIDADE";
+            this.qtde.Name = "qtde";
+            this.qtde.ReadOnly = true;
+            // 
+            // precoCustoUnitario
+            // 
+            this.precoCustoUnitario.HeaderText = "PREÇO DE CUSTO UNITÁRIO";
+            this.precoCustoUnitario.Name = "precoCustoUnitario";
+            this.precoCustoUnitario.ReadOnly = true;
+            // 
+            // subtotal
+            // 
+            this.subtotal.HeaderText = "SUBTOTAL";
+            this.subtotal.Name = "subtotal";
+            this.subtotal.ReadOnly = true;
             // 
             // TelaRequisicoes
             // 
@@ -266,5 +308,10 @@
         private System.Windows.Forms.TextBox precoCustoTotalTxt;
         private System.Windows.Forms.Label precoCustoTotalLbl;
         public System.Windows.Forms.DataGridView itensReqDgv;
+        private System.Windows.Forms.DataGridViewTextBoxColumn id;
+        private System.Windows.Forms.DataGridViewTextBoxColumn nome;
+        private System.Windows.Forms.DataGridViewTextBoxColumn qtde;
+        private System.Windows.Forms.DataGridViewTextBoxColumn precoCustoUnitario;
+        private System.Windows.Forms.DataGridViewTextBoxColumn subtotal;
     }
 }

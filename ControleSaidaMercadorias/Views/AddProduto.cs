@@ -42,6 +42,7 @@ namespace ControleSaidaMercadorias.Views
         {
             InitializeComponent();
             telaRequisicoes = telaReq;
+            this.Text = "Adicionar Produtos";
         }
 
         private void addProdutoBtn_Click(object sender, EventArgs e)
@@ -55,9 +56,9 @@ namespace ControleSaidaMercadorias.Views
             else
             {
                 int qtde = Convert.ToInt32(qtdeTxt.Text);
-                if(altProduto == null)
+                if(telaProdutos != null)
                     telaProdutos.listaProdSimplesDgv.Rows.Add(prodSelecionado.Id, prodSelecionado.Nome, qtdeTxt.Text, prodSelecionado.PrecoCusto * qtde, prodSelecionado.PrecoVenda * qtde);
-                else
+                if (altProduto != null)
                 {
                     DataRow linha = ((DataTable)altProduto.listaProdSimplesDgv.DataSource).NewRow();
                     linha[0] = prodSelecionado.Id;
@@ -67,6 +68,10 @@ namespace ControleSaidaMercadorias.Views
                     linha[4] = prodSelecionado.PrecoVenda * qtde;
                     ((DataTable)altProduto.listaProdSimplesDgv.DataSource).Rows.Add(linha);
                 }
+                if (telaRequisicoes != null)
+                {
+                    telaRequisicoes.itensReqDgv.Rows.Add(prodSelecionado.Id, prodSelecionado.Nome, qtdeTxt.Text, prodSelecionado.PrecoCusto, prodSelecionado.PrecoCusto * qtde);
+                }
                 this.Close();
             }
             
@@ -74,7 +79,14 @@ namespace ControleSaidaMercadorias.Views
 
         private void buscarProdutoBtn_Click(object sender, EventArgs e)
         {
-            buscaProdutoDgv.DataSource = dal.BuscarProduto(buscarProdutoTxt.Text)[0];
+            if(telaRequisicoes != null)
+            {
+                buscaProdutoDgv.DataSource = dal.BuscarProduto(buscarProdutoTxt.Text)[2];
+            }
+            else
+            {
+                buscaProdutoDgv.DataSource = dal.BuscarProduto(buscarProdutoTxt.Text)[0];
+            }
         }
 
         private void buscaProdutoDgv_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -93,7 +105,7 @@ namespace ControleSaidaMercadorias.Views
                 {
                     Id = Convert.ToInt32(buscaProdutoDgv.Rows[e.RowIndex].Cells[0].Value),
                     Nome = buscaProdutoDgv.Rows[e.RowIndex].Cells[1].Value.ToString(),
-                    PrecoCusto = Convert.ToDouble(buscaProdutoDgv.Rows[e.RowIndex].Cells[2].Value, CultureInfo.InvariantCulture),
+                    PrecoCusto = Convert.ToDouble(buscaProdutoDgv.Rows[e.RowIndex].Cells[2].Value, CultureInfo.InvariantCulture), //hmmmmm
                     PrecoVenda = Convert.ToDouble(buscaProdutoDgv.Rows[e.RowIndex].Cells[3].Value, CultureInfo.InvariantCulture),
                 };
             }
