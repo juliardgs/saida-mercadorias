@@ -35,11 +35,11 @@
             this.produtosBtn = new System.Windows.Forms.Button();
             this.funcionariosBtn = new System.Windows.Forms.Button();
             this.logoPanel = new System.Windows.Forms.Panel();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.telasPanel = new System.Windows.Forms.Panel();
             this.telaRequisicoes1 = new ControleSaidaMercadorias.Views.TelaRequisicoes();
             this.telaProdutos1 = new ControleSaidaMercadorias.Views.TelaProdutos();
             this.telaFuncionarios1 = new ControleSaidaMercadorias.Views.TelaFuncionarios();
-            this.panel1 = new System.Windows.Forms.Panel();
             this.menuPanel.SuspendLayout();
             this.navPanel.SuspendLayout();
             this.telasPanel.SuspendLayout();
@@ -72,6 +72,10 @@
             // relatoriosBtn
             // 
             this.relatoriosBtn.Dock = System.Windows.Forms.DockStyle.Top;
+            this.relatoriosBtn.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(27)))), ((int)(((byte)(40)))));
+            this.relatoriosBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.relatoriosBtn.Font = new System.Drawing.Font("Century Gothic", 10F, System.Drawing.FontStyle.Bold);
+            this.relatoriosBtn.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.relatoriosBtn.Location = new System.Drawing.Point(0, 165);
             this.relatoriosBtn.Name = "relatoriosBtn";
             this.relatoriosBtn.Size = new System.Drawing.Size(195, 55);
@@ -82,6 +86,10 @@
             // requisicoesBtn
             // 
             this.requisicoesBtn.Dock = System.Windows.Forms.DockStyle.Top;
+            this.requisicoesBtn.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(27)))), ((int)(((byte)(40)))));
+            this.requisicoesBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.requisicoesBtn.Font = new System.Drawing.Font("Century Gothic", 10F, System.Drawing.FontStyle.Bold);
+            this.requisicoesBtn.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.requisicoesBtn.Location = new System.Drawing.Point(0, 110);
             this.requisicoesBtn.Name = "requisicoesBtn";
             this.requisicoesBtn.Size = new System.Drawing.Size(195, 55);
@@ -93,6 +101,10 @@
             // produtosBtn
             // 
             this.produtosBtn.Dock = System.Windows.Forms.DockStyle.Top;
+            this.produtosBtn.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(27)))), ((int)(((byte)(40)))));
+            this.produtosBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.produtosBtn.Font = new System.Drawing.Font("Century Gothic", 10F, System.Drawing.FontStyle.Bold);
+            this.produtosBtn.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.produtosBtn.Location = new System.Drawing.Point(0, 55);
             this.produtosBtn.Name = "produtosBtn";
             this.produtosBtn.Size = new System.Drawing.Size(195, 55);
@@ -103,13 +115,18 @@
             // 
             // funcionariosBtn
             // 
+            this.funcionariosBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(41)))), ((int)(((byte)(64)))));
             this.funcionariosBtn.Dock = System.Windows.Forms.DockStyle.Top;
+            this.funcionariosBtn.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(27)))), ((int)(((byte)(40)))));
+            this.funcionariosBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.funcionariosBtn.Font = new System.Drawing.Font("Century Gothic", 10F, System.Drawing.FontStyle.Bold);
+            this.funcionariosBtn.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.funcionariosBtn.Location = new System.Drawing.Point(0, 0);
             this.funcionariosBtn.Name = "funcionariosBtn";
             this.funcionariosBtn.Size = new System.Drawing.Size(195, 55);
             this.funcionariosBtn.TabIndex = 0;
             this.funcionariosBtn.Text = "Funcionários";
-            this.funcionariosBtn.UseVisualStyleBackColor = true;
+            this.funcionariosBtn.UseVisualStyleBackColor = false;
             this.funcionariosBtn.Click += new System.EventHandler(this.funcionariosBtn_Click);
             // 
             // logoPanel
@@ -119,6 +136,15 @@
             this.logoPanel.Name = "logoPanel";
             this.logoPanel.Size = new System.Drawing.Size(195, 113);
             this.logoPanel.TabIndex = 0;
+            // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(27)))), ((int)(((byte)(40)))));
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Right;
+            this.panel1.Location = new System.Drawing.Point(195, 0);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(5, 505);
+            this.panel1.TabIndex = 3;
             // 
             // telasPanel
             // 
@@ -157,15 +183,6 @@
             this.telaFuncionarios1.Size = new System.Drawing.Size(831, 505);
             this.telaFuncionarios1.TabIndex = 0;
             this.telaFuncionarios1.Visible = false;
-            // 
-            // panel1
-            // 
-            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(27)))), ((int)(((byte)(40)))));
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel1.Location = new System.Drawing.Point(195, 0);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(5, 505);
-            this.panel1.TabIndex = 3;
             // 
             // TelaInicial
             // 
