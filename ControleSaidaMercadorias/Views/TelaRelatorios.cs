@@ -21,9 +21,16 @@ namespace ControleSaidaMercadorias.Views
 
         private void relatorioReqBtn_Click(object sender, EventArgs e)
         {
-            if(dataInicioDtp.Value != null && dataFimDtp.Value != null)
+            if(dataInicioDtp.Value != null && dataFimDtp.Value != null && (relatorioReqRb.Checked || relatorioEstoqueRb.Checked))
             {
-                relatorioReqDgv.DataSource = dal.RelatorioReq(dataInicioDtp.Value, dataFimDtp.Value);
+                if (relatorioReqRb.Checked)
+                {
+                    relatorioReqDgv.DataSource = dal.Relatorios(dataInicioDtp.Value, dataFimDtp.Value, 1);
+                }
+                if (relatorioEstoqueRb.Checked)
+                {
+                    relatorioReqDgv.DataSource = dal.Relatorios(dataInicioDtp.Value, dataFimDtp.Value, 2);
+                }
                 CalcularTotalReq();
             }
             if(relatorioReqDgv.Rows.Count > 0)

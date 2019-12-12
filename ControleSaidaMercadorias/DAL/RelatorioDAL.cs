@@ -13,11 +13,13 @@ namespace ControleSaidaMercadorias.DAL
     {
         private SqlConnection connection = DBConnection.DB_Connection;
         
-        public DataTable RelatorioReq(DateTime inicio, DateTime fim)
+        public DataTable Relatorios(DateTime inicio, DateTime fim, int tipo)
         {
             connection.Open();
             var command = connection.CreateCommand();
-            command.CommandText = "select produto.nome as PRODUTO, sum(requisicao_tem_produtos.quantidade) " +
+            if(tipo == 1)
+            {
+                command.CommandText = "select produto.nome as PRODUTO, sum(requisicao_tem_produtos.quantidade) " +
                 "as 'QTDE REQUISITADA', (produto.precoCusto * sum(requisicao_tem_produtos.quantidade)) " +
                 "as 'PREÇO DE CUSTO TOTAL', (produto.precoVenda * sum(requisicao_tem_produtos.quantidade)) " +
                 "as 'PREÇO DE VENDA TOTAL' from produto join " +
@@ -25,6 +27,19 @@ namespace ControleSaidaMercadorias.DAL
                 "on requisicao.id = requisicao_tem_produtos.idRequisicao " +
                 "where requisicao.dataReq >= @dataInicio and requisicao.dataReq <= @dataFim " +
                 "group by produto.id, produto.nome, produto.precoCusto, produto.precoVenda order by produto.nome;";
+            }
+            else
+            {
+                command.CommandText = "select produto.nome as PRODUTO, sum(requisicao_tem_produtos.quantidade) " +
+                    "as 'QTDE REQUISITADA', (produto.precoCusto * sum(requisicao_tem_produtos.quantidade)) " +
+                    "as 'PREÇO DE CUSTO TOTAL', (produto.precoVenda * sum(requisicao_tem_produtos.quantidade)) " +
+                    "as 'PREÇO DE VENDA TOTAL' from produto_tem_produtos join produto " +
+                    "on produto.id = produto_tem_produtos.idSimples join requisicao_tem_produtos " +
+                    "on produto.id = requisicao_tem_produtos.idProduto " +
+                    "group by produto.id, produto.nome, produto.precoCusto, produto.precoVenda " +
+                    "order by produto.nome;";
+            }
+
             command.Parameters.AddWithValue("@dataInicio", inicio);
             command.Parameters.AddWithValue("@dataFim", fim);
             SqlDataReader reader = command.ExecuteReader();
