@@ -102,7 +102,7 @@ namespace ControleSaidaMercadorias.DAL
                 "on produto.id = produto_tem_produtos.idComposto where lower(nome) like @nome";
             command2.Parameters.AddWithValue("@nome", "%" + nome.ToLower() + "%");
 
-            command3.CommandText = "select id as ID, nome as NOME, quantidade as ESTOQUE, precoCusto as 'PREÇO DE CUSTO', precoVenda as 'PREÇO DE VENDA' from produto where deleted is null;"; //lista todos os tipos de produto que não foram excluídos logicamente
+            command3.CommandText = "select id as ID, nome as NOME, precoCusto as 'PREÇO DE CUSTO', precoVenda as 'PREÇO DE VENDA', quantidade as ESTOQUE from produto where deleted is null;"; //lista todos os tipos de produto que não foram excluídos logicamente
 
             SqlDataReader reader = command.ExecuteReader();
             DataTable dt = new DataTable();

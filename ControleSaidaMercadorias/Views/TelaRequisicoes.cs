@@ -8,30 +8,123 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using ControleSaidaMercadorias.DAL;
+using ControleSaidaMercadorias.Models;
 
 namespace ControleSaidaMercadorias.Views
 {
     public partial class TelaRequisicoes : UserControl
     {
-        private FuncionarioDAL dal = new FuncionarioDAL();
+        private FuncionarioDAL funcDal = new FuncionarioDAL();
+        private RequisicaoDAL reqDal = new RequisicaoDAL();
         public TelaRequisicoes()
         {
             InitializeComponent();
         }
 
-        private void funReqCb_Enter(object sender, EventArgs e)
+        void CarregarFuncionarios(ComboBox comboBox)
         {
             //colocar função pra autocompletar
-            var dados = dal.CarregarFuncionarios();
-            funReqCb.DataSource = dados;
-            funReqCb.DisplayMember = "ID_NOME";
-            funReqCb.ValueMember = "id";
+            var dados = funcDal.CarregarFuncionarios();
+            comboBox.DataSource = dados;
+            comboBox.DisplayMember = "ID_NOME";
+            comboBox.ValueMember = "id";
+        }
+
+        private void funReqCb_Enter(object sender, EventArgs e)
+        {
+            CarregarFuncionarios(funReqCb);
         }
 
         private void addItemBtn_Click(object sender, EventArgs e)
         {
             AddProduto addProduto = new AddProduto(this);
             addProduto.Show();
+        }
+
+        private void itensReqDgv_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            excItemBtn.Enabled = true;
+        }
+
+        void CalcularPrecoCustoTotal()
+        {
+            double precoCusto = 0;
+            foreach (DataGridViewRow linha in itensReqDgv.Rows)
+            {
+                precoCusto += Convert.ToDouble(linha.Cells[4].Value);
+            }
+            precoCustoTotalTxt.Text = precoCusto.ToString();
+        }
+
+        private void itensReqDgv_RowsAdded(object sender, DataGridViewRowsAddedEventArgs e)
+        {
+            CalcularPrecoCustoTotal();
+        }
+
+        private void itensReqDgv_RowsRemoved(object sender, DataGridViewRowsRemovedEventArgs e)
+        {
+            CalcularPrecoCustoTotal();
+        }
+
+        private void excItemBtn_Click(object sender, EventArgs e)
+        {
+            if (itensReqDgv.RowCount > 0)
+            {
+                itensReqDgv.Rows.RemoveAt(itensReqDgv.CurrentRow.Index);
+            }
+            else
+            {
+                excItemBtn.Enabled = false;
+            }
+        }
+
+        private void salvarReqBtn_Click(object sender, EventArgs e)
+        {
+            if(funReqCb.SelectedIndex == -1
+                || itensReqDgv.Rows.Count == 0
+                || precoCustoTotalTxt.Text == string.Empty)
+            {
+                MessageBox.Show("É necessario preencher todos os campos com valores válidos.", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+            else
+            {
+                List<Produto> itens = new List<Produto>();
+                foreach (DataGridViewRow linha in itensReqDgv.Rows)
+                {
+                    Produto itemProduto = new Produto()
+                    {
+                        Id = Convert.ToInt32(linha.Cells[0].Value),
+                        Quantidade = Convert.ToInt32(linha.Cells[2].Value)
+                    };
+                    itens.Add(itemProduto);
+                }
+
+                reqDal.IncluirRequisicao(new Requisicao() {
+                    IdFuncionario = Convert.ToInt32(funReqCb.SelectedValue),
+                    Data = dataReqDtp.Value,
+                    PrecoCustoTotal = Convert.ToDouble(precoCustoTotalTxt.Text),
+                    ItensReq = itens
+                });
+                MessageBox.Show("Requisição cadastrada com sucesso!", "Cadastro de Requisições");
+                //limpar controles
+            }
+        }
+
+        private void buscaFuncCb_Enter(object sender, EventArgs e)
+        {
+            CarregarFuncionarios(buscaFuncCb);
+        }
+
+        private void buscarBtn_Click(object sender, EventArgs e)
+        {
+            if(buscaFuncCb.SelectedIndex == -1)
+            {
+                MessageBox.Show("É necessario preencher todos os campos com valores válidos.", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+            else
+            {
+                buscaReqDgv.DataSource = reqDal.BuscarRequisicao(Convert.ToInt32(buscaFuncCb.SelectedValue));
+            }
         }
     }
 }

@@ -12,5 +12,6 @@ namespace ControleSaidaMercadorias.Models
         public int IdFuncionario { get; set; }
         public DateTime Data { get; set; }
         public double PrecoCustoTotal { get; set; } 
+        public List<Produto> ItensReq { get; set; }
     }
 }
