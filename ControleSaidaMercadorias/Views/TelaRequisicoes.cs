@@ -16,12 +16,13 @@ namespace ControleSaidaMercadorias.Views
     {
         private FuncionarioDAL funcDal = new FuncionarioDAL();
         private RequisicaoDAL reqDal = new RequisicaoDAL();
+        private Requisicao reqSelecionada;
         public TelaRequisicoes()
         {
             InitializeComponent();
         }
 
-        void CarregarFuncionarios(ComboBox comboBox)
+        public void CarregarFuncionarios(ComboBox comboBox)
         {
             //colocar função pra autocompletar
             var dados = funcDal.CarregarFuncionarios();
@@ -125,6 +126,34 @@ namespace ControleSaidaMercadorias.Views
             {
                 buscaReqDgv.DataSource = reqDal.BuscarRequisicao(Convert.ToInt32(buscaFuncCb.SelectedValue));
             }
+        }
+
+        private void buscaReqDgv_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex < 0 || e.ColumnIndex < 0) //se clicar no cabeçalho 
+                return;
+            if (buscaReqDgv.CurrentRow.Index < 0)
+            {
+                excReqBtn.Enabled = false;
+            }
+            else
+            {
+                excReqBtn.Enabled = true;
+                alterarReqBtn.Enabled = true;
+                reqSelecionada = new Requisicao()
+                {
+                    Id = Convert.ToInt32(buscaReqDgv.Rows[e.RowIndex].Cells[0].Value),
+                    IdFuncionario = Convert.ToInt32(buscaReqDgv.Rows[e.RowIndex].Cells[1].Value),
+                    Data = Convert.ToDateTime(buscaReqDgv.Rows[e.RowIndex].Cells[2].Value),
+                    PrecoCustoTotal = Convert.ToDouble(buscaReqDgv.Rows[e.RowIndex].Cells[3].Value)
+                };
+            }
+        }
+
+        private void alterarReqBtn_Click(object sender, EventArgs e)
+        {
+            AltRequisicao altRequisicao = new AltRequisicao(this, reqSelecionada);
+            altRequisicao.Show();
         }
     }
 }

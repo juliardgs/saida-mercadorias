@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ControleSaidaMercadorias.Models
 {
-    class Requisicao
+    public class Requisicao
     {
         public int Id { get; set; }
         public int IdFuncionario { get; set; }

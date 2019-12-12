@@ -364,20 +364,24 @@
             this.buscaReqDgv.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.buscaReqDgv.Size = new System.Drawing.Size(835, 225);
             this.buscaReqDgv.TabIndex = 0;
+            this.buscaReqDgv.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.buscaReqDgv_CellClick);
             // 
             // alterarReqBtn
             // 
             this.alterarReqBtn.Dock = System.Windows.Forms.DockStyle.Right;
+            this.alterarReqBtn.Enabled = false;
             this.alterarReqBtn.Location = new System.Drawing.Point(720, 0);
             this.alterarReqBtn.Name = "alterarReqBtn";
             this.alterarReqBtn.Size = new System.Drawing.Size(115, 47);
             this.alterarReqBtn.TabIndex = 0;
             this.alterarReqBtn.Text = "ALTERAR";
             this.alterarReqBtn.UseVisualStyleBackColor = true;
+            this.alterarReqBtn.Click += new System.EventHandler(this.alterarReqBtn_Click);
             // 
             // excReqBtn
             // 
             this.excReqBtn.Dock = System.Windows.Forms.DockStyle.Right;
+            this.excReqBtn.Enabled = false;
             this.excReqBtn.Location = new System.Drawing.Point(605, 0);
             this.excReqBtn.Name = "excReqBtn";
             this.excReqBtn.Size = new System.Drawing.Size(115, 47);

@@ -44,9 +44,26 @@ namespace ControleSaidaMercadorias.DAL
         {
             connection.Open();
             var command = connection.CreateCommand();
-            command.CommandText = "select id as ID, dataReq as 'DATA DA REQUISIÇÃO', precoCustoTotal as 'PREÇO DE CUSTO TOTAL'" +
+            command.CommandText = "select id as 'ID REQUISIÇÃO', idFuncionario as 'ID FUNCIONARIO', dataReq as 'DATA DA REQUISIÇÃO', precoCustoTotal as 'PREÇO DE CUSTO TOTAL'" +
                 "from requisicao where idFuncionario = @idFuncionario";
             command.Parameters.AddWithValue("@idFuncionario", idFuncionario);
+            SqlDataReader reader = command.ExecuteReader();
+            DataTable dt = new DataTable();
+            dt.Load(reader);
+            connection.Close();
+            return dt;
+        }
+        public DataTable BuscarItensReq(int idReq)
+        {
+            connection.Open();
+            var command = connection.CreateCommand();
+        
+            command.CommandText = "select produto.id as ID, produto.nome as NOME, " +
+                "requisicao_tem_produtos.quantidade as QUANTIDADE, produto.precoCusto as 'PREÇO DE CUSTO UNITÁRIO', " +
+                "produto.precoCusto* requisicao_tem_produtos.quantidade as SUBTOTAL from produto join " +
+                "requisicao_tem_produtos on produto.id = requisicao_tem_produtos.idProduto " +
+                "where requisicao_tem_produtos.idRequisicao = @idRequisicao;";
+            command.Parameters.AddWithValue("@idRequisicao", idReq);
             SqlDataReader reader = command.ExecuteReader();
             DataTable dt = new DataTable();
             dt.Load(reader);

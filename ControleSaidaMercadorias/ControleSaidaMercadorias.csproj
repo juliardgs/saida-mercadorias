@@ -83,6 +83,12 @@
     <Compile Include="Views\AltProduto.Designer.cs">
       <DependentUpon>AltProduto.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\AltRequisicao.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\AltRequisicao.Designer.cs">
+      <DependentUpon>AltRequisicao.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\TelaFuncionarios.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -121,6 +127,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Views\AltProduto.resx">
       <DependentUpon>AltProduto.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\AltRequisicao.resx">
+      <DependentUpon>AltRequisicao.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\TelaFuncionarios.resx">
       <DependentUpon>TelaFuncionarios.cs</DependentUpon>
