@@ -28,7 +28,8 @@ namespace ControleSaidaMercadorias.Services
                     }
                     catch
                     {
-                        
+                        MessageBox.Show("Banco de dados não encontrado!", "Erro de Banco de dados");
+                        Environment.Exit(1);
                     }
                 }
                 return instance;

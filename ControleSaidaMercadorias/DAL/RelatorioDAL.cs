@@ -35,7 +35,9 @@ namespace ControleSaidaMercadorias.DAL
                     "as 'PREÇO DE CUSTO TOTAL', (produto.precoVenda * sum(requisicao_tem_produtos.quantidade)) " +
                     "as 'PREÇO DE VENDA TOTAL' from produto_tem_produtos join produto " +
                     "on produto.id = produto_tem_produtos.idSimples join requisicao_tem_produtos " +
-                    "on produto.id = requisicao_tem_produtos.idProduto " +
+                    "on produto.id = requisicao_tem_produtos.idProduto join requisicao on " +
+                    "requisicao.id = requisicao_tem_produtos.idRequisicao " +
+                    "where requisicao.dataReq >= @dataInicio and requisicao.dataReq <= @dataFim " +
                     "group by produto.id, produto.nome, produto.precoCusto, produto.precoVenda " +
                     "order by produto.nome;";
             }

@@ -115,10 +115,11 @@ namespace ControleSaidaMercadorias.Views
 
         private void salvarBtn_Click(object sender, EventArgs e)
         {
-            if (nomeTxt.Text == string.Empty
-                    || precoCustoTxt.Text == string.Empty
-                    || precoVendaTxt.Text == string.Empty
-                    || (qtdeEstoqueTxt.Text == string.Empty && qtdeEstoqueTxt.Visible == true))
+            if (nomeTxt.Text.Trim() == string.Empty
+                    || (precoCustoTxt.Text == string.Empty || Convert.ToInt32(precoCustoTxt.Text) == 0)
+                    || (precoVendaTxt.Text == string.Empty || Convert.ToInt32(precoVendaTxt.Text) == 0)
+                    || (qtdeEstoqueTxt.Text == string.Empty && qtdeEstoqueTxt.Visible == true)
+                    || Convert.ToInt32(qtdeEstoqueTxt.Text) == 0)
             {
                 MessageBox.Show("É necessario preencher todos os campos com valores válidos.", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
@@ -172,6 +173,13 @@ namespace ControleSaidaMercadorias.Views
 
         private void listaProdSimplesDgv_CellClick(object sender, DataGridViewCellEventArgs e)
         {
+            if (e.RowIndex < 0 || e.ColumnIndex < 0) //se clicar no cabeçalho 
+                return;
+
+            if(listaProdSimplesDgv.CurrentRow.Index < 0)
+            {
+                excProdSimplesBtn.Enabled = false;
+            }
             excProdSimplesBtn.Enabled = true;
         }
 

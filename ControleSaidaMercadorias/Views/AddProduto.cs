@@ -56,7 +56,7 @@ namespace ControleSaidaMercadorias.Views
         private void addProdutoBtn_Click(object sender, EventArgs e)
         {
             //checar se tem já tem o id q a pesso tá adicionando no dgv da tela de alterar, para não haver conflito na hora de salvar
-            if(qtdeTxt.Text == string.Empty)
+            if(qtdeTxt.Text.Trim() == string.Empty || Convert.ToInt32(qtdeTxt.Text) == 0)
             {
                 MessageBox.Show("É necessario preencher todos os campos com valores válidos.", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 qtdeTxt.Focus();

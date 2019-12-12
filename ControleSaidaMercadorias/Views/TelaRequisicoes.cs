@@ -47,7 +47,18 @@ namespace ControleSaidaMercadorias.Views
 
         private void itensReqDgv_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            excItemBtn.Enabled = true;
+            if (e.RowIndex < 0 || e.ColumnIndex < 0) //se clicar no cabeçalho 
+                return;
+
+            if (itensReqDgv.CurrentRow.Index < 0)
+            {
+                excItemBtn.Enabled = false;
+            }
+            else
+            {
+                excItemBtn.Enabled = true;
+            }
+            
         }
 
         public void CalcularPrecoCustoTotal()
@@ -110,8 +121,17 @@ namespace ControleSaidaMercadorias.Views
                     ItensReq = itens
                 });
                 MessageBox.Show("Requisição cadastrada com sucesso!", "Cadastro de Requisições");
-                //limpar controles
+                LimparControles();
             }
+        }
+
+        private void LimparControles()
+        {
+            funReqCb.SelectedIndex = -1;
+            dataReqDtp.Value = DateTime.Now;
+            itensReqDgv.DataSource = null;
+            precoCustoTotalTxt.Text = "";
+            excItemBtn.Enabled = false;
         }
 
         private void buscaFuncCb_Enter(object sender, EventArgs e)

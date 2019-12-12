@@ -33,7 +33,11 @@ namespace ControleSaidaMercadorias.Views
                 }
                 CalcularTotalReq();
             }
-            if(relatorioReqDgv.Rows.Count > 0)
+            else
+            {
+                MessageBox.Show("É necessario preencher todos os campos com valores válidos.", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+            if (relatorioReqDgv.Rows.Count > 0)
             {
                 exportarBtn.Enabled = true;
             }
@@ -60,6 +64,8 @@ namespace ControleSaidaMercadorias.Views
             relatorioReqDgv.DataSource = null;
             totalCustoTxt.Text = "";
             totalVendaTxt.Text = "";
+            relatorioEstoqueRb.Checked = false;
+            relatorioReqRb.Checked = false;
         }
 
         private void limparBtn_Click(object sender, EventArgs e)

@@ -89,7 +89,11 @@ namespace ControleSaidaMercadorias.Views
                 || precoCustoProdSimplesTxt.Text == string.Empty
                 || precoVendaProdSimplesTxt.Text == string.Empty
                 || precoCustoProdSimplesTxt.Text == ","
-                || precoVendaProdSimplesTxt.Text == ",")
+                || precoVendaProdSimplesTxt.Text == ","
+                || Convert.ToDouble(precoCustoProdSimplesTxt.Text) == 0
+                || Convert.ToDouble(precoVendaProdSimplesTxt.Text) == 0
+                || Convert.ToInt32(qtdeProdSimplesTxt.Text) == 0
+                || qtdeProdSimplesTxt.Text == string.Empty)
             {
                 MessageBox.Show("É necessario preencher todos os campos com valores válidos.", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
@@ -169,8 +173,17 @@ namespace ControleSaidaMercadorias.Views
                     ItemProduto = itens
                 });
                 MessageBox.Show("Produto Composto cadastrado com sucesso!", "Cadastro Produto Composto");
-
+                LimparControlesPC();
             }
+        }
+
+        private void LimparControlesPC()
+        {
+            nomeProdCompostoTxt.Text = "";
+            precoCustoProdCompostoTxt.Text = "";
+            precoVendaProdCompostoTxt.Text = "";
+            listaProdSimplesDgv.DataSource = null;
+            excluirProdSimplesBtn.Enabled = false;
         }
 
         private void listaProdSimplesDgv_CellClick(object sender, DataGridViewCellEventArgs e)
