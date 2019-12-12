@@ -36,13 +36,14 @@
             this.produtosBtn = new System.Windows.Forms.Button();
             this.funcionariosBtn = new System.Windows.Forms.Button();
             this.logoPanel = new System.Windows.Forms.Panel();
+            this.tituloLbl = new System.Windows.Forms.Label();
+            this.logo = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.telasPanel = new System.Windows.Forms.Panel();
             this.telaRequisicoes1 = new ControleSaidaMercadorias.Views.TelaRequisicoes();
             this.telaProdutos1 = new ControleSaidaMercadorias.Views.TelaProdutos();
             this.telaFuncionarios1 = new ControleSaidaMercadorias.Views.TelaFuncionarios();
-            this.logo = new System.Windows.Forms.Panel();
-            this.tituloLbl = new System.Windows.Forms.Label();
+            this.telaRelatorios1 = new ControleSaidaMercadorias.Views.TelaRelatorios();
             this.menuPanel.SuspendLayout();
             this.navPanel.SuspendLayout();
             this.logoPanel.SuspendLayout();
@@ -89,6 +90,7 @@
             this.relatoriosBtn.TabIndex = 3;
             this.relatoriosBtn.Text = "Relatórios";
             this.relatoriosBtn.UseVisualStyleBackColor = true;
+            this.relatoriosBtn.Click += new System.EventHandler(this.relatoriosBtn_Click);
             // 
             // requisicoesBtn
             // 
@@ -155,6 +157,25 @@
             this.logoPanel.Size = new System.Drawing.Size(195, 113);
             this.logoPanel.TabIndex = 0;
             // 
+            // tituloLbl
+            // 
+            this.tituloLbl.AutoSize = true;
+            this.tituloLbl.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Bold);
+            this.tituloLbl.ForeColor = System.Drawing.Color.White;
+            this.tituloLbl.Location = new System.Drawing.Point(76, 37);
+            this.tituloLbl.Name = "tituloLbl";
+            this.tituloLbl.Size = new System.Drawing.Size(113, 32);
+            this.tituloLbl.TabIndex = 3;
+            this.tituloLbl.Text = "Controle de Saída\r\nde Mercadorias";
+            // 
+            // logo
+            // 
+            this.logo.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("logo.BackgroundImage")));
+            this.logo.Location = new System.Drawing.Point(12, 21);
+            this.logo.Name = "logo";
+            this.logo.Size = new System.Drawing.Size(64, 64);
+            this.logo.TabIndex = 3;
+            // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(27)))), ((int)(((byte)(40)))));
@@ -166,6 +187,7 @@
             // 
             // telasPanel
             // 
+            this.telasPanel.Controls.Add(this.telaRelatorios1);
             this.telasPanel.Controls.Add(this.telaRequisicoes1);
             this.telasPanel.Controls.Add(this.telaProdutos1);
             this.telasPanel.Controls.Add(this.telaFuncionarios1);
@@ -202,24 +224,14 @@
             this.telaFuncionarios1.TabIndex = 0;
             this.telaFuncionarios1.Visible = false;
             // 
-            // logo
+            // telaRelatorios1
             // 
-            this.logo.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("logo.BackgroundImage")));
-            this.logo.Location = new System.Drawing.Point(12, 21);
-            this.logo.Name = "logo";
-            this.logo.Size = new System.Drawing.Size(64, 64);
-            this.logo.TabIndex = 3;
-            // 
-            // tituloLbl
-            // 
-            this.tituloLbl.AutoSize = true;
-            this.tituloLbl.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Bold);
-            this.tituloLbl.ForeColor = System.Drawing.Color.White;
-            this.tituloLbl.Location = new System.Drawing.Point(76, 37);
-            this.tituloLbl.Name = "tituloLbl";
-            this.tituloLbl.Size = new System.Drawing.Size(113, 32);
-            this.tituloLbl.TabIndex = 3;
-            this.tituloLbl.Text = "Controle de Saída\r\nde Mercadorias";
+            this.telaRelatorios1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.telaRelatorios1.Location = new System.Drawing.Point(0, 0);
+            this.telaRelatorios1.Name = "telaRelatorios1";
+            this.telaRelatorios1.Size = new System.Drawing.Size(831, 505);
+            this.telaRelatorios1.TabIndex = 3;
+            this.telaRelatorios1.Visible = false;
             // 
             // TelaInicial
             // 
@@ -255,5 +267,6 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label tituloLbl;
         private System.Windows.Forms.Panel logo;
+        private TelaRelatorios telaRelatorios1;
     }
 }

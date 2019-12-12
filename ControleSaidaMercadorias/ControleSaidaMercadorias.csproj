@@ -64,6 +64,7 @@
   <ItemGroup>
     <Compile Include="DAL\FuncionarioDAL.cs" />
     <Compile Include="DAL\ProdutoDAL.cs" />
+    <Compile Include="DAL\RelatorioDAL.cs" />
     <Compile Include="DAL\RequisicaoDAL.cs" />
     <Compile Include="Models\Funcionario.cs" />
     <Compile Include="Models\Produto.cs" />
@@ -107,6 +108,12 @@
     <Compile Include="Views\TelaProdutos.Designer.cs">
       <DependentUpon>TelaProdutos.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\TelaRelatorios.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\TelaRelatorios.Designer.cs">
+      <DependentUpon>TelaRelatorios.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\TelaRequisicoes.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -139,6 +146,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Views\TelaProdutos.resx">
       <DependentUpon>TelaProdutos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\TelaRelatorios.resx">
+      <DependentUpon>TelaRelatorios.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\TelaRequisicoes.resx">
       <DependentUpon>TelaRequisicoes.cs</DependentUpon>

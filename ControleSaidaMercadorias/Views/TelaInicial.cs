@@ -28,6 +28,7 @@ namespace ControleSaidaMercadorias.Views
             telaFuncionarios1.Hide();
             telaProdutos1.Hide();
             telaRequisicoes1.Hide();
+            telaRelatorios1.Hide();
         }
 
         private void produtosBtn_Click(object sender, EventArgs e)
@@ -40,6 +41,12 @@ namespace ControleSaidaMercadorias.Views
         {
             EsconderTelas();
             telaRequisicoes1.Show();
+        }
+
+        private void relatoriosBtn_Click(object sender, EventArgs e)
+        {
+            EsconderTelas();
+            telaRelatorios1.Show();
         }
     }
 }
