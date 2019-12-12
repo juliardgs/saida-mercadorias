@@ -116,6 +116,8 @@
             this.itensReqDgv.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.itensReqDgv.Size = new System.Drawing.Size(597, 228);
             this.itensReqDgv.TabIndex = 0;
+            this.itensReqDgv.RowsAdded += new System.Windows.Forms.DataGridViewRowsAddedEventHandler(this.itensReqDgv_RowsAdded);
+            this.itensReqDgv.RowsRemoved += new System.Windows.Forms.DataGridViewRowsRemovedEventHandler(this.itensReqDgv_RowsRemoved);
             // 
             // addExcPanel
             // 

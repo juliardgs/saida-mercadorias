@@ -35,7 +35,18 @@ namespace ControleSaidaMercadorias.Views
 
         private void addProdBtn_Click(object sender, EventArgs e)
         {
+            AddProduto addProduto = new AddProduto(this);
+            addProduto.Show();
+        }
 
+        private void itensReqDgv_RowsAdded(object sender, DataGridViewRowsAddedEventArgs e)
+        {
+            telaRequisicoes.CalcularPrecoCustoTotal(); //ARRUMAR
+        }
+
+        private void itensReqDgv_RowsRemoved(object sender, DataGridViewRowsRemovedEventArgs e)
+        {
+            telaRequisicoes.CalcularPrecoCustoTotal(); //ARRUMAR
         }
     }
 }

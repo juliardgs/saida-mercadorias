@@ -16,10 +16,11 @@ namespace ControleSaidaMercadorias.Views
     public partial class AddProduto : Form
     {
         private ProdutoDAL dal = new ProdutoDAL();
-        Produto prodSelecionado;
-        TelaProdutos telaProdutos;
-        TelaRequisicoes telaRequisicoes;
-        AltProduto altProduto;
+        private Produto prodSelecionado;
+        private TelaProdutos telaProdutos;
+        private TelaRequisicoes telaRequisicoes;
+        private AltProduto altProduto;
+        private AltRequisicao altRequisicao;
 
         public AddProduto()
         {
@@ -42,6 +43,13 @@ namespace ControleSaidaMercadorias.Views
         {
             InitializeComponent();
             telaRequisicoes = telaReq;
+            this.Text = "Adicionar Produtos";
+        }
+
+        public AddProduto(AltRequisicao altReq)
+        {
+            InitializeComponent();
+            altRequisicao = altReq;
             this.Text = "Adicionar Produtos";
         }
 
@@ -72,6 +80,16 @@ namespace ControleSaidaMercadorias.Views
                 {
                     telaRequisicoes.itensReqDgv.Rows.Add(prodSelecionado.Id, prodSelecionado.Nome, qtdeTxt.Text, prodSelecionado.PrecoCusto, prodSelecionado.PrecoCusto * qtde);
                 }
+                if(altRequisicao != null)
+                {
+                    DataRow linha = ((DataTable)altRequisicao.itensReqDgv.DataSource).NewRow();
+                    linha[0] = prodSelecionado.Id;
+                    linha[1] = prodSelecionado.Nome;
+                    linha[2] = qtde;
+                    linha[3] = prodSelecionado.PrecoCusto;
+                    linha[4] = prodSelecionado.PrecoCusto * qtde;
+                    ((DataTable)altRequisicao.itensReqDgv.DataSource).Rows.Add(linha);
+                }
                 this.Close();
             }
             
@@ -79,7 +97,7 @@ namespace ControleSaidaMercadorias.Views
 
         private void buscarProdutoBtn_Click(object sender, EventArgs e)
         {
-            if(telaRequisicoes != null)
+            if(telaRequisicoes != null || altProduto != null) //ARRUMAR AQUI
             {
                 buscaProdutoDgv.DataSource = dal.BuscarProduto(buscarProdutoTxt.Text)[2];
             }

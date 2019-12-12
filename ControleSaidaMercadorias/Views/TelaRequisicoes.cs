@@ -47,7 +47,7 @@ namespace ControleSaidaMercadorias.Views
             excItemBtn.Enabled = true;
         }
 
-        void CalcularPrecoCustoTotal()
+        public void CalcularPrecoCustoTotal()
         {
             double precoCusto = 0;
             foreach (DataGridViewRow linha in itensReqDgv.Rows)
