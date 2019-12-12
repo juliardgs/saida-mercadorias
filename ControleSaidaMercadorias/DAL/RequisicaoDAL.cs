@@ -101,5 +101,16 @@ namespace ControleSaidaMercadorias.DAL
 
             connection.Close();
         }
+
+        public void ExcluirRequisicao(int idReq)
+        {
+            connection.Open();
+            var command = connection.CreateCommand();
+            command.CommandText = "delete from requisicao_tem_produtos where idRequisicao = @idRequisicao;" +
+                "delete from requisicao where id = @idRequisicao;";
+            command.Parameters.AddWithValue("@idRequisicao", idReq);
+            command.ExecuteNonQuery();
+            connection.Close();
+        }
     }
 }

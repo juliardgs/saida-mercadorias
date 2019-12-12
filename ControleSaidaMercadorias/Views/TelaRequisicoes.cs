@@ -158,5 +158,26 @@ namespace ControleSaidaMercadorias.Views
             AltRequisicao altRequisicao = new AltRequisicao(this, reqSelecionada);
             altRequisicao.Show();
         }
+
+        private void excReqBtn_Click(object sender, EventArgs e)
+        {
+            if (buscaReqDgv.CurrentRow.Index < 0)
+            {
+                excReqBtn.Enabled = false;
+            }
+            else
+            {
+                if (DialogResult.Yes == MessageBox.Show("Tem certeza que deseja apagar a requisição?", "Excluir Requisição", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2))
+                {
+                    reqDal.ExcluirRequisicao(reqSelecionada.Id);
+                    if (buscaFuncCb.SelectedIndex != -1)
+                    {
+                        buscarBtn.PerformClick();
+                    }
+                    MessageBox.Show("Requisição excluída com sucesso!", "Excluir Requisição");
+                }
+                
+            }
+        }
     }
 }

@@ -312,6 +312,7 @@
             this.excReqBtn.TabIndex = 1;
             this.excReqBtn.Text = "EXCLUIR";
             this.excReqBtn.UseVisualStyleBackColor = true;
+            this.excReqBtn.Click += new System.EventHandler(this.excReqBtn_Click);
             // 
             // alterarReqBtn
             // 
