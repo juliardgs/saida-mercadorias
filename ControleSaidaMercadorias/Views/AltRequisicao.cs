@@ -16,6 +16,7 @@ namespace ControleSaidaMercadorias.Views
     {
         private TelaRequisicoes telaRequisicoes;
         private RequisicaoDAL dal = new RequisicaoDAL();
+        private Requisicao requisicao = new Requisicao();
 
         public AltRequisicao()
         {
@@ -26,6 +27,7 @@ namespace ControleSaidaMercadorias.Views
         {
             InitializeComponent();
             telaRequisicoes = telaReq;
+            requisicao = req;
             telaRequisicoes.CarregarFuncionarios(funcReqCb);
             funcReqCb.SelectedValue = req.IdFuncionario;
             dataReqDtp.Value = req.Data;
@@ -39,14 +41,66 @@ namespace ControleSaidaMercadorias.Views
             addProduto.Show();
         }
 
+        private void CalcularPrecoCustoTotal()
+        {
+            double precoCusto = 0;
+            foreach (DataGridViewRow linha in itensReqDgv.Rows)
+            {
+                precoCusto += Convert.ToDouble(linha.Cells[4].Value);
+            }
+            precoCustoTotalTxt.Text = precoCusto.ToString();
+        }
+
         private void itensReqDgv_RowsAdded(object sender, DataGridViewRowsAddedEventArgs e)
         {
-            telaRequisicoes.CalcularPrecoCustoTotal(); //ARRUMAR
+            CalcularPrecoCustoTotal();
         }
 
         private void itensReqDgv_RowsRemoved(object sender, DataGridViewRowsRemovedEventArgs e)
         {
-            telaRequisicoes.CalcularPrecoCustoTotal(); //ARRUMAR
+            CalcularPrecoCustoTotal();
+        }
+
+        private void salvarBtn_Click(object sender, EventArgs e)
+        {
+            //ifzao aqui
+            requisicao.IdFuncionario = Convert.ToInt32(funcReqCb.SelectedValue);
+            requisicao.Data = dataReqDtp.Value;
+            requisicao.PrecoCustoTotal = Convert.ToDouble(precoCustoTotalTxt.Text);
+            List<Produto> itensReq = new List<Produto>();
+
+            foreach(DataGridViewRow linha in itensReqDgv.Rows)
+            {
+                Produto itemProduto = new Produto()
+                {
+                    Id = Convert.ToInt32(linha.Cells[0].Value),
+                    Quantidade = Convert.ToInt32(linha.Cells[2].Value)
+                };
+                itensReq.Add(itemProduto);
+            }
+
+            requisicao.ItensReq = itensReq;
+            dal.AlterarRequisicao(requisicao);
+            if(telaRequisicoes.buscaFuncCb.SelectedIndex != -1)
+            {
+                telaRequisicoes.buscarBtn.PerformClick();
+            }
+            MessageBox.Show("Requisição alterada com sucesso!", "Alterar Requisição");
+            this.Close();
+        }
+
+        private void itensReqDgv_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex < 0 || e.ColumnIndex < 0) //se clicar no cabeçalho 
+                return;
+            if (itensReqDgv.CurrentRow.Index < 0)
+            {
+                excProdBtn.Enabled = false;
+            }
+            else
+            {
+                excProdBtn.Enabled = true;
+            }
         }
     }
 }

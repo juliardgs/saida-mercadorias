@@ -70,5 +70,36 @@ namespace ControleSaidaMercadorias.DAL
             connection.Close();
             return dt;
         }
+
+        public void AlterarRequisicao(Requisicao requisicao)
+        {
+            connection.Open();
+            var command = connection.CreateCommand();
+            command.CommandText = "update requisicao set dataReq = @dataReq, idFuncionario = @idFuncionario, " +
+                "precoCustoTotal = @precoCustoTotal where id = @idRequisicao";
+            command.Parameters.AddWithValue("@dataReq", requisicao.Data);
+            command.Parameters.AddWithValue("@idFuncionario", requisicao.IdFuncionario);
+            command.Parameters.AddWithValue("@precoCustoTotal", requisicao.PrecoCustoTotal);
+            command.Parameters.AddWithValue("@idRequisicao", requisicao.Id);
+            command.ExecuteNonQuery();
+
+            command.CommandText = "delete from requisicao_tem_produtos where idRequisicao = @idRequisicao";
+            command.ExecuteNonQuery();
+
+            command.CommandText = "insert into requisicao_tem_produtos (idRequisicao, idProduto, quantidade) values (@idRequisicao2, @idProduto, @quantidade)";
+            command.Parameters.Add("@idRequisicao2", SqlDbType.Int);
+            command.Parameters.Add("@idProduto", SqlDbType.Int);
+            command.Parameters.Add("@quantidade", SqlDbType.Int);
+
+            foreach (Produto item in requisicao.ItensReq)
+            {
+                command.Parameters["@idRequisicao2"].Value = requisicao.Id;
+                command.Parameters["@idProduto"].Value = item.Id;
+                command.Parameters["@quantidade"].Value = item.Quantidade;
+                command.ExecuteNonQuery();
+            }
+
+            connection.Close();
+        }
     }
 }

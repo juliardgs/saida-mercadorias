@@ -97,11 +97,15 @@ namespace ControleSaidaMercadorias.Views
 
         private void buscarProdutoBtn_Click(object sender, EventArgs e)
         {
-            if(telaRequisicoes != null || altProduto != null) //ARRUMAR AQUI
+            if(telaRequisicoes != null) //ARRUMAR AQUI
             {
-                buscaProdutoDgv.DataSource = dal.BuscarProduto(buscarProdutoTxt.Text)[2];
+                buscaProdutoDgv.DataSource = dal.BuscarProduto(buscarProdutoTxt.Text)[2]; //mostar prod simples e composto
             }
-            else
+            if(altRequisicao != null)
+            {
+                buscaProdutoDgv.DataSource = dal.BuscarProduto(buscarProdutoTxt.Text)[2]; //mostar prod simples e composto
+            }
+            if(telaProdutos != null)
             {
                 buscaProdutoDgv.DataSource = dal.BuscarProduto(buscarProdutoTxt.Text)[0];
             }

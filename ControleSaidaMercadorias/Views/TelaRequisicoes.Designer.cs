@@ -50,15 +50,15 @@
             this.funReqCb = new System.Windows.Forms.ComboBox();
             this.dataLbl = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.altExcPanel = new System.Windows.Forms.Panel();
+            this.excReqBtn = new System.Windows.Forms.Button();
+            this.alterarReqBtn = new System.Windows.Forms.Button();
+            this.listaReqPanel = new System.Windows.Forms.Panel();
+            this.buscaReqDgv = new System.Windows.Forms.DataGridView();
             this.buscarReqPanel = new System.Windows.Forms.Panel();
+            this.buscarBtn = new System.Windows.Forms.Button();
             this.buscaLbl = new System.Windows.Forms.Label();
             this.buscaFuncCb = new System.Windows.Forms.ComboBox();
-            this.buscarBtn = new System.Windows.Forms.Button();
-            this.listaReqPanel = new System.Windows.Forms.Panel();
-            this.altExcPanel = new System.Windows.Forms.Panel();
-            this.buscaReqDgv = new System.Windows.Forms.DataGridView();
-            this.alterarReqBtn = new System.Windows.Forms.Button();
-            this.excReqBtn = new System.Windows.Forms.Button();
             this.requisicoesTab.SuspendLayout();
             this.cadastroReqTab.SuspendLayout();
             this.salvarBtnPanel.SuspendLayout();
@@ -67,10 +67,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.itensReqDgv)).BeginInit();
             this.infoReqPanel.SuspendLayout();
             this.tabPage2.SuspendLayout();
-            this.buscarReqPanel.SuspendLayout();
-            this.listaReqPanel.SuspendLayout();
             this.altExcPanel.SuspendLayout();
+            this.listaReqPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.buscaReqDgv)).BeginInit();
+            this.buscarReqPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // requisicoesTab
@@ -292,6 +292,63 @@
             this.tabPage2.Text = "Listar Requisições";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
+            // altExcPanel
+            // 
+            this.altExcPanel.Controls.Add(this.excReqBtn);
+            this.altExcPanel.Controls.Add(this.alterarReqBtn);
+            this.altExcPanel.Dock = System.Windows.Forms.DockStyle.Top;
+            this.altExcPanel.Location = new System.Drawing.Point(3, 278);
+            this.altExcPanel.Name = "altExcPanel";
+            this.altExcPanel.Size = new System.Drawing.Size(835, 47);
+            this.altExcPanel.TabIndex = 2;
+            // 
+            // excReqBtn
+            // 
+            this.excReqBtn.Dock = System.Windows.Forms.DockStyle.Right;
+            this.excReqBtn.Enabled = false;
+            this.excReqBtn.Location = new System.Drawing.Point(605, 0);
+            this.excReqBtn.Name = "excReqBtn";
+            this.excReqBtn.Size = new System.Drawing.Size(115, 47);
+            this.excReqBtn.TabIndex = 1;
+            this.excReqBtn.Text = "EXCLUIR";
+            this.excReqBtn.UseVisualStyleBackColor = true;
+            // 
+            // alterarReqBtn
+            // 
+            this.alterarReqBtn.Dock = System.Windows.Forms.DockStyle.Right;
+            this.alterarReqBtn.Enabled = false;
+            this.alterarReqBtn.Location = new System.Drawing.Point(720, 0);
+            this.alterarReqBtn.Name = "alterarReqBtn";
+            this.alterarReqBtn.Size = new System.Drawing.Size(115, 47);
+            this.alterarReqBtn.TabIndex = 0;
+            this.alterarReqBtn.Text = "ALTERAR";
+            this.alterarReqBtn.UseVisualStyleBackColor = true;
+            this.alterarReqBtn.Click += new System.EventHandler(this.alterarReqBtn_Click);
+            // 
+            // listaReqPanel
+            // 
+            this.listaReqPanel.Controls.Add(this.buscaReqDgv);
+            this.listaReqPanel.Dock = System.Windows.Forms.DockStyle.Top;
+            this.listaReqPanel.Location = new System.Drawing.Point(3, 53);
+            this.listaReqPanel.Name = "listaReqPanel";
+            this.listaReqPanel.Size = new System.Drawing.Size(835, 225);
+            this.listaReqPanel.TabIndex = 1;
+            // 
+            // buscaReqDgv
+            // 
+            this.buscaReqDgv.AllowUserToAddRows = false;
+            this.buscaReqDgv.AllowUserToDeleteRows = false;
+            this.buscaReqDgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.buscaReqDgv.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.buscaReqDgv.Location = new System.Drawing.Point(0, 0);
+            this.buscaReqDgv.MultiSelect = false;
+            this.buscaReqDgv.Name = "buscaReqDgv";
+            this.buscaReqDgv.ReadOnly = true;
+            this.buscaReqDgv.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.buscaReqDgv.Size = new System.Drawing.Size(835, 225);
+            this.buscaReqDgv.TabIndex = 0;
+            this.buscaReqDgv.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.buscaReqDgv_CellClick);
+            // 
             // buscarReqPanel
             // 
             this.buscarReqPanel.Controls.Add(this.buscarBtn);
@@ -302,6 +359,16 @@
             this.buscarReqPanel.Name = "buscarReqPanel";
             this.buscarReqPanel.Size = new System.Drawing.Size(835, 50);
             this.buscarReqPanel.TabIndex = 0;
+            // 
+            // buscarBtn
+            // 
+            this.buscarBtn.Location = new System.Drawing.Point(731, 10);
+            this.buscarBtn.Name = "buscarBtn";
+            this.buscarBtn.Size = new System.Drawing.Size(75, 23);
+            this.buscarBtn.TabIndex = 4;
+            this.buscarBtn.Text = "BUSCAR";
+            this.buscarBtn.UseVisualStyleBackColor = true;
+            this.buscarBtn.Click += new System.EventHandler(this.buscarBtn_Click);
             // 
             // buscaLbl
             // 
@@ -322,73 +389,6 @@
             this.buscaFuncCb.TabIndex = 3;
             this.buscaFuncCb.Enter += new System.EventHandler(this.buscaFuncCb_Enter);
             // 
-            // buscarBtn
-            // 
-            this.buscarBtn.Location = new System.Drawing.Point(731, 10);
-            this.buscarBtn.Name = "buscarBtn";
-            this.buscarBtn.Size = new System.Drawing.Size(75, 23);
-            this.buscarBtn.TabIndex = 4;
-            this.buscarBtn.Text = "BUSCAR";
-            this.buscarBtn.UseVisualStyleBackColor = true;
-            this.buscarBtn.Click += new System.EventHandler(this.buscarBtn_Click);
-            // 
-            // listaReqPanel
-            // 
-            this.listaReqPanel.Controls.Add(this.buscaReqDgv);
-            this.listaReqPanel.Dock = System.Windows.Forms.DockStyle.Top;
-            this.listaReqPanel.Location = new System.Drawing.Point(3, 53);
-            this.listaReqPanel.Name = "listaReqPanel";
-            this.listaReqPanel.Size = new System.Drawing.Size(835, 225);
-            this.listaReqPanel.TabIndex = 1;
-            // 
-            // altExcPanel
-            // 
-            this.altExcPanel.Controls.Add(this.excReqBtn);
-            this.altExcPanel.Controls.Add(this.alterarReqBtn);
-            this.altExcPanel.Dock = System.Windows.Forms.DockStyle.Top;
-            this.altExcPanel.Location = new System.Drawing.Point(3, 278);
-            this.altExcPanel.Name = "altExcPanel";
-            this.altExcPanel.Size = new System.Drawing.Size(835, 47);
-            this.altExcPanel.TabIndex = 2;
-            // 
-            // buscaReqDgv
-            // 
-            this.buscaReqDgv.AllowUserToAddRows = false;
-            this.buscaReqDgv.AllowUserToDeleteRows = false;
-            this.buscaReqDgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.buscaReqDgv.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.buscaReqDgv.Location = new System.Drawing.Point(0, 0);
-            this.buscaReqDgv.MultiSelect = false;
-            this.buscaReqDgv.Name = "buscaReqDgv";
-            this.buscaReqDgv.ReadOnly = true;
-            this.buscaReqDgv.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.buscaReqDgv.Size = new System.Drawing.Size(835, 225);
-            this.buscaReqDgv.TabIndex = 0;
-            this.buscaReqDgv.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.buscaReqDgv_CellClick);
-            // 
-            // alterarReqBtn
-            // 
-            this.alterarReqBtn.Dock = System.Windows.Forms.DockStyle.Right;
-            this.alterarReqBtn.Enabled = false;
-            this.alterarReqBtn.Location = new System.Drawing.Point(720, 0);
-            this.alterarReqBtn.Name = "alterarReqBtn";
-            this.alterarReqBtn.Size = new System.Drawing.Size(115, 47);
-            this.alterarReqBtn.TabIndex = 0;
-            this.alterarReqBtn.Text = "ALTERAR";
-            this.alterarReqBtn.UseVisualStyleBackColor = true;
-            this.alterarReqBtn.Click += new System.EventHandler(this.alterarReqBtn_Click);
-            // 
-            // excReqBtn
-            // 
-            this.excReqBtn.Dock = System.Windows.Forms.DockStyle.Right;
-            this.excReqBtn.Enabled = false;
-            this.excReqBtn.Location = new System.Drawing.Point(605, 0);
-            this.excReqBtn.Name = "excReqBtn";
-            this.excReqBtn.Size = new System.Drawing.Size(115, 47);
-            this.excReqBtn.TabIndex = 1;
-            this.excReqBtn.Text = "EXCLUIR";
-            this.excReqBtn.UseVisualStyleBackColor = true;
-            // 
             // TelaRequisicoes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -406,11 +406,11 @@
             this.infoReqPanel.ResumeLayout(false);
             this.infoReqPanel.PerformLayout();
             this.tabPage2.ResumeLayout(false);
+            this.altExcPanel.ResumeLayout(false);
+            this.listaReqPanel.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.buscaReqDgv)).EndInit();
             this.buscarReqPanel.ResumeLayout(false);
             this.buscarReqPanel.PerformLayout();
-            this.listaReqPanel.ResumeLayout(false);
-            this.altExcPanel.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.buscaReqDgv)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -445,8 +445,8 @@
         private System.Windows.Forms.Panel listaReqPanel;
         private System.Windows.Forms.DataGridView buscaReqDgv;
         private System.Windows.Forms.Panel buscarReqPanel;
-        private System.Windows.Forms.Button buscarBtn;
         private System.Windows.Forms.Label buscaLbl;
-        private System.Windows.Forms.ComboBox buscaFuncCb;
+        public System.Windows.Forms.Button buscarBtn;
+        public System.Windows.Forms.ComboBox buscaFuncCb;
     }
 }

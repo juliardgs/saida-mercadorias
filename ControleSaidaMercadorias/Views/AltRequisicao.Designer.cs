@@ -29,19 +29,19 @@
         private void InitializeComponent()
         {
             this.infoReqPanel = new System.Windows.Forms.Panel();
-            this.funcLbl = new System.Windows.Forms.Label();
-            this.funcReqCb = new System.Windows.Forms.ComboBox();
-            this.dataLbl = new System.Windows.Forms.Label();
             this.dataReqDtp = new System.Windows.Forms.DateTimePicker();
+            this.dataLbl = new System.Windows.Forms.Label();
+            this.funcReqCb = new System.Windows.Forms.ComboBox();
+            this.funcLbl = new System.Windows.Forms.Label();
             this.itensReqPanel = new System.Windows.Forms.Panel();
             this.itensReqDgv = new System.Windows.Forms.DataGridView();
             this.addExcPanel = new System.Windows.Forms.Panel();
-            this.addProdBtn = new System.Windows.Forms.Button();
+            this.precoCustoTotalTxt = new System.Windows.Forms.TextBox();
+            this.precoCustoTotalLbl = new System.Windows.Forms.Label();
             this.excProdBtn = new System.Windows.Forms.Button();
+            this.addProdBtn = new System.Windows.Forms.Button();
             this.salvarBtn = new System.Windows.Forms.Button();
             this.salvarBtnPanel = new System.Windows.Forms.Panel();
-            this.precoCustoTotalLbl = new System.Windows.Forms.Label();
-            this.precoCustoTotalTxt = new System.Windows.Forms.TextBox();
             this.infoReqPanel.SuspendLayout();
             this.itensReqPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.itensReqDgv)).BeginInit();
@@ -61,22 +61,12 @@
             this.infoReqPanel.Size = new System.Drawing.Size(597, 76);
             this.infoReqPanel.TabIndex = 0;
             // 
-            // funcLbl
+            // dataReqDtp
             // 
-            this.funcLbl.AutoSize = true;
-            this.funcLbl.Location = new System.Drawing.Point(12, 18);
-            this.funcLbl.Name = "funcLbl";
-            this.funcLbl.Size = new System.Drawing.Size(130, 13);
-            this.funcLbl.TabIndex = 0;
-            this.funcLbl.Text = "Funcionário Responsável:";
-            // 
-            // funcReqCb
-            // 
-            this.funcReqCb.FormattingEnabled = true;
-            this.funcReqCb.Location = new System.Drawing.Point(148, 15);
-            this.funcReqCb.Name = "funcReqCb";
-            this.funcReqCb.Size = new System.Drawing.Size(300, 21);
-            this.funcReqCb.TabIndex = 1;
+            this.dataReqDtp.Location = new System.Drawing.Point(51, 42);
+            this.dataReqDtp.Name = "dataReqDtp";
+            this.dataReqDtp.Size = new System.Drawing.Size(200, 20);
+            this.dataReqDtp.TabIndex = 3;
             // 
             // dataLbl
             // 
@@ -87,12 +77,22 @@
             this.dataLbl.TabIndex = 2;
             this.dataLbl.Text = "Data:";
             // 
-            // dataReqDtp
+            // funcReqCb
             // 
-            this.dataReqDtp.Location = new System.Drawing.Point(51, 42);
-            this.dataReqDtp.Name = "dataReqDtp";
-            this.dataReqDtp.Size = new System.Drawing.Size(200, 20);
-            this.dataReqDtp.TabIndex = 3;
+            this.funcReqCb.FormattingEnabled = true;
+            this.funcReqCb.Location = new System.Drawing.Point(148, 15);
+            this.funcReqCb.Name = "funcReqCb";
+            this.funcReqCb.Size = new System.Drawing.Size(300, 21);
+            this.funcReqCb.TabIndex = 1;
+            // 
+            // funcLbl
+            // 
+            this.funcLbl.AutoSize = true;
+            this.funcLbl.Location = new System.Drawing.Point(12, 18);
+            this.funcLbl.Name = "funcLbl";
+            this.funcLbl.Size = new System.Drawing.Size(130, 13);
+            this.funcLbl.TabIndex = 0;
+            this.funcLbl.Text = "Funcionário Responsável:";
             // 
             // itensReqPanel
             // 
@@ -116,6 +116,7 @@
             this.itensReqDgv.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.itensReqDgv.Size = new System.Drawing.Size(597, 228);
             this.itensReqDgv.TabIndex = 0;
+            this.itensReqDgv.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.itensReqDgv_CellClick);
             this.itensReqDgv.RowsAdded += new System.Windows.Forms.DataGridViewRowsAddedEventHandler(this.itensReqDgv_RowsAdded);
             this.itensReqDgv.RowsRemoved += new System.Windows.Forms.DataGridViewRowsRemovedEventHandler(this.itensReqDgv_RowsRemoved);
             // 
@@ -131,6 +132,34 @@
             this.addExcPanel.Size = new System.Drawing.Size(597, 48);
             this.addExcPanel.TabIndex = 2;
             // 
+            // precoCustoTotalTxt
+            // 
+            this.precoCustoTotalTxt.Enabled = false;
+            this.precoCustoTotalTxt.Location = new System.Drawing.Point(128, 15);
+            this.precoCustoTotalTxt.Name = "precoCustoTotalTxt";
+            this.precoCustoTotalTxt.Size = new System.Drawing.Size(54, 20);
+            this.precoCustoTotalTxt.TabIndex = 4;
+            // 
+            // precoCustoTotalLbl
+            // 
+            this.precoCustoTotalLbl.AutoSize = true;
+            this.precoCustoTotalLbl.Location = new System.Drawing.Point(12, 18);
+            this.precoCustoTotalLbl.Name = "precoCustoTotalLbl";
+            this.precoCustoTotalLbl.Size = new System.Drawing.Size(110, 13);
+            this.precoCustoTotalLbl.TabIndex = 3;
+            this.precoCustoTotalLbl.Text = "Preço de Custo Total:";
+            // 
+            // excProdBtn
+            // 
+            this.excProdBtn.Dock = System.Windows.Forms.DockStyle.Right;
+            this.excProdBtn.Enabled = false;
+            this.excProdBtn.Location = new System.Drawing.Point(327, 0);
+            this.excProdBtn.Name = "excProdBtn";
+            this.excProdBtn.Size = new System.Drawing.Size(130, 48);
+            this.excProdBtn.TabIndex = 1;
+            this.excProdBtn.Text = "EXCLUIR PRODUTO";
+            this.excProdBtn.UseVisualStyleBackColor = true;
+            // 
             // addProdBtn
             // 
             this.addProdBtn.Dock = System.Windows.Forms.DockStyle.Right;
@@ -142,16 +171,6 @@
             this.addProdBtn.UseVisualStyleBackColor = true;
             this.addProdBtn.Click += new System.EventHandler(this.addProdBtn_Click);
             // 
-            // excProdBtn
-            // 
-            this.excProdBtn.Dock = System.Windows.Forms.DockStyle.Right;
-            this.excProdBtn.Location = new System.Drawing.Point(327, 0);
-            this.excProdBtn.Name = "excProdBtn";
-            this.excProdBtn.Size = new System.Drawing.Size(130, 48);
-            this.excProdBtn.TabIndex = 1;
-            this.excProdBtn.Text = "EXCLUIR PRODUTO";
-            this.excProdBtn.UseVisualStyleBackColor = true;
-            // 
             // salvarBtn
             // 
             this.salvarBtn.Dock = System.Windows.Forms.DockStyle.Left;
@@ -161,6 +180,7 @@
             this.salvarBtn.TabIndex = 1;
             this.salvarBtn.Text = "SALVAR";
             this.salvarBtn.UseVisualStyleBackColor = true;
+            this.salvarBtn.Click += new System.EventHandler(this.salvarBtn_Click);
             // 
             // salvarBtnPanel
             // 
@@ -170,23 +190,6 @@
             this.salvarBtnPanel.Name = "salvarBtnPanel";
             this.salvarBtnPanel.Size = new System.Drawing.Size(597, 58);
             this.salvarBtnPanel.TabIndex = 3;
-            // 
-            // precoCustoTotalLbl
-            // 
-            this.precoCustoTotalLbl.AutoSize = true;
-            this.precoCustoTotalLbl.Location = new System.Drawing.Point(12, 18);
-            this.precoCustoTotalLbl.Name = "precoCustoTotalLbl";
-            this.precoCustoTotalLbl.Size = new System.Drawing.Size(110, 13);
-            this.precoCustoTotalLbl.TabIndex = 3;
-            this.precoCustoTotalLbl.Text = "Preço de Custo Total:";
-            // 
-            // precoCustoTotalTxt
-            // 
-            this.precoCustoTotalTxt.Enabled = false;
-            this.precoCustoTotalTxt.Location = new System.Drawing.Point(128, 15);
-            this.precoCustoTotalTxt.Name = "precoCustoTotalTxt";
-            this.precoCustoTotalTxt.Size = new System.Drawing.Size(54, 20);
-            this.precoCustoTotalTxt.TabIndex = 4;
             // 
             // AltRequisicao
             // 

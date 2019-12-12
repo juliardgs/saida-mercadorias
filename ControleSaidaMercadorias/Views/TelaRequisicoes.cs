@@ -25,10 +25,13 @@ namespace ControleSaidaMercadorias.Views
         public void CarregarFuncionarios(ComboBox comboBox)
         {
             //colocar função pra autocompletar
-            var dados = funcDal.CarregarFuncionarios();
-            comboBox.DataSource = dados;
-            comboBox.DisplayMember = "ID_NOME";
-            comboBox.ValueMember = "id";
+            if(comboBox.DataSource == null)
+            {
+                var dados = funcDal.CarregarFuncionarios();
+                comboBox.DataSource = dados;
+                comboBox.DisplayMember = "ID_NOME";
+                comboBox.ValueMember = "id";
+            }
         }
 
         private void funReqCb_Enter(object sender, EventArgs e)
