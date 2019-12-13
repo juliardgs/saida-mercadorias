@@ -14,6 +14,8 @@ namespace ControleSaidaMercadorias.Views
     public partial class TelaRelatorios : UserControl
     {
         RelatorioDAL dal = new RelatorioDAL();
+        Microsoft.Office.Interop.Excel.Application XcelApp = new Microsoft.Office.Interop.Excel.Application();
+
         public TelaRelatorios()
         {
             InitializeComponent();
@@ -71,6 +73,44 @@ namespace ControleSaidaMercadorias.Views
         private void limparBtn_Click(object sender, EventArgs e)
         {
             LimparControles();
+        }
+
+        private void exportarBtn_Click(object sender, EventArgs e)
+        {
+            if (relatorioReqDgv.Rows.Count > 0)
+            {
+                try
+                {
+                    XcelApp.Application.Workbooks.Add(Type.Missing);
+                    for (int i = 1; i < relatorioReqDgv.Columns.Count + 1; i++)
+                    {
+                        XcelApp.Cells[1, i] = relatorioReqDgv.Columns[i - 1].HeaderText;
+                    }
+                    
+                    for (int i = 0; i < relatorioReqDgv.Rows.Count - 1; i++)
+                    {
+                        for (int j = 0; j < relatorioReqDgv.Columns.Count; j++)
+                        {
+                            XcelApp.Cells[i + 2, j + 1] = relatorioReqDgv.Rows[i].Cells[j].Value.ToString();
+                        }
+                    }
+
+                    XcelApp.Cells[relatorioReqDgv.Rows.Count + 3, 1] = "Total Custo:";
+                    XcelApp.Cells[relatorioReqDgv.Rows.Count + 3, 2] = totalCustoTxt.Text;
+
+                    XcelApp.Cells[relatorioReqDgv.Rows.Count + 4, 1] = "Total Venda:";
+                    XcelApp.Cells[relatorioReqDgv.Rows.Count + 4, 2] = totalVendaTxt.Text;
+
+                    XcelApp.Columns.AutoFit();
+                    
+                    XcelApp.Visible = true;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Erro : " + ex.Message);
+                    XcelApp.Quit();
+                }
+            }
         }
     }
 }
