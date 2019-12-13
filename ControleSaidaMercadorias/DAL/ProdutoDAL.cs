@@ -94,12 +94,14 @@ namespace ControleSaidaMercadorias.DAL
             var command3 = connection.CreateCommand();
             command.CommandText = "select id as ID, nome as 'NOME', precoCusto as 'PREÇO DE CUSTO'," + //query só retorna produtos simples
                 "precoVenda as 'PREÇO DE VENDA', produto.quantidade as 'ESTOQUE' from produto left join produto_tem_produtos " +
-                "on produto.id = produto_tem_produtos.idComposto where lower(nome) like @nome and produto_tem_produtos.idComposto is null";
+                "on produto.id = produto_tem_produtos.idComposto where lower(nome) like @nome and produto_tem_produtos.idComposto is null" +
+                " and produto.deleted is null";
             command.Parameters.AddWithValue("@nome", "%" + nome.ToLower() + "%");
 
             command2.CommandText = "select distinct id as ID, nome as 'NOME', precoCusto as 'PREÇO DE CUSTO'," + //query só retorna produtos compostos
                 "precoVenda as 'PREÇO DE VENDA' from produto inner join produto_tem_produtos " +
-                "on produto.id = produto_tem_produtos.idComposto where lower(nome) like @nome";
+                "on produto.id = produto_tem_produtos.idComposto where lower(nome) like @nome " +
+                "and produto.deleted is null";
             command2.Parameters.AddWithValue("@nome", "%" + nome.ToLower() + "%");
 
             command3.CommandText = "select id as ID, nome as NOME, precoCusto as 'PREÇO DE CUSTO', precoVenda as 'PREÇO DE VENDA', quantidade as ESTOQUE from produto where deleted is null;"; //lista todos os tipos de produto que não foram excluídos logicamente
@@ -159,7 +161,7 @@ namespace ControleSaidaMercadorias.DAL
             {
                 if (composto)
                 {
-                    command.CommandText = "update produto_tem_produtos set deleted = 1 where idComposto = @idProduto2 or idSimples = @idProduto2";
+                    command.CommandText = "update produto_tem_produtos set deleted = 1 where idComposto = @idProduto2 or idSimples = @idProduto2;";
                     command.ExecuteNonQuery();
                 }
                 command.CommandText = "update produto set deleted = 1 where id = @idProduto2";

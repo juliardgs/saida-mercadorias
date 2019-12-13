@@ -182,7 +182,7 @@ namespace ControleSaidaMercadorias.Views
             nomeProdCompostoTxt.Text = "";
             precoCustoProdCompostoTxt.Text = "";
             precoVendaProdCompostoTxt.Text = "";
-            listaProdSimplesDgv.DataSource = null;
+            listaProdSimplesDgv.Rows.Clear();
             excluirProdSimplesBtn.Enabled = false;
         }
 
