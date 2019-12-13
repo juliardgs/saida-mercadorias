@@ -145,7 +145,6 @@
             this.listagemTab.TabIndex = 1;
             this.listagemTab.Text = "Listar Funcionários";
             this.listagemTab.UseVisualStyleBackColor = true;
-            this.listagemTab.Click += new System.EventHandler(this.listagemTab_Click);
             // 
             // botoesPanel
             // 
@@ -176,6 +175,7 @@
             this.excluirBtn.TabIndex = 3;
             this.excluirBtn.Text = "EXCLUIR";
             this.excluirBtn.UseVisualStyleBackColor = true;
+            this.excluirBtn.Click += new System.EventHandler(this.excluirBtn_Click);
             // 
             // listaFuncPanel
             // 
@@ -196,8 +196,10 @@
             this.funcDgv.MultiSelect = false;
             this.funcDgv.Name = "funcDgv";
             this.funcDgv.ReadOnly = true;
+            this.funcDgv.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.funcDgv.Size = new System.Drawing.Size(835, 347);
             this.funcDgv.TabIndex = 0;
+            this.funcDgv.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.funcDgv_CellClick);
             // 
             // buscarPanel
             // 
@@ -212,16 +214,17 @@
             // 
             // buscarBtn
             // 
-            this.buscarBtn.Location = new System.Drawing.Point(705, 19);
+            this.buscarBtn.Location = new System.Drawing.Point(676, 19);
             this.buscarBtn.Name = "buscarBtn";
-            this.buscarBtn.Size = new System.Drawing.Size(109, 23);
+            this.buscarBtn.Size = new System.Drawing.Size(135, 23);
             this.buscarBtn.TabIndex = 2;
             this.buscarBtn.Text = "BUSCAR";
             this.buscarBtn.UseVisualStyleBackColor = true;
+            this.buscarBtn.Click += new System.EventHandler(this.buscarBtn_Click);
             // 
             // buscarTxt
             // 
-            this.buscarTxt.Location = new System.Drawing.Point(139, 21);
+            this.buscarTxt.Location = new System.Drawing.Point(110, 21);
             this.buscarTxt.Name = "buscarTxt";
             this.buscarTxt.Size = new System.Drawing.Size(549, 20);
             this.buscarTxt.TabIndex = 1;
@@ -231,9 +234,9 @@
             this.buscarLbl.AutoSize = true;
             this.buscarLbl.Location = new System.Drawing.Point(14, 24);
             this.buscarLbl.Name = "buscarLbl";
-            this.buscarLbl.Size = new System.Drawing.Size(119, 13);
+            this.buscarLbl.Size = new System.Drawing.Size(90, 13);
             this.buscarLbl.TabIndex = 0;
-            this.buscarLbl.Text = "Buscar por nome ou ID:";
+            this.buscarLbl.Text = "Buscar por nome:";
             // 
             // TelaFuncionarios
             // 

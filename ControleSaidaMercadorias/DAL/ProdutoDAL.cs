@@ -139,7 +139,6 @@ namespace ControleSaidaMercadorias.DAL
 
         public void RemoverProduto(int idProduto, bool composto = false)
         {
-            // VOLTAR AQUI DEPOIS
             connection.Open();
             var command = connection.CreateCommand();
             command.CommandText = "select * from produto_tem_produtos where idComposto = @idProduto or idSimples = @idProduto; " +
