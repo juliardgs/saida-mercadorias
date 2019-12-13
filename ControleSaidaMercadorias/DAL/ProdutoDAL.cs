@@ -137,19 +137,46 @@ namespace ControleSaidaMercadorias.DAL
 
         public void RemoverProduto(int idProduto, bool composto = false)
         {
-            //checar se já tem alguma requisição com o produto
+            // VOLTAR AQUI DEPOIS
             connection.Open();
             var command = connection.CreateCommand();
-            if (composto)
+            command.CommandText = "select * from produto_tem_produtos where idComposto = @idProduto or idSimples = @idProduto; " +
+                "select * from requisicao_tem_produtos where idProduto = @idProduto";
+            command.Parameters.Add("@idProduto", SqlDbType.Int);
+            command.Parameters["@idProduto"].Value = idProduto;
+
+            SqlDataReader reader = command.ExecuteReader();
+            bool resultado = reader.Read();
+            connection.Close();
+
+            connection.Open();
+
+            command.Parameters.Add("@idProduto2", SqlDbType.Int);
+
+            command.Parameters["@idProduto2"].Value = idProduto;
+
+            if (resultado) //se tiver registros, faz uma exclusão lógica
             {
-                command.CommandText = "delete from produto_tem_produtos where idComposto = @idProduto";
-                command.Parameters.AddWithValue("@idProduto", idProduto);
+                if (composto)
+                {
+                    command.CommandText = "update produto_tem_produtos set deleted = 1 where idComposto = @idProduto2 or idSimples = @idProduto2";
+                    command.ExecuteNonQuery();
+                }
+                command.CommandText = "update produto set deleted = 1 where id = @idProduto2";
                 command.ExecuteNonQuery();
             }
-            command.CommandText = "delete from produto where id = @idProduto2";
-            command.Parameters.AddWithValue("@idProduto2", idProduto);
-            command.ExecuteNonQuery();
+            else //se não tiver, exclui do bd
+            {
+                if (composto)
+                {
+                    command.CommandText = "delete from produto_tem_produtos where idComposto = @idProduto2 or idSimples = @idProduto2";
+                    command.ExecuteNonQuery();
+                }
+                command.CommandText = "delete from produto where id = @idProduto2";
+                command.ExecuteNonQuery();
+            }
             connection.Close();
         }
+
     }
 }

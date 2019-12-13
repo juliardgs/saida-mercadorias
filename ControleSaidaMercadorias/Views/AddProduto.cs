@@ -53,6 +53,17 @@ namespace ControleSaidaMercadorias.Views
             this.Text = "Adicionar Produtos";
         }
 
+        private bool ProdAdd(DataGridView data, int idProd)
+        {
+            bool resultado = false;
+            foreach(DataGridViewRow linha in data.Rows)
+            {
+                if (Convert.ToInt32(linha.Cells[0].Value) == idProd)
+                    resultado = true;
+            }
+            return resultado;
+        }
+
         private void addProdutoBtn_Click(object sender, EventArgs e)
         {
             //checar se tem já tem o id q a pesso tá adicionando no dgv da tela de alterar, para não haver conflito na hora de salvar
@@ -65,34 +76,61 @@ namespace ControleSaidaMercadorias.Views
             {
                 int qtde = Convert.ToInt32(qtdeTxt.Text);
                 if(telaProdutos != null)
-                    telaProdutos.listaProdSimplesDgv.Rows.Add(prodSelecionado.Id, prodSelecionado.Nome, qtdeTxt.Text, prodSelecionado.PrecoCusto * qtde, prodSelecionado.PrecoVenda * qtde);
+                {
+                    if(ProdAdd(telaProdutos.listaProdSimplesDgv, prodSelecionado.Id))
+                    {
+                        MessageBox.Show("Não é possível adicionar o produto mais de uma vez.", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    }
+                    else
+                        telaProdutos.listaProdSimplesDgv.Rows.Add(prodSelecionado.Id, prodSelecionado.Nome, qtdeTxt.Text, prodSelecionado.PrecoCusto * qtde, prodSelecionado.PrecoVenda * qtde);
+
+                }
                 if (altProduto != null)
                 {
-                    DataRow linha = ((DataTable)altProduto.listaProdSimplesDgv.DataSource).NewRow();
-                    linha[0] = prodSelecionado.Id;
-                    linha[1] = prodSelecionado.Nome;
-                    linha[2] = qtde;
-                    linha[3] = prodSelecionado.PrecoCusto * qtde;
-                    linha[4] = prodSelecionado.PrecoVenda * qtde;
-                    ((DataTable)altProduto.listaProdSimplesDgv.DataSource).Rows.Add(linha);
+                    if (ProdAdd(altProduto.listaProdSimplesDgv, prodSelecionado.Id))
+                    {
+                        MessageBox.Show("Não é possível adicionar o produto mais de uma vez.", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    }
+                    else
+                    {
+                        DataRow linha = ((DataTable)altProduto.listaProdSimplesDgv.DataSource).NewRow();
+                        linha[0] = prodSelecionado.Id;
+                        linha[1] = prodSelecionado.Nome;
+                        linha[2] = qtde;
+                        linha[3] = prodSelecionado.PrecoCusto * qtde;
+                        linha[4] = prodSelecionado.PrecoVenda * qtde;
+                        ((DataTable)altProduto.listaProdSimplesDgv.DataSource).Rows.Add(linha);
+                    }
                 }
                 if (telaRequisicoes != null)
                 {
-                    telaRequisicoes.itensReqDgv.Rows.Add(prodSelecionado.Id, prodSelecionado.Nome, qtdeTxt.Text, prodSelecionado.PrecoCusto, prodSelecionado.PrecoCusto * qtde);
+                    if (ProdAdd(telaRequisicoes.itensReqDgv, prodSelecionado.Id))
+                    {
+                        MessageBox.Show("Não é possível adicionar o produto mais de uma vez.", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    }
+                    else
+                        telaRequisicoes.itensReqDgv.Rows.Add(prodSelecionado.Id, prodSelecionado.Nome, qtdeTxt.Text, prodSelecionado.PrecoCusto, prodSelecionado.PrecoCusto * qtde);
                 }
                 if(altRequisicao != null)
                 {
-                    DataRow linha = ((DataTable)altRequisicao.itensReqDgv.DataSource).NewRow();
-                    linha[0] = prodSelecionado.Id;
-                    linha[1] = prodSelecionado.Nome;
-                    linha[2] = qtde;
-                    linha[3] = prodSelecionado.PrecoCusto;
-                    linha[4] = prodSelecionado.PrecoCusto * qtde;
-                    ((DataTable)altRequisicao.itensReqDgv.DataSource).Rows.Add(linha);
+                    if (ProdAdd(altRequisicao.itensReqDgv, prodSelecionado.Id))
+                    {
+                        MessageBox.Show("Não é possível adicionar o produto mais de uma vez.", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    }
+                    else
+                    {
+                        DataRow linha = ((DataTable)altRequisicao.itensReqDgv.DataSource).NewRow();
+                        linha[0] = prodSelecionado.Id;
+                        linha[1] = prodSelecionado.Nome;
+                        linha[2] = qtde;
+                        linha[3] = prodSelecionado.PrecoCusto;
+                        linha[4] = prodSelecionado.PrecoCusto * qtde;
+                        ((DataTable)altRequisicao.itensReqDgv.DataSource).Rows.Add(linha);
+                    }
+                    
                 }
                 this.Close();
             }
-            
         }
 
         private void buscarProdutoBtn_Click(object sender, EventArgs e)
