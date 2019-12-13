@@ -88,5 +88,11 @@ namespace ControleSaidaMercadorias.Views
             }
             
         }
+
+        private void alterarBtn_Click(object sender, EventArgs e)
+        {
+            AltFuncionario altFuncionario = new AltFuncionario(funcionarioSelecionado, this);
+            altFuncionario.Show();
+        }
     }
 }

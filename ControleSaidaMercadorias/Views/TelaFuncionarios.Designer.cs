@@ -165,6 +165,7 @@
             this.alterarBtn.TabIndex = 2;
             this.alterarBtn.Text = "ALTERAR";
             this.alterarBtn.UseVisualStyleBackColor = true;
+            this.alterarBtn.Click += new System.EventHandler(this.alterarBtn_Click);
             // 
             // excluirBtn
             // 
@@ -273,11 +274,11 @@
         private System.Windows.Forms.Button alterarBtn;
         private System.Windows.Forms.Panel listaFuncPanel;
         private System.Windows.Forms.DataGridView funcDgv;
-        private System.Windows.Forms.Button buscarBtn;
         private System.Windows.Forms.TextBox buscarTxt;
         private System.Windows.Forms.Label buscarLbl;
         private System.Windows.Forms.Button excluirBtn;
         private System.Windows.Forms.Panel botoesPanel;
         private System.Windows.Forms.Panel cadastroPanel;
+        public System.Windows.Forms.Button buscarBtn;
     }
 }

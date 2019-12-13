@@ -81,5 +81,17 @@ namespace ControleSaidaMercadorias.DAL
             connection.Close();
         }
 
+        public void AlterarFuncionario(Funcionario funcionario)
+        {
+            connection.Open();
+            var command = connection.CreateCommand();
+            command.CommandText = "update funcionario set nome = @nome, dataNascimento = @dataNascimento where id = @idFuncionario";
+            command.Parameters.AddWithValue("@nome", funcionario.Nome);
+            command.Parameters.AddWithValue("@dataNascimento", funcionario.DataNascimento);
+            command.Parameters.AddWithValue("@idFuncionario", funcionario.Id);
+            command.ExecuteNonQuery();
+            connection.Close();
+        }
+
     }
 }

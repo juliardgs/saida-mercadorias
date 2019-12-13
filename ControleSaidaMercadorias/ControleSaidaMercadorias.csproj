@@ -83,6 +83,12 @@
     <Compile Include="Views\AddProduto.Designer.cs">
       <DependentUpon>AddProduto.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\AltFuncionario.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\AltFuncionario.Designer.cs">
+      <DependentUpon>AltFuncionario.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\AltProduto.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -136,6 +142,9 @@
     </Compile>
     <EmbeddedResource Include="Views\AddProduto.resx">
       <DependentUpon>AddProduto.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\AltFuncionario.resx">
+      <DependentUpon>AltFuncionario.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\AltProduto.resx">
       <DependentUpon>AltProduto.cs</DependentUpon>

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ControleSaidaMercadorias.Models
 {
-    class Funcionario
+    public class Funcionario
     {
         public int Id { get; set; }
         public string Nome { get; set; }
