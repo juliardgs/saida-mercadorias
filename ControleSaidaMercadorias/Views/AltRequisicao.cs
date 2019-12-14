@@ -28,7 +28,7 @@ namespace ControleSaidaMercadorias.Views
             InitializeComponent();
             telaRequisicoes = telaReq;
             requisicao = req;
-            telaRequisicoes.CarregarFuncionarios(funcReqCb);
+            telaRequisicoes.CarregarFuncionarios(funcReqCb, true);
             funcReqCb.SelectedValue = req.IdFuncionario;
             dataReqDtp.Value = req.Data;
             itensReqDgv.DataSource = dal.BuscarItensReq(req.Id);

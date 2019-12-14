@@ -22,10 +22,9 @@ namespace ControleSaidaMercadorias.Views
             InitializeComponent();
         }
 
-        public void CarregarFuncionarios(ComboBox comboBox)
+        public void CarregarFuncionarios(ComboBox comboBox, bool altReq = false)
         {
-            //colocar função pra autocompletar
-            if(comboBox.DataSource == null)
+            if(comboBox.DataSource == null || altReq == false)
             {
                 var dados = funcDal.CarregarFuncionarios();
                 comboBox.DataSource = dados;
@@ -129,7 +128,7 @@ namespace ControleSaidaMercadorias.Views
         {
             funReqCb.SelectedIndex = -1;
             dataReqDtp.Value = DateTime.Now;
-            itensReqDgv.DataSource = null;
+            itensReqDgv.Rows.Clear();
             precoCustoTotalTxt.Text = "";
             excItemBtn.Enabled = false;
         }

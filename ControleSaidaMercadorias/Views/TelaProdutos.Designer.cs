@@ -31,8 +31,6 @@
             this.produtosTab = new System.Windows.Forms.TabControl();
             this.cadastroProdSimplesTab = new System.Windows.Forms.TabPage();
             this.cadastroProdSimplesPanel = new System.Windows.Forms.Panel();
-            this.qtdeProdSimplesTxt = new System.Windows.Forms.TextBox();
-            this.qtdeProdSimplesLbl = new System.Windows.Forms.Label();
             this.cadastrarProdSimplesBtn = new System.Windows.Forms.Button();
             this.precoVendaProdSimplesTxt = new System.Windows.Forms.TextBox();
             this.precoVendaProdSimplesLbl = new System.Windows.Forms.Label();
@@ -124,8 +122,6 @@
             // 
             // cadastroProdSimplesPanel
             // 
-            this.cadastroProdSimplesPanel.Controls.Add(this.qtdeProdSimplesTxt);
-            this.cadastroProdSimplesPanel.Controls.Add(this.qtdeProdSimplesLbl);
             this.cadastroProdSimplesPanel.Controls.Add(this.cadastrarProdSimplesBtn);
             this.cadastroProdSimplesPanel.Controls.Add(this.precoVendaProdSimplesTxt);
             this.cadastroProdSimplesPanel.Controls.Add(this.precoVendaProdSimplesLbl);
@@ -139,24 +135,6 @@
             this.cadastroProdSimplesPanel.Size = new System.Drawing.Size(835, 108);
             this.cadastroProdSimplesPanel.TabIndex = 2;
             // 
-            // qtdeProdSimplesTxt
-            // 
-            this.qtdeProdSimplesTxt.Location = new System.Drawing.Point(450, 54);
-            this.qtdeProdSimplesTxt.MaxLength = 4;
-            this.qtdeProdSimplesTxt.Name = "qtdeProdSimplesTxt";
-            this.qtdeProdSimplesTxt.Size = new System.Drawing.Size(51, 20);
-            this.qtdeProdSimplesTxt.TabIndex = 8;
-            this.qtdeProdSimplesTxt.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.qtdeProdSimplesTxt_KeyPress);
-            // 
-            // qtdeProdSimplesLbl
-            // 
-            this.qtdeProdSimplesLbl.AutoSize = true;
-            this.qtdeProdSimplesLbl.Location = new System.Drawing.Point(379, 57);
-            this.qtdeProdSimplesLbl.Name = "qtdeProdSimplesLbl";
-            this.qtdeProdSimplesLbl.Size = new System.Drawing.Size(65, 13);
-            this.qtdeProdSimplesLbl.TabIndex = 7;
-            this.qtdeProdSimplesLbl.Text = "Quantidade:";
-            // 
             // cadastrarProdSimplesBtn
             // 
             this.cadastrarProdSimplesBtn.Location = new System.Drawing.Point(559, 52);
@@ -169,7 +147,7 @@
             // 
             // precoVendaProdSimplesTxt
             // 
-            this.precoVendaProdSimplesTxt.Location = new System.Drawing.Point(300, 54);
+            this.precoVendaProdSimplesTxt.Location = new System.Drawing.Point(440, 54);
             this.precoVendaProdSimplesTxt.MaxLength = 7;
             this.precoVendaProdSimplesTxt.Name = "precoVendaProdSimplesTxt";
             this.precoVendaProdSimplesTxt.Size = new System.Drawing.Size(51, 20);
@@ -179,7 +157,7 @@
             // precoVendaProdSimplesLbl
             // 
             this.precoVendaProdSimplesLbl.AutoSize = true;
-            this.precoVendaProdSimplesLbl.Location = new System.Drawing.Point(208, 57);
+            this.precoVendaProdSimplesLbl.Location = new System.Drawing.Point(348, 57);
             this.precoVendaProdSimplesLbl.Name = "precoVendaProdSimplesLbl";
             this.precoVendaProdSimplesLbl.Size = new System.Drawing.Size(86, 13);
             this.precoVendaProdSimplesLbl.TabIndex = 4;
@@ -682,8 +660,6 @@
         private System.Windows.Forms.Panel prodSimplesLblPanel;
         private System.Windows.Forms.Label prodSimplesLbl;
         private System.Windows.Forms.Button excluirProdutoBtn;
-        private System.Windows.Forms.TextBox qtdeProdSimplesTxt;
-        private System.Windows.Forms.Label qtdeProdSimplesLbl;
         private System.Windows.Forms.TextBox nomeProdCompostoTxt;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Label infoLbl;

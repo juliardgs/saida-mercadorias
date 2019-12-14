@@ -18,9 +18,8 @@ namespace ControleSaidaMercadorias.DAL
         {
             connection.Open();
             var command = connection.CreateCommand();
-            command.CommandText = "insert into produto (nome, quantidade, precoCusto, precoVenda) output INSERTED.ID values (@nome, @quantidade, @precoCusto, @precoVenda)";
+            command.CommandText = "insert into produto (nome, precoCusto, precoVenda) output INSERTED.ID values (@nome, @precoCusto, @precoVenda)";
             command.Parameters.AddWithValue("@nome", produto.Nome);
-            command.Parameters.AddWithValue("@quantidade", produto.Quantidade);
             command.Parameters.AddWithValue("@precoCusto", produto.PrecoCusto);
             command.Parameters.AddWithValue("@precoVenda", produto.PrecoVenda);
             int idProdComposto = (int)command.ExecuteScalar(); //executa o insert e pega o id do produto composto que foi inserido
@@ -47,9 +46,8 @@ namespace ControleSaidaMercadorias.DAL
         {
             connection.Open();
             var command = connection.CreateCommand();
-            command.CommandText = "update produto set nome = @nome, quantidade = @quantidade, precoCusto = @precoCusto, precoVenda = @precoVenda where id = @id";
+            command.CommandText = "update produto set nome = @nome, precoCusto = @precoCusto, precoVenda = @precoVenda where id = @id";
             command.Parameters.AddWithValue("@nome", produto.Nome);
-            command.Parameters.AddWithValue("@quantidade", produto.Quantidade);
             command.Parameters.AddWithValue("@precoCusto", produto.PrecoCusto);
             command.Parameters.AddWithValue("@precoVenda", produto.PrecoVenda);
             command.Parameters.AddWithValue("@id", produto.Id);
@@ -92,20 +90,20 @@ namespace ControleSaidaMercadorias.DAL
             var command = connection.CreateCommand();
             var command2 = connection.CreateCommand();
             var command3 = connection.CreateCommand();
-            command.CommandText = "select id as ID, nome as 'NOME', precoCusto as 'PREÇO DE CUSTO'," + //query só retorna produtos simples
-                "precoVenda as 'PREÇO DE VENDA', produto.quantidade as 'ESTOQUE' from produto left join produto_tem_produtos " +
+            command.CommandText = "select id as ID, nome as 'PRODUTO', precoCusto as 'PREÇO DE CUSTO'," + //query só retorna produtos simples
+                "precoVenda as 'PREÇO DE VENDA' from produto left join produto_tem_produtos " +
                 "on produto.id = produto_tem_produtos.idComposto where lower(nome) like @nome and produto_tem_produtos.idComposto is null" +
                 " and produto.deleted is null";
             command.Parameters.AddWithValue("@nome", "%" + nome.ToLower() + "%");
 
-            command2.CommandText = "select distinct id as ID, nome as 'NOME', precoCusto as 'PREÇO DE CUSTO'," + //query só retorna produtos compostos
+            command2.CommandText = "select distinct id as ID, nome as 'PRODUTO', precoCusto as 'PREÇO DE CUSTO'," + //query só retorna produtos compostos
                 "precoVenda as 'PREÇO DE VENDA' from produto inner join produto_tem_produtos " +
                 "on produto.id = produto_tem_produtos.idComposto where lower(nome) like @nome " +
                 "and produto.deleted is null";
             command2.Parameters.AddWithValue("@nome", "%" + nome.ToLower() + "%");
 
-            command3.CommandText = "select id as ID, nome as NOME, precoCusto as 'PREÇO DE CUSTO', " +
-                "precoVenda as 'PREÇO DE VENDA', quantidade as ESTOQUE from produto where deleted is null;"; //lista todos os tipos de produto que não foram excluídos logicamente
+            command3.CommandText = "select id as ID, nome as PRODUTO, precoCusto as 'PREÇO DE CUSTO', " +
+                "precoVenda as 'PREÇO DE VENDA' from produto where deleted is null;"; //lista todos os tipos de produto que não foram excluídos logicamente
 
             SqlDataReader reader = command.ExecuteReader();
             DataTable dt = new DataTable();
@@ -128,8 +126,8 @@ namespace ControleSaidaMercadorias.DAL
         {
             connection.Open();
             var command = connection.CreateCommand();
-            command.CommandText = "select produto_tem_produtos.idSimples, produto.nome, produto_tem_produtos.quantidade, produto.precoCusto," +
-                " produto.precoVenda from produto join produto_tem_produtos on produto.id = produto_tem_produtos.idSimples where idComposto = @idComposto";
+            command.CommandText = "select produto_tem_produtos.idSimples as ID, produto.nome as PRODUTO, produto_tem_produtos.quantidade as QUANTIDADE, produto.precoCusto as 'PREÇO DE CUSTO'," +
+                " produto.precoVenda as 'PREÇO DE VENDA' from produto join produto_tem_produtos on produto.id = produto_tem_produtos.idSimples where idComposto = @idComposto";
             command.Parameters.AddWithValue("@idComposto", idComposto);
             SqlDataReader reader = command.ExecuteReader();
             DataTable dt = new DataTable();

@@ -33,8 +33,6 @@
             this.label2 = new System.Windows.Forms.Label();
             this.precoCustoTxt = new System.Windows.Forms.TextBox();
             this.precoCustoLbl = new System.Windows.Forms.Label();
-            this.qtdeEstoqueTxt = new System.Windows.Forms.TextBox();
-            this.qtdeEstoqueLbl = new System.Windows.Forms.Label();
             this.nomeTxt = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.listaProdSimplesPanel = new System.Windows.Forms.Panel();
@@ -57,8 +55,6 @@
             this.infoProdPanel.Controls.Add(this.label2);
             this.infoProdPanel.Controls.Add(this.precoCustoTxt);
             this.infoProdPanel.Controls.Add(this.precoCustoLbl);
-            this.infoProdPanel.Controls.Add(this.qtdeEstoqueTxt);
-            this.infoProdPanel.Controls.Add(this.qtdeEstoqueLbl);
             this.infoProdPanel.Controls.Add(this.nomeTxt);
             this.infoProdPanel.Controls.Add(this.label1);
             this.infoProdPanel.Dock = System.Windows.Forms.DockStyle.Top;
@@ -69,7 +65,7 @@
             // 
             // precoVendaTxt
             // 
-            this.precoVendaTxt.Location = new System.Drawing.Point(285, 52);
+            this.precoVendaTxt.Location = new System.Drawing.Point(427, 52);
             this.precoVendaTxt.MaxLength = 7;
             this.precoVendaTxt.Name = "precoVendaTxt";
             this.precoVendaTxt.Size = new System.Drawing.Size(65, 20);
@@ -79,7 +75,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(192, 55);
+            this.label2.Location = new System.Drawing.Point(334, 55);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(87, 13);
             this.label2.TabIndex = 6;
@@ -102,24 +98,6 @@
             this.precoCustoLbl.Size = new System.Drawing.Size(83, 13);
             this.precoCustoLbl.TabIndex = 4;
             this.precoCustoLbl.Text = "Preço de Custo:";
-            // 
-            // qtdeEstoqueTxt
-            // 
-            this.qtdeEstoqueTxt.Location = new System.Drawing.Point(457, 52);
-            this.qtdeEstoqueTxt.MaxLength = 4;
-            this.qtdeEstoqueTxt.Name = "qtdeEstoqueTxt";
-            this.qtdeEstoqueTxt.Size = new System.Drawing.Size(37, 20);
-            this.qtdeEstoqueTxt.TabIndex = 3;
-            this.qtdeEstoqueTxt.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.qtdeEstoqueTxt_KeyPress);
-            // 
-            // qtdeEstoqueLbl
-            // 
-            this.qtdeEstoqueLbl.AutoSize = true;
-            this.qtdeEstoqueLbl.Location = new System.Drawing.Point(386, 55);
-            this.qtdeEstoqueLbl.Name = "qtdeEstoqueLbl";
-            this.qtdeEstoqueLbl.Size = new System.Drawing.Size(65, 13);
-            this.qtdeEstoqueLbl.TabIndex = 2;
-            this.qtdeEstoqueLbl.Text = "Quantidade:";
             // 
             // nomeTxt
             // 
@@ -244,8 +222,6 @@
 
         private System.Windows.Forms.Panel infoProdPanel;
         private System.Windows.Forms.Label precoCustoLbl;
-        private System.Windows.Forms.TextBox qtdeEstoqueTxt;
-        private System.Windows.Forms.Label qtdeEstoqueLbl;
         private System.Windows.Forms.TextBox nomeTxt;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Panel listaProdSimplesPanel;

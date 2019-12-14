@@ -27,7 +27,6 @@ namespace ControleSaidaMercadorias.Views
             nomeProdSimplesTxt.Text = "";
             precoVendaProdSimplesTxt.Text = "";
             precoCustoProdSimplesTxt.Text = "";
-            qtdeProdSimplesTxt.Text = "";
             nomeProdSimplesTxt.Focus();
         }
 
@@ -91,9 +90,8 @@ namespace ControleSaidaMercadorias.Views
                 || precoCustoProdSimplesTxt.Text == ","
                 || precoVendaProdSimplesTxt.Text == ","
                 || Convert.ToDouble(precoCustoProdSimplesTxt.Text) == 0
-                || Convert.ToDouble(precoVendaProdSimplesTxt.Text) == 0
-                || Convert.ToInt32(qtdeProdSimplesTxt.Text) == 0
-                || qtdeProdSimplesTxt.Text == string.Empty)
+                || Convert.ToDouble(precoVendaProdSimplesTxt.Text) == 0)
+
             {
                 MessageBox.Show("É necessario preencher todos os campos com valores válidos.", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
@@ -103,20 +101,12 @@ namespace ControleSaidaMercadorias.Views
                     Nome = nomeProdSimplesTxt.Text,
                     PrecoCusto = Convert.ToDouble(precoCustoProdSimplesTxt.Text),
                     PrecoVenda = Convert.ToDouble(precoVendaProdSimplesTxt.Text),
-                    Quantidade = Convert.ToInt32(qtdeProdSimplesTxt.Text),
                 });
                 MessageBox.Show("Produto Simples cadastrado com sucesso!", "Cadastro Produto Simples");
                 LimparControles();
             }
         }
 
-        private void qtdeProdSimplesTxt_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (!char.IsNumber(e.KeyChar) && !(e.KeyChar == (char)Keys.Back))
-            {
-                e.Handled = true;
-            }
-        }
 
         private void precoVendaProdCompostoTxt_KeyPress(object sender, KeyPressEventArgs e)
         {
@@ -270,7 +260,6 @@ namespace ControleSaidaMercadorias.Views
                 {
                     Id = Convert.ToInt32(buscaProdSimplesDgv.Rows[e.RowIndex].Cells[0].Value),
                     Nome = buscaProdSimplesDgv.Rows[e.RowIndex].Cells[1].Value.ToString(),
-                    Quantidade = Convert.ToInt32(buscaProdSimplesDgv.Rows[e.RowIndex].Cells[4].Value),
                     PrecoCusto = Convert.ToDouble(buscaProdSimplesDgv.Rows[e.RowIndex].Cells[2].Value),
                     PrecoVenda = Convert.ToDouble(buscaProdSimplesDgv.Rows[e.RowIndex].Cells[3].Value)
                 };

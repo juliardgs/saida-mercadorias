@@ -34,12 +34,9 @@ namespace ControleSaidaMercadorias.Views
             {
                 listaProdSimplesPanel.Visible = false;
                 addExcBtnPanel.Visible = false;
-                qtdeEstoqueTxt.Text = prod.Quantidade.ToString();
             }
             else
             {
-                qtdeEstoqueLbl.Visible = false;
-                qtdeEstoqueTxt.Visible = false;
                 precoCustoTxt.Enabled = false;
                 listaProdSimplesPanel.Visible = true;
                 addExcBtnPanel.Visible = true;
@@ -91,14 +88,6 @@ namespace ControleSaidaMercadorias.Views
             }
         }
 
-        private void qtdeEstoqueTxt_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (!char.IsNumber(e.KeyChar) && !(e.KeyChar == (char)Keys.Back))
-            {
-                e.Handled = true;
-            }
-        }
-
         private void qtdeProdSimplesTxt_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!char.IsNumber(e.KeyChar) && !(e.KeyChar == (char)Keys.Back))
@@ -119,10 +108,7 @@ namespace ControleSaidaMercadorias.Views
                     || precoCustoTxt.Text == string.Empty
                     || Convert.ToDouble(precoCustoTxt.Text) == 0
                     || precoVendaTxt.Text == string.Empty
-                    || Convert.ToDouble(precoVendaTxt.Text) == 0
-                    || (qtdeEstoqueTxt.Text == string.Empty && qtdeEstoqueTxt.Visible == true)
-                    //|| (Convert.ToDouble(qtdeEstoqueTxt.Text) == 0 && qtdeEstoqueTxt.Visible == true) VOLTAR AQUI
-                    )
+                    || Convert.ToDouble(precoVendaTxt.Text) == 0)
 
             {
                 MessageBox.Show("É necessario preencher todos os campos com valores válidos.", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
@@ -135,7 +121,6 @@ namespace ControleSaidaMercadorias.Views
                     {
                         Id = produto.Id,
                         Nome = nomeTxt.Text,
-                        Quantidade = Convert.ToInt32(qtdeEstoqueTxt.Text),
                         PrecoCusto = Convert.ToDouble(precoCustoTxt.Text),
                         PrecoVenda = Convert.ToDouble(precoVendaTxt.Text)
                     });
@@ -192,7 +177,7 @@ namespace ControleSaidaMercadorias.Views
             double precoCusto = 0;
             foreach (DataGridViewRow linha in listaProdSimplesDgv.Rows)
             {
-                precoCusto += Convert.ToDouble(linha.Cells[3].Value);
+                precoCusto += Convert.ToDouble(linha.Cells[3].Value) * Convert.ToInt32(linha.Cells[3].Value);
             }
             precoCustoTxt.Text = precoCusto.ToString();
         }
