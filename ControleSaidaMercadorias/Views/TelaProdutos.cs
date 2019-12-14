@@ -22,6 +22,8 @@ namespace ControleSaidaMercadorias.Views
             InitializeComponent();
         }
 
+        #region ABA CADASTRAR PRODUTO SIMPLES
+
         void LimparControles()
         {
             nomeProdSimplesTxt.Text = "";
@@ -30,17 +32,29 @@ namespace ControleSaidaMercadorias.Views
             nomeProdSimplesTxt.Focus();
         }
 
-
-        public void buscarProdutosBtn_Click(object sender, EventArgs e)
+        private void cadastrarProdSimplesBtn_Click(object sender, EventArgs e)
         {
-            if(buscarProdCompostoTxt.Text == string.Empty)
+            if (nomeProdSimplesTxt.Text.Trim() == string.Empty
+                || precoCustoProdSimplesTxt.Text == string.Empty
+                || precoVendaProdSimplesTxt.Text == string.Empty
+                || precoCustoProdSimplesTxt.Text == ","
+                || precoVendaProdSimplesTxt.Text == ","
+                || Convert.ToDouble(precoCustoProdSimplesTxt.Text) == 0
+                || Convert.ToDouble(precoVendaProdSimplesTxt.Text) == 0)
+
             {
                 MessageBox.Show("É necessario preencher todos os campos com valores válidos.", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
             else
             {
-                buscaProdSimplesDgv.DataSource = dal.BuscarProduto(buscarProdCompostoTxt.Text)[0];
-                buscaProdCompostoDgv.DataSource = dal.BuscarProduto(buscarProdCompostoTxt.Text)[1];
+                dal.IncluirProduto(new Produto()
+                {
+                    Nome = nomeProdSimplesTxt.Text,
+                    PrecoCusto = Convert.ToDouble(precoCustoProdSimplesTxt.Text),
+                    PrecoVenda = Convert.ToDouble(precoVendaProdSimplesTxt.Text),
+                });
+                MessageBox.Show("Produto Simples cadastrado com sucesso!", "Cadastro Produto Simples");
+                LimparControles();
             }
         }
 
@@ -81,32 +95,28 @@ namespace ControleSaidaMercadorias.Views
                 e.Handled = true;
             }
         }
+        #endregion
 
-        private void cadastrarProdSimplesBtn_Click(object sender, EventArgs e)
+        #region ABA CADASTRAR PRODUTO COMPOSTO
+
+        private void precoCustoProdCompostoTxt_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if(nomeProdSimplesTxt.Text.Trim() == string.Empty 
-                || precoCustoProdSimplesTxt.Text == string.Empty
-                || precoVendaProdSimplesTxt.Text == string.Empty
-                || precoCustoProdSimplesTxt.Text == ","
-                || precoVendaProdSimplesTxt.Text == ","
-                || Convert.ToDouble(precoCustoProdSimplesTxt.Text) == 0
-                || Convert.ToDouble(precoVendaProdSimplesTxt.Text) == 0)
+            if (e.KeyChar == '.' || e.KeyChar == ',')
+            {
+                e.KeyChar = ',';
 
-            {
-                MessageBox.Show("É necessario preencher todos os campos com valores válidos.", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                if (precoCustoProdCompostoTxt.Text.Contains(","))
+                {
+                    e.Handled = true;
+                }
             }
-            else
+
+            //aceita apenas números, tecla backspace
+            else if (!char.IsNumber(e.KeyChar) && !(e.KeyChar == (char)Keys.Back))
             {
-                dal.IncluirProduto(new Produto() {
-                    Nome = nomeProdSimplesTxt.Text,
-                    PrecoCusto = Convert.ToDouble(precoCustoProdSimplesTxt.Text),
-                    PrecoVenda = Convert.ToDouble(precoVendaProdSimplesTxt.Text),
-                });
-                MessageBox.Show("Produto Simples cadastrado com sucesso!", "Cadastro Produto Simples");
-                LimparControles();
+                e.Handled = true;
             }
         }
-
 
         private void precoVendaProdCompostoTxt_KeyPress(object sender, KeyPressEventArgs e)
         {
@@ -127,15 +137,71 @@ namespace ControleSaidaMercadorias.Views
             }
         }
 
+        private void excluirProdSimplesBtn_Click(object sender, EventArgs e)
+        {
+            if (listaProdSimplesDgv.RowCount > 0)
+            {
+                listaProdSimplesDgv.Rows.RemoveAt(listaProdSimplesDgv.CurrentRow.Index);
+                CalcularPrecoCusto();
+            }
+            else
+            {
+                excluirProdSimplesBtn.Enabled = false;
+            }
+
+        }
+
         private void adicionarProdSimplesBtn_Click(object sender, EventArgs e)
         {
             AddProduto addProduto = new AddProduto(this);
             addProduto.Show();
         }
 
+        private void listaProdSimplesDgv_RowsAdded(object sender, DataGridViewRowsAddedEventArgs e)
+        {
+            CalcularPrecoCusto();
+        }
+
+        private void CalcularPrecoCusto()
+        {
+            double precoCusto = 0;
+            foreach (DataGridViewRow linha in listaProdSimplesDgv.Rows)
+            {
+                precoCusto += Convert.ToDouble(linha.Cells[3].Value);
+            }
+            precoCustoProdCompostoTxt.Text = precoCusto.ToString();
+        }
+
+        private void LimparControlesPC()
+        {
+            nomeProdCompostoTxt.Text = "";
+            precoCustoProdCompostoTxt.Text = "";
+            precoVendaProdCompostoTxt.Text = "";
+            listaProdSimplesDgv.Rows.Clear();
+            excluirProdSimplesBtn.Enabled = false;
+        }
+
+        private void listaProdSimplesDgv_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex < 0 || e.ColumnIndex < 0) //se clicar no cabeçalho 
+                return;
+            if (listaProdSimplesDgv.CurrentRow.Index < 0)
+            {
+                excluirProdSimplesBtn.Enabled = false;
+            }
+            else
+            {
+                excluirProdSimplesBtn.Enabled = true;
+                produtoSelecionado = new Produto()
+                {
+                    PrecoCusto = Convert.ToDouble(listaProdSimplesDgv.Rows[e.RowIndex].Cells[4].Value),
+                };
+            }
+        }
+
         private void cadastroProdCompostoBtn_Click(object sender, EventArgs e)
         {
-            if(listaProdSimplesDgv.Rows.Count == 0
+            if (listaProdSimplesDgv.Rows.Count == 0
                 || nomeProdCompostoTxt.Text == string.Empty
                 || precoVendaProdCompostoTxt.Text == string.Empty)
             {
@@ -153,7 +219,7 @@ namespace ControleSaidaMercadorias.Views
                         Quantidade = Convert.ToInt32(linha.Cells[2].Value)
                     };
                     itens.Add(itemProduto);
-                    
+
                 }
                 dal.IncluirProduto(new Produto()
                 {
@@ -166,73 +232,19 @@ namespace ControleSaidaMercadorias.Views
                 LimparControlesPC();
             }
         }
+        #endregion
 
-        private void LimparControlesPC()
+        #region ABA LISTAR PRODUTOS
+        public void buscarProdutosBtn_Click(object sender, EventArgs e)
         {
-            nomeProdCompostoTxt.Text = "";
-            precoCustoProdCompostoTxt.Text = "";
-            precoVendaProdCompostoTxt.Text = "";
-            listaProdSimplesDgv.Rows.Clear();
-            excluirProdSimplesBtn.Enabled = false;
-        }
-
-        private void listaProdSimplesDgv_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-            if (e.RowIndex < 0 || e.ColumnIndex < 0) //se clicar no cabeçalho 
-                return;
-            if(listaProdSimplesDgv.CurrentRow.Index < 0)
+            if(buscarProdCompostoTxt.Text == string.Empty)
             {
-                excluirProdSimplesBtn.Enabled = false;
+                MessageBox.Show("É necessario preencher todos os campos com valores válidos.", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
             else
             {
-                excluirProdSimplesBtn.Enabled = true;
-                produtoSelecionado = new Produto() 
-                {
-                    PrecoCusto = Convert.ToDouble(listaProdSimplesDgv.Rows[e.RowIndex].Cells[4].Value),
-                };
-            }
-        }
-
-        private void listaProdSimplesDgv_RowsAdded(object sender, DataGridViewRowsAddedEventArgs e)
-        {
-            CalcularPrecoCusto();
-        }
-
-        private void excluirProdSimplesBtn_Click(object sender, EventArgs e)
-        {
-            if(listaProdSimplesDgv.RowCount > 0)
-            {
-                listaProdSimplesDgv.Rows.RemoveAt(listaProdSimplesDgv.CurrentRow.Index);
-                CalcularPrecoCusto();
-            }
-            else
-            {
-                excluirProdSimplesBtn.Enabled = false;
-            }
-            
-        }
-
-        private void CalcularPrecoCusto()
-        {
-            double precoCusto = 0;
-            foreach (DataGridViewRow linha in listaProdSimplesDgv.Rows)
-            {
-                precoCusto += Convert.ToDouble(linha.Cells[3].Value);
-            }
-            precoCustoProdCompostoTxt.Text = precoCusto.ToString();
-        }
-
-        private void excluirProdutoBtn_Click(object sender, EventArgs e)
-        {
-            if (DialogResult.Yes == MessageBox.Show("Tem certeza que deseja excluir o produto?", "Excluir Produto", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2))
-            {
-                dal.RemoverProduto(produtoSelecionado.Id, produtoSelecionado.ItemProduto == null ? false : true);
-                if (buscarProdCompostoTxt.Text != string.Empty)
-                {
-                    buscarProdutosBtn.PerformClick();
-                }
-                MessageBox.Show("Produto excluído com sucesso!", "Excluir Produto");
+                buscaProdSimplesDgv.DataSource = dal.BuscarProduto(buscarProdCompostoTxt.Text)[0];
+                buscaProdCompostoDgv.DataSource = dal.BuscarProduto(buscarProdCompostoTxt.Text)[1];
             }
         }
 
@@ -241,7 +253,7 @@ namespace ControleSaidaMercadorias.Views
             if (e.RowIndex < 0 || e.ColumnIndex < 0) //se clicar no cabeçalho 
                 return;
 
-            if(buscaProdCompostoDgv.SelectedRows.Count > 0)
+            if (buscaProdCompostoDgv.SelectedRows.Count > 0)
             {
                 buscaProdCompostoDgv.ClearSelection();
             }
@@ -263,33 +275,6 @@ namespace ControleSaidaMercadorias.Views
                     PrecoCusto = Convert.ToDouble(buscaProdSimplesDgv.Rows[e.RowIndex].Cells[2].Value),
                     PrecoVenda = Convert.ToDouble(buscaProdSimplesDgv.Rows[e.RowIndex].Cells[3].Value)
                 };
-            }
-
-
-        }
-
-        private void alterarProdBtn_Click(object sender, EventArgs e)
-        {
-            AltProduto altProduto = new AltProduto(this, produtoSelecionado);
-            altProduto.Show();
-        }
-
-        private void precoCustoProdCompostoTxt_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (e.KeyChar == '.' || e.KeyChar == ',')
-            {
-                e.KeyChar = ',';
-
-                if (precoCustoProdCompostoTxt.Text.Contains(","))
-                {
-                    e.Handled = true;
-                }
-            }
-
-            //aceita apenas números, tecla backspace
-            else if (!char.IsNumber(e.KeyChar) && !(e.KeyChar == (char)Keys.Back))
-            {
-                e.Handled = true;
             }
         }
 
@@ -323,5 +308,26 @@ namespace ControleSaidaMercadorias.Views
                 };
             }
         }
+
+        private void excluirProdutoBtn_Click(object sender, EventArgs e)
+        {
+            if (DialogResult.Yes == MessageBox.Show("Tem certeza que deseja excluir o produto?", "Excluir Produto", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2))
+            {
+                dal.RemoverProduto(produtoSelecionado.Id, produtoSelecionado.ItemProduto == null ? false : true);
+                if (buscarProdCompostoTxt.Text != string.Empty)
+                {
+                    buscarProdutosBtn.PerformClick();
+                }
+                MessageBox.Show("Produto excluído com sucesso!", "Excluir Produto");
+            }
+        }
+
+        private void alterarProdBtn_Click(object sender, EventArgs e)
+        {
+            AltProduto altProduto = new AltProduto(this, produtoSelecionado);
+            altProduto.Show();
+        }
+
+        #endregion
     }
 }

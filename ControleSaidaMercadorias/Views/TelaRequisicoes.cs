@@ -33,15 +33,10 @@ namespace ControleSaidaMercadorias.Views
             }
         }
 
+        #region ABA CADASTRAR REQUISIÇÃO
         private void funReqCb_Enter(object sender, EventArgs e)
         {
             CarregarFuncionarios(funReqCb);
-        }
-
-        private void addItemBtn_Click(object sender, EventArgs e)
-        {
-            AddProduto addProduto = new AddProduto(this);
-            addProduto.Show();
         }
 
         private void itensReqDgv_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -57,7 +52,6 @@ namespace ControleSaidaMercadorias.Views
             {
                 excItemBtn.Enabled = true;
             }
-            
         }
 
         public void CalcularPrecoCustoTotal()
@@ -92,9 +86,15 @@ namespace ControleSaidaMercadorias.Views
             }
         }
 
+        private void addItemBtn_Click(object sender, EventArgs e)
+        {
+            AddProduto addProduto = new AddProduto(this);
+            addProduto.Show();
+        }
+
         private void salvarReqBtn_Click(object sender, EventArgs e)
         {
-            if(funReqCb.SelectedIndex == -1
+            if (funReqCb.SelectedIndex == -1
                 || itensReqDgv.Rows.Count == 0
                 || precoCustoTotalTxt.Text == string.Empty)
             {
@@ -113,7 +113,8 @@ namespace ControleSaidaMercadorias.Views
                     itens.Add(itemProduto);
                 }
 
-                reqDal.IncluirRequisicao(new Requisicao() {
+                reqDal.IncluirRequisicao(new Requisicao()
+                {
                     IdFuncionario = Convert.ToInt32(funReqCb.SelectedValue),
                     Data = dataReqDtp.Value,
                     PrecoCustoTotal = Convert.ToDouble(precoCustoTotalTxt.Text),
@@ -133,6 +134,9 @@ namespace ControleSaidaMercadorias.Views
             excItemBtn.Enabled = false;
         }
 
+        #endregion
+
+        #region ABA LISTAR REQUISIÇÃO
         private void buscaFuncCb_Enter(object sender, EventArgs e)
         {
             CarregarFuncionarios(buscaFuncCb);
@@ -140,7 +144,7 @@ namespace ControleSaidaMercadorias.Views
 
         private void buscarBtn_Click(object sender, EventArgs e)
         {
-            if(buscaFuncCb.SelectedIndex == -1)
+            if (buscaFuncCb.SelectedIndex == -1)
             {
                 MessageBox.Show("É necessario preencher todos os campos com valores válidos.", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
@@ -195,8 +199,10 @@ namespace ControleSaidaMercadorias.Views
                     }
                     MessageBox.Show("Requisição excluída com sucesso!", "Excluir Requisição");
                 }
-                
+
             }
         }
+        #endregion
+
     }
 }

@@ -50,6 +50,7 @@ namespace ControleSaidaMercadorias.Views
 
         }
 
+        #region VERIFICAÇÕES DE CAMPOS
         private void precoCustoTxt_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (e.KeyChar == '.' || e.KeyChar == ',')
@@ -95,6 +96,8 @@ namespace ControleSaidaMercadorias.Views
                 e.Handled = true;
             }
         }
+
+        #endregion
 
         private void addProdSimplesBtn_Click(object sender, EventArgs e)
         {

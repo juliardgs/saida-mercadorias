@@ -53,7 +53,8 @@ namespace ControleSaidaMercadorias.Views
             this.Text = "Adicionar Produtos";
         }
 
-        private bool ProdAdd(DataGridView data, int idProd)
+        
+        private bool ProdAdd(DataGridView data, int idProd) //checa se tem já tem o id q a pessoa tá adicionando no dgv, para não haver conflito na hora de salvar
         {
             bool resultado = false;
             foreach(DataGridViewRow linha in data.Rows)
@@ -66,7 +67,6 @@ namespace ControleSaidaMercadorias.Views
 
         private void addProdutoBtn_Click(object sender, EventArgs e)
         {
-            //checar se tem já tem o id q a pesso tá adicionando no dgv da tela de alterar, para não haver conflito na hora de salvar
             if(qtdeTxt.Text.Trim() == string.Empty || Convert.ToInt32(qtdeTxt.Text) == 0)
             {
                 MessageBox.Show("É necessario preencher todos os campos com valores válidos.", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);

@@ -75,7 +75,7 @@ namespace ControleSaidaMercadorias.Views
             LimparControles();
         }
 
-        private void exportarBtn_Click(object sender, EventArgs e)
+        private void exportarBtn_Click(object sender, EventArgs e) //abre uma planilha no excel mostrando os dados do datagridview
         {
             if (relatorioReqDgv.Rows.Count > 0)
             {

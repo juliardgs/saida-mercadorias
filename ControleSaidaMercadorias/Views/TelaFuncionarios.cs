@@ -21,16 +21,10 @@ namespace ControleSaidaMercadorias.Views
             InitializeComponent();
         }
 
-        void LimparControles()
-        {
-            nomeTxt.Text = "";
-            dataNascDtp.Value = DateTime.Now;
-            nomeTxt.Focus();
-        }
-
+        #region ABA CADASTRAR FUNCIONÁRIOS
         private void cadastrarBtn_Click(object sender, EventArgs e)
         {
-            if(nomeTxt.Text.Trim() != string.Empty)
+            if (nomeTxt.Text.Trim() != string.Empty)
             {
                 dal.IncluirFuncionario(new Funcionario()
                 {
@@ -45,6 +39,17 @@ namespace ControleSaidaMercadorias.Views
                 MessageBox.Show("É necessario preencher todos os campos com valores válidos.", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
         }
+
+        void LimparControles()
+        {
+            nomeTxt.Text = "";
+            dataNascDtp.Value = DateTime.Now;
+            nomeTxt.Focus();
+        }
+        #endregion
+
+
+        #region ABA LISTAR FUNCIONÁRIOS
 
         private void buscarBtn_Click(object sender, EventArgs e)
         {
@@ -94,5 +99,6 @@ namespace ControleSaidaMercadorias.Views
             AltFuncionario altFuncionario = new AltFuncionario(funcionarioSelecionado, this);
             altFuncionario.Show();
         }
+        #endregion
     }
 }
