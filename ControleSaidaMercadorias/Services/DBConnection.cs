@@ -24,7 +24,7 @@ namespace ControleSaidaMercadorias.Services
                 {
                     try
                     {
-                        instance = new SqlConnection(ConfigurationManager.ConnectionStrings["TESTE_DBtrhtgh"].ConnectionString);
+                        instance = new SqlConnection(ConfigurationManager.ConnectionStrings["TESTE_DB"].ConnectionString);
 
                     }
                     catch
