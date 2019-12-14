@@ -116,10 +116,14 @@ namespace ControleSaidaMercadorias.Views
         private void salvarBtn_Click(object sender, EventArgs e)
         {
             if (nomeTxt.Text.Trim() == string.Empty
-                    || (precoCustoTxt.Text == string.Empty || Convert.ToInt32(precoCustoTxt.Text) == 0)
-                    || (precoVendaTxt.Text == string.Empty || Convert.ToInt32(precoVendaTxt.Text) == 0)
+                    || precoCustoTxt.Text == string.Empty
+                    || Convert.ToDouble(precoCustoTxt.Text) == 0
+                    || precoVendaTxt.Text == string.Empty
+                    || Convert.ToDouble(precoVendaTxt.Text) == 0
                     || (qtdeEstoqueTxt.Text == string.Empty && qtdeEstoqueTxt.Visible == true)
-                    || Convert.ToInt32(qtdeEstoqueTxt.Text) == 0)
+                    //|| (Convert.ToDouble(qtdeEstoqueTxt.Text) == 0 && qtdeEstoqueTxt.Visible == true) VOLTAR AQUI
+                    )
+
             {
                 MessageBox.Show("É necessario preencher todos os campos com valores válidos.", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
@@ -201,6 +205,11 @@ namespace ControleSaidaMercadorias.Views
         private void listaProdSimplesDgv_RowsRemoved(object sender, DataGridViewRowsRemovedEventArgs e)
         {
             CalcularPrecoCusto();
+        }
+
+        private void excProdSimplesBtn_Click(object sender, EventArgs e)
+        {
+            listaProdSimplesDgv.Rows.RemoveAt(listaProdSimplesDgv.CurrentRow.Index);
         }
     }
 }

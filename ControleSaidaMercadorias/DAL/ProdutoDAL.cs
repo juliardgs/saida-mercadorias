@@ -59,7 +59,7 @@ namespace ControleSaidaMercadorias.DAL
             if (composto)
             {
                 /*
-                 * primeiro faz apaga
+                 * primeiro apaga
                  * depois faz uma inclusão das coisas novas
                  */
 
@@ -67,7 +67,7 @@ namespace ControleSaidaMercadorias.DAL
                 command.Parameters.AddWithValue("@idComposto", produto.Id);
                 command.ExecuteNonQuery();
 
-                command.CommandText = "insert into produto_tem_produtos (idSimples, idComposto2, quantidade) values (@idSimples, @idComposto, @quantidadePS)";
+                command.CommandText = "insert into produto_tem_produtos (idSimples, idComposto, quantidade) values (@idSimples, @idComposto, @quantidadePS)";
 
                 command.Parameters.Add("@idSimples", SqlDbType.Int);
                 command.Parameters.Add("@idComposto2", SqlDbType.Int);
@@ -104,7 +104,8 @@ namespace ControleSaidaMercadorias.DAL
                 "and produto.deleted is null";
             command2.Parameters.AddWithValue("@nome", "%" + nome.ToLower() + "%");
 
-            command3.CommandText = "select id as ID, nome as NOME, precoCusto as 'PREÇO DE CUSTO', precoVenda as 'PREÇO DE VENDA', quantidade as ESTOQUE from produto where deleted is null;"; //lista todos os tipos de produto que não foram excluídos logicamente
+            command3.CommandText = "select id as ID, nome as NOME, precoCusto as 'PREÇO DE CUSTO', " +
+                "precoVenda as 'PREÇO DE VENDA', quantidade as ESTOQUE from produto where deleted is null;"; //lista todos os tipos de produto que não foram excluídos logicamente
 
             SqlDataReader reader = command.ExecuteReader();
             DataTable dt = new DataTable();
@@ -141,8 +142,7 @@ namespace ControleSaidaMercadorias.DAL
         {
             connection.Open();
             var command = connection.CreateCommand();
-            command.CommandText = "select * from produto_tem_produtos where idComposto = @idProduto or idSimples = @idProduto; " +
-                "select * from requisicao_tem_produtos where idProduto = @idProduto";
+            command.CommandText = "select * from produto_tem_produtos where idComposto = @idProduto or idSimples = @idProduto;";
             command.Parameters.Add("@idProduto", SqlDbType.Int);
             command.Parameters["@idProduto"].Value = idProduto;
 
@@ -151,12 +151,21 @@ namespace ControleSaidaMercadorias.DAL
             connection.Close();
 
             connection.Open();
+            command.CommandText = "select * from requisicao_tem_produtos where idProduto = @idProd";
+            command.Parameters.Add("@idProd", SqlDbType.Int);
+            command.Parameters["@idProd"].Value = idProduto;
+
+            SqlDataReader reader2 = command.ExecuteReader();
+            bool resultado2 = reader2.Read();
+            connection.Close();
+
+            connection.Open();
 
             command.Parameters.Add("@idProduto2", SqlDbType.Int);
 
             command.Parameters["@idProduto2"].Value = idProduto;
 
-            if (resultado) //se tiver registros, faz uma exclusão lógica
+            if (resultado || resultado2) //se tiver registros, faz uma exclusão lógica
             {
                 if (composto)
                 {

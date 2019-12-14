@@ -186,6 +186,7 @@
             this.excProdSimplesBtn.TabIndex = 7;
             this.excProdSimplesBtn.Text = "EXCLUIR ITEM";
             this.excProdSimplesBtn.UseVisualStyleBackColor = true;
+            this.excProdSimplesBtn.Click += new System.EventHandler(this.excProdSimplesBtn_Click);
             // 
             // addProdSimplesBtn
             // 
