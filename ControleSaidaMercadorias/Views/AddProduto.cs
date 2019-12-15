@@ -97,8 +97,8 @@ namespace ControleSaidaMercadorias.Views
                         linha[0] = prodSelecionado.Id;
                         linha[1] = prodSelecionado.Nome;
                         linha[2] = qtde;
-                        linha[3] = prodSelecionado.PrecoCusto * qtde;
-                        linha[4] = prodSelecionado.PrecoVenda * qtde;
+                        linha[3] = prodSelecionado.PrecoCusto;
+                        linha[4] = prodSelecionado.PrecoVenda;
                         ((DataTable)altProduto.listaProdSimplesDgv.DataSource).Rows.Add(linha);
                     }
                 }

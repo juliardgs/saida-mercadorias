@@ -34,6 +34,7 @@ namespace ControleSaidaMercadorias.Views
             {
                 listaProdSimplesPanel.Visible = false;
                 addExcBtnPanel.Visible = false;
+                precoCustoTxt.Text = prod.PrecoCusto.ToString();
             }
             else
             {
@@ -41,10 +42,10 @@ namespace ControleSaidaMercadorias.Views
                 listaProdSimplesPanel.Visible = true;
                 addExcBtnPanel.Visible = true;
                 listaProdSimplesDgv.DataSource = dal.ListarItensProdComposto(prod.Id);
+                precoCustoTxt.Text = prod.PrecoCusto.ToString();
             }
 
             nomeTxt.Text = prod.Nome;
-            precoCustoTxt.Text = prod.PrecoCusto.ToString();
             precoVendaTxt.Text = prod.PrecoVenda.ToString();
             
 
@@ -180,7 +181,7 @@ namespace ControleSaidaMercadorias.Views
             double precoCusto = 0;
             foreach (DataGridViewRow linha in listaProdSimplesDgv.Rows)
             {
-                precoCusto += Convert.ToDouble(linha.Cells[3].Value) * Convert.ToInt32(linha.Cells[3].Value);
+                precoCusto += Convert.ToDouble(linha.Cells[3].Value) * Convert.ToInt32(linha.Cells[2].Value);
             }
             precoCustoTxt.Text = precoCusto.ToString();
         }
