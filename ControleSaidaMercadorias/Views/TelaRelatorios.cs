@@ -87,7 +87,7 @@ namespace ControleSaidaMercadorias.Views
                         XcelApp.Cells[1, i] = relatorioReqDgv.Columns[i - 1].HeaderText;
                     }
                     
-                    for (int i = 0; i < relatorioReqDgv.Rows.Count - 1; i++)
+                    for (int i = 0; i < relatorioReqDgv.Rows.Count; i++)
                     {
                         for (int j = 0; j < relatorioReqDgv.Columns.Count; j++)
                         {
